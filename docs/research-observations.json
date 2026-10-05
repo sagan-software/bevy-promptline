@@ -1,0 +1,380 @@
+{
+  "date": "2026-10-05",
+  "scope": "Read-only research; alternatives were not compiled or run. Branch files can change after retrieval.",
+  "bevy_latest": {
+    "version": "0.19.1",
+    "published_at": "2026-08-13T00:02:58Z",
+    "source": "https://api.github.com/repos/bevyengine/bevy/releases/latest"
+  },
+  "bevy_preview": {
+    "version": "0.20.0-dev",
+    "revision": "85cf8037abde4868f406c54d1a8fba9c29c53489"
+  },
+  "searches": [
+    "https://crates.io/api/v1/crates?page=1&per_page=100&q=bevy%20console",
+    "https://api.github.com/search/repositories?q=bevy+console&per_page=50"
+  ],
+  "name_checks": {
+    "https://crates.io/api/v1/crates/bevy_promptline": 404,
+    "https://api.github.com/repos/sagan-software/bevy-promptline": 404,
+    "exact_web_queries": [
+      "\"bevy_promptline\"",
+      "\"Bevy Promptline\""
+    ],
+    "reservation": false
+  },
+  "repositories": [
+    {
+      "repo": "BrianWiz/bevy_rcon",
+      "canonical": "BrianWiz/bevy_rcon",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2025-03-11T22:33:15Z",
+      "branch": "main",
+      "url": "https://github.com/BrianWiz/bevy_rcon",
+      "manifest_url": "https://raw.githubusercontent.com/BrianWiz/bevy_rcon/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/BrianWiz/bevy_rcon/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_rcon\"",
+        "version = \"0.1.0\"",
+        "bevy = \"0.15.2\"",
+        "serde = { version = \"1.0.218\", features = [\"derive\"] }"
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "Chillgames-net/bevy_console",
+      "canonical": "Chillgames-net/bevy_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-09-26T19:04:56Z",
+      "branch": "main",
+      "url": "https://github.com/Chillgames-net/bevy_console",
+      "manifest_url": "https://raw.githubusercontent.com/Chillgames-net/bevy_console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/Chillgames-net/bevy_console/main/README.md",
+      "manifest_observations": [
+        "name = \"chill_bevy_console\"",
+        "version = \"0.3.4\"",
+        "rust-version = \"1.95\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [",
+        "chill_bevy_console_derive = { version = \"0.3.2\", path = \"derive\", optional = true }",
+        "bevy = { version = \"0.19\", default-features = false, features = [\"system_clipboard\"] }",
+        "bevy = \"0.19\"",
+        "name = \"persistent_history\"",
+        "name = \"advanced\"",
+        "name = \"resource_properties\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "DudeGunter/bevy_console",
+      "canonical": "DudeGunter/bevy_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-08-16T08:48:34Z",
+      "branch": "main",
+      "url": "https://github.com/DudeGunter/bevy_console",
+      "manifest_url": "https://raw.githubusercontent.com/DudeGunter/bevy_console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/DudeGunter/bevy_console/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_console\"",
+        "version = \"0.1.0\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [\"bevy_feathers\"] }",
+        "name = \"basic\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [\"2d\", \"ui\"]}"
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "Hellzbellz123/bevy_console",
+      "canonical": "Hellzbellz123/bevy_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-01-30T11:12:49Z",
+      "branch": "vcih",
+      "url": "https://github.com/Hellzbellz123/bevy_console",
+      "manifest_url": "https://raw.githubusercontent.com/Hellzbellz123/bevy_console/vcih/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/Hellzbellz123/bevy_console/vcih/README.md",
+      "manifest_observations": [
+        "name = \"bevy_console\"",
+        "version = \"0.12.1\"",
+        "bevy = { version = \"0.14\", default-features = false, features = [  \"bevy_asset\",",
+        "clap = { version = \"4.5\", features = [\"derive\", \"color\", \"help\"] }",
+        "bevy_console_derive = { path = \"./bevy_console_derive\", version = \"0.5.0\" }",
+        "bevy_egui = {version = \"0.30.0\", default-features = false, features = [\"default_fonts\", \"render\"]}",
+        "bevy = { version = \"0.14\", default-features = false, features = [  \"bevy_asset\",",
+        "color-print = { version = \"0.3\" }"
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "aecsocket/bevy-commands",
+      "canonical": "aecsocket/bevy-commands",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2023-08-21T11:05:37Z",
+      "branch": "main",
+      "url": "https://github.com/aecsocket/bevy-commands",
+      "manifest_url": "https://raw.githubusercontent.com/aecsocket/bevy-commands/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/aecsocket/bevy-commands/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_commands\"",
+        "version = \"0.1.0\"",
+        "bevy = { version = \"0.11\", default-features = false }",
+        "clap = { version = \"4.3.21\", features = [ \"derive\" ] }",
+        "shlex = { version = \"1.1.0\", optional = true }",
+        "rustyline = { version = \"12.0.0\", optional = true }",
+        "termcolor = { version = \"1\", optional = true }",
+        "bevy_egui = { version = \"0.21\", optional = true }",
+        "bevy = \"0.11\""
+      ],
+      "readme_fetch_error": "HTTP Error 404: Not Found",
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "blinfoldking/bevy_clap_console",
+      "canonical": "blinfoldking/bevy_clap_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2022-12-27T10:53:55Z",
+      "branch": "master",
+      "url": "https://github.com/blinfoldking/bevy_clap_console",
+      "manifest_url": "https://raw.githubusercontent.com/blinfoldking/bevy_clap_console/master/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/blinfoldking/bevy_clap_console/master/README.md",
+      "manifest_observations": [
+        "name = \"bevy_clap_console\"",
+        "version = \"0.1.0\"",
+        "bevy = { version = \"0.9.0\", default-features = false, features = [",
+        "bevy_egui = \"0.18.0\"",
+        "clap = { version = \"4.0.32\", features = [\"derive\"] }",
+        "bevy = { version = \"0.9.0\" }"
+      ],
+      "readme_fetch_error": "HTTP Error 404: Not Found",
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "doonv/bevy_dev_console",
+      "canonical": "doonv/bevy_dev_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-05-08T18:32:42Z",
+      "branch": "master",
+      "url": "https://github.com/doonv/bevy_dev_console",
+      "manifest_url": "https://raw.githubusercontent.com/doonv/bevy_dev_console/master/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/doonv/bevy_dev_console/master/README.md",
+      "manifest_observations": [
+        "name = \"bevy_dev_console\"",
+        "version = \"0.1.0\"",
+        "bevy = { version = \"0.14.0\", default-features = false, features = [] }",
+        "bevy_egui = \"0.28.0\"",
+        "logos = { version = \"0.14.0\", optional = true }",
+        "fuzzy-matcher = { version = \"0.3.7\", optional = true }",
+        "bevy = \"0.14.0\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "hymm/bevy_mod_console_debug",
+      "canonical": "hymm/bevy_mod_console_debug",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2023-08-18T16:32:46Z",
+      "branch": "main",
+      "url": "https://github.com/hymm/bevy_mod_console_debug",
+      "manifest_url": "https://raw.githubusercontent.com/hymm/bevy_mod_console_debug/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/hymm/bevy_mod_console_debug/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_mod_console_debug\"",
+        "version = \"0.1.0\"",
+        "bevy = {version = \"0.11\", default_features = false}",
+        "bevy = \"0.11\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "hymm/bevy_mod_debug_console",
+      "canonical": "hymm/bevy_mod_debug_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2022-08-16T17:57:11Z",
+      "branch": "main",
+      "url": "https://github.com/hymm/bevy_mod_debug_console",
+      "manifest_url": "https://raw.githubusercontent.com/hymm/bevy_mod_debug_console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/hymm/bevy_mod_debug_console/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_mod_debug_console\"",
+        "version = \"0.1.0\"",
+        "bevy = {version = \"0.8\", default-features = false}",
+        "clap = \"3.2\"",
+        "bevy = \"0.8\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "makspll/bevy-console",
+      "canonical": "makspll/bevy-console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-07-29T16:39:35Z",
+      "branch": "main",
+      "url": "https://github.com/makspll/bevy-console",
+      "manifest_url": "https://raw.githubusercontent.com/makspll/bevy-console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/makspll/bevy-console/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_console\"",
+        "version = \"0.18.0\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [",
+        "clap = { version = \"4.5\", features = [\"derive\"] }",
+        "bevy_console_derive = { path = \"./bevy_console_derive\", version = \"0.6.0\" }",
+        "bevy_egui = { version = \"0.41\", default-features = false, features = [",
+        "bevy = { version = \"0.19\", features = [\"std\", \"bevy_log\", \"keyboard\", \"mouse\"] }",
+        "color-print = { version = \"0.3\" }"
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "mathiasmellemstuen/bevy_dev_console_ui",
+      "canonical": "mathiasmellemstuen/bevy_dev_console_ui",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2024-04-30T04:05:39Z",
+      "branch": "main",
+      "url": "https://github.com/mathiasmellemstuen/bevy_dev_console_ui",
+      "manifest_url": "https://raw.githubusercontent.com/mathiasmellemstuen/bevy_dev_console_ui/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/mathiasmellemstuen/bevy_dev_console_ui/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_dev_console_ui\"",
+        "version = \"0.1.0\"",
+        "bevy_egui = \"0.27.0\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "philiplinden/bevy_repl",
+      "canonical": "philiplinden/bevy_repl",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-09-19T14:33:51Z",
+      "branch": "main",
+      "url": "https://github.com/philiplinden/bevy_repl",
+      "manifest_url": "https://raw.githubusercontent.com/philiplinden/bevy_repl/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/philiplinden/bevy_repl/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_repl\"",
+        "version = \"0.5.0\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [\"bevy_log\", \"trace\"]}",
+        "clap = { version = \"4.6.1\" }",
+        "bevy_repl_derive = { version = \"0.1.0\", path = \"./bevy_repl_derive\", optional = true }",
+        "tracing = { version = \"0.1\", features = [",
+        "name = \"aliases\"",
+        "name = \"alt_screen\"",
+        "name = \"builder\"",
+        "name = \"builtins\"",
+        "name = \"custom_log_layer\"",
+        "name = \"custom_renderer\"",
+        "name = \"default\"",
+        "name = \"demo\"",
+        "name = \"derive\"",
+        "name = \"fixed_update\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "rks-malvern/bevy_console",
+      "canonical": "rks-malvern/bevy_console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2023-06-28T14:24:12Z",
+      "branch": "main",
+      "url": "https://github.com/rks-malvern/bevy_console",
+      "manifest_url": "https://raw.githubusercontent.com/rks-malvern/bevy_console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/rks-malvern/bevy_console/main/README.md",
+      "manifest_observations": [],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": "HTTP Error 404: Not Found"
+    },
+    {
+      "repo": "sgodwincs/bevy-console",
+      "canonical": "sgodwincs/bevy-console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-03-29T20:50:53Z",
+      "branch": "main",
+      "url": "https://github.com/sgodwincs/bevy-console",
+      "manifest_url": "https://raw.githubusercontent.com/sgodwincs/bevy-console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/sgodwincs/bevy-console/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_console\"",
+        "version = \"0.17.1\"",
+        "bevy = { version = \"0.18\", default-features = false, features = [",
+        "clap = { version = \"4.5\", features = [\"derive\"] }",
+        "bevy_console_derive = { path = \"./bevy_console_derive\", version = \"0.5.0\" }",
+        "bevy_egui = { version = \"0.39\", default-features = false, features = [",
+        "bevy = { version = \"0.18\", features = [\"std\", \"bevy_log\", \"keyboard\", \"mouse\"] }",
+        "color-print = { version = \"0.3\" }"
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "shanecelis/bevy_minibuffer",
+      "canonical": "shanecelis/bevy_minibuffer",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-09-23T08:48:22Z",
+      "branch": "main",
+      "url": "https://github.com/shanecelis/bevy_minibuffer",
+      "manifest_url": "https://raw.githubusercontent.com/shanecelis/bevy_minibuffer/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/shanecelis/bevy_minibuffer/main/README.md",
+      "manifest_observations": [
+        "name = \"bevy_minibuffer\"",
+        "version = \"0.7.0\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [ \"bevy_text\", \"bevy_ui\", \"bevy_input_focus\", \"default_font\", \"bevy_window\", \"bevy_state\", \"bevy_log\", \"std\", \"async_executor\" ] }",
+        "keyseq = { version = \"0.9.0\", features = [ \"bevy\" ]}",
+        "bevy_asky = { version = \"0.6\", default-features = false, features = [ \"color\" ] }",
+        "futures = { version = \"0.3.30\", optional = true }",
+        "bevy_defer = { version = \"0.18\", optional = true }",
+        "copypasta = { version = \"0.10.1\", optional = true }",
+        "bevy_channel_message = { version = \"0.3\", optional = true }",
+        "bevy = \"0.19\"",
+        "bevy_egui = \"0.41\"",
+        "name = \"demo-async\"",
+        "name = \"cube-async\"",
+        "name = \"two-commands-async\"",
+        "name = \"universal-arg-async\"",
+        "name = \"tab-completion-async\""
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    },
+    {
+      "repo": "slowchop/console",
+      "canonical": "slowchop/console",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2025-04-18T20:55:14Z",
+      "branch": "main",
+      "url": "https://github.com/slowchop/console",
+      "manifest_url": "https://raw.githubusercontent.com/slowchop/console/main/Cargo.toml",
+      "readme_url": "https://raw.githubusercontent.com/slowchop/console/main/README.md",
+      "manifest_observations": [
+        "slowchop_console_derive = { version = \"0.1.2\", path = \"slowchop_console_derive\" }",
+        "bevy = { version = \"0.15\", default-features = false, features = [",
+        "tracing-subscriber = { version = \"0.3.18\" }",
+        "syn = { version = \"2.0.39\", features = [\"extra-traits\"] }"
+      ],
+      "readme_fetch_error": null,
+      "manifest_fetch_error": null
+    }
+  ]
+}
