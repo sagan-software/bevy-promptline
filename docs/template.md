@@ -28,4 +28,4 @@ Future implementation must run the template's applicable checks after conversion
 
 ## Local state
 
-`VERSION` is 0.1.0 for the initial planning repository. It is not a published crate version. This repository has no Git remote. Future GitHub creation, pushes, package publication, and gallery deployment require a later instruction.
+`VERSION` is 0.1.1 after the CRT and logging planning update. It is not a published crate version. This repository has no Git remote. Future GitHub creation, pushes, package publication, and gallery deployment require a later instruction.

@@ -15,6 +15,13 @@ The working repository name is `bevy-promptline`; the proposed crate name is `be
 - [Research, game references, and project inventory](docs/research.md)
 - [Template provenance and conversion boundary](docs/template.md)
 - [Product requirements](PRODUCT.md)
+- [Log filtering and formatting](docs/logging.md)
+- [CRT workstation and README recording](docs/crt-workstation.md)
+- [Implementation-session prompt](docs/implementation-prompt.md)
+
+## Project direction
+
+Build an independent console with deliberate visual design and complete interactions. The owner wants control over the result across games. Alternatives inform the design and remain linked below.
 
 ## Planned behavior
 
@@ -22,7 +29,7 @@ Register game commands through traits and Bevy systems. Use existing Clap derive
 
 Tab completes commands, subcommands, flags, and supplied argument values. Ghost text previews a completion without changing input. A separate help area explains the selected command or current argument while typing. The editor and output use Bevy UI text and nodes.
 
-Applications can replace the layout, theme, input bindings, and animation. The default console provides a usable starting point. Examples demonstrate a top drawer, a movable window, a compact prompt, and more advanced command integration.
+Applications can replace the layout, theme, input bindings, and animation. The default console provides a usable starting point. Examples demonstrate a top drawer, a movable window, a compact prompt, and more advanced command integration. A CRT workstation example renders the same Bevy UI onto a monitor at a desk with a WGSL screen effect and DOS-inspired commands.
 
 The target Bevy lines are 0.18, 0.19, and the upcoming 0.20. The 0.20 target remains provisional until its release passes validation. Compatibility requires matching crate releases, as explained in [the compatibility policy](docs/compatibility.md).
 
@@ -40,6 +47,17 @@ These projects may already fit a game's needs. Versions below are observations, 
 - [bevy_mod_debug_console](https://github.com/hymm/bevy_mod_debug_console), [bevy_mod_console_debug](https://github.com/hymm/bevy_mod_console_debug), and [bevy_clap_console](https://github.com/blinfoldking/bevy_clap_console): older ECS debugging and console projects.
 
 The [full inventory](docs/research.md) includes small prototypes, copies of existing projects, console variables, remote consoles, and terminal renderers. Search cannot establish an exhaustive list of all public or private projects.
+
+### Other consoles and references
+
+- [Seismon](https://github.com/eira-fransham/seismon): a Quake engine with a Bevy UI console and system-backed commands. Its inspected main branch uses Bevy 0.18; extraction into a standalone console crate remains tracked separately.
+- [bevy_tui_texture](https://github.com/tt-toe/bevy_tui_texture): Ratatui-based UI textures with an existing CRT workstation and WebGL2 example. Useful presentation reference; its rendering differs from the Bevy UI requirement.
+- [bevy_retro_shaders](https://github.com/kodaskills/bevy_retro_shaders): a CRT effect reference whose documented pass precedes ordinary UI rendering.
+- [DudeGunter/bevy_console](https://github.com/DudeGunter/bevy_console), [rks-malvern/bevy_console](https://github.com/rks-malvern/bevy_console), and [bevy_dev_console_ui](https://github.com/mathiasmellemstuen/bevy_dev_console_ui): smaller console projects with varying documentation and compatibility.
+- [sgodwincs/bevy-console](https://github.com/sgodwincs/bevy-console) and [Hellzbellz123/bevy_console](https://github.com/Hellzbellz123/bevy_console): related copies of the established console.
+- [bevy_rcon](https://github.com/BrianWiz/bevy_rcon): remote console access. [bevy-convars](https://github.com/transcendental-experiences/bevy-convars), [bevy_cvar](https://crates.io/crates/bevy_cvar), and [cvars](https://github.com/martin-t/cvars): configuration-variable tools.
+- [bevy_tui](https://github.com/sstelfox/bevy_tui), [bevy_ratatui](https://github.com/apekros/bevy_ratatui), [bevy_terminal_display](https://docs.rs/bevy_terminal_display/latest/bevy_terminal_display/), [plurimus](https://github.com/kenianbei/plurimus), and [bevy_ascii_terminal](https://github.com/sarkahn/bevy_ascii_terminal): adjacent terminal integrations and renderers.
+- [symtropy-devconsole](https://crates.io/crates/symtropy-devconsole), [bevy_workbench](https://github.com/Bli-AIk/bevy_workbench), and [BevyStudio](https://github.com/salom600/BevyStudio): project-specific developer panels and editor tools.
 
 ## Local baseline
 

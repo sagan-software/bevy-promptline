@@ -36,7 +36,7 @@ Proposed optional features are `clap`, `log`, and `clipboard`. Keep persistence 
 
 Clap starts with stable 4.6.6 as used by the inspected template, subject to verification at implementation. Keep the adapter on stable Clap APIs. `clap_complete` exposes dynamic completion behind `unstable-dynamic`; it is not a mandatory dependency or promised stable API.
 
-Browser examples use target-specific dependencies. Native clipboard helpers, filesystem persistence, threads, and native inspection tools must not enter the browser default graph.
+Browser examples use target-specific dependencies. Native clipboard helpers, filesystem persistence, threads, and native inspection tools must not enter the browser default graph. Keep CRT/PBR dependencies in the example. Validate its fragment shader in browser WebGL2 independently of the plain console examples.
 
 ## CI matrix
 

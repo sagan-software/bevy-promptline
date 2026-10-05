@@ -70,8 +70,22 @@ Ghost text is a requested Promptline behavior. This research does not establish 
 
 [Bevy's examples index](https://bevy.org/examples/) and [logs run page](https://bevy.org/examples/application/logs/) supply the gallery reference: separate runnable examples, descriptions, controls, source access, and renderer-specific pages. Follow [the tagged Wasm guide](https://github.com/bevyengine/bevy/blob/v0.19.1/examples/README.md#wasm) for independent builds and asset copying. Do not reuse the template's native networking demo as browser evidence.
 
+## Follow-up research
+
+The user chose an independent implementation for control over visual design and interaction. Contribution to an existing console is not a prerequisite. The alternatives remain documented without making quality claims from screenshots.
+
+[Seismon](https://github.com/eira-fransham/seismon) is another relevant console implementation inside a Bevy Quake engine. Its inspected main revision `fce4b4850608fbbb4afe871c70be4b2be0ffa7f2` uses Bevy 0.18. The project describes its console as Bevy UI with ordinary systems for commands. Its [extraction issue](https://github.com/eira-fransham/seismon/issues/30) still lists console extraction. Treat it as embedded reference code, not a verified current standalone console crate.
+
+[bevy_tui_texture](https://github.com/tt-toe/bevy_tui_texture) deserves a closer look for the new example. Inspected revision `ad76f318f13891b9087ce1d8bf11fe49e5a667b6` identifies package 0.3.5 for Bevy 0.19. It already includes a CRT scene, input mapping, and a WebGL2 build. It uses Ratatui/WGPU textures, so it is an adjacent implementation rather than the requested Bevy UI console. Its fonts have separate OFL licenses. Use original scene assets and preserve licenses for any adopted assets.
+
+[bevy_retro_shaders](https://github.com/kodaskills/bevy_retro_shaders) at `2982443eea6a9cd8175c9c85388c85965b8af498` identifies package 0.2.0 for Bevy 0.19. Its README documents CRT effects before ordinary UI. Study its effect controls, but prove that Promptline's shader samples the actual console texture.
+
+The follow-up crates.io console search found the same direct console families. A broader command search also returned ECS command helpers such as `bevy_local_commands` and `bevy_commandify`; their names do not establish an interactive console. The broad GitHub README search produced many unrelated collection repositories. Those results are search noise rather than additional console evidence. The inventory is bounded, not exhaustive.
+
+[Bevy's UI-to-texture example](https://github.com/bevyengine/bevy/blob/v0.19.1/examples/ui/render_ui_to_texture.rs) includes an offscreen UI camera and virtual pointer routing. [Its UI material example](https://github.com/bevyengine/bevy/blob/v0.19.1/examples/ui/ui_material.rs) demonstrates a custom fragment shader. These support the proposed CRT architecture; they do not prove the planned distorted screen interaction.
+
 ## Recommendation and unresolved evidence
 
-Proceed with Promptline if drop-in Clap integration, lightweight default dependencies, ghost text, live help, and replaceable Bevy UI justify maintaining another plugin. Bevy UI alone is not a unique claim; close alternatives already use it.
+Build Promptline independently as requested. Use the existing consoles as functional references. Establish visual quality through actual rendered examples and interaction checks. Bevy UI alone is not a unique claim; close alternatives already use it.
 
 Before implementation, verify the 0.18 editing strategy and prototype the current editor's styled input. Before publication, refresh the inventory, validate crate-name availability, test the actual compatibility lines, and inspect real browser examples. No current source proves the planned implementation works.

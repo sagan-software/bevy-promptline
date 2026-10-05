@@ -376,5 +376,99 @@
       "readme_fetch_error": null,
       "manifest_fetch_error": null
     }
+  ],
+  "followup_date": "2026-10-05",
+  "followup_repositories": [
+    {
+      "repo": "eira-fransham/seismon",
+      "branch": "main",
+      "revision": "fce4b4850608fbbb4afe871c70be4b2be0ffa7f2",
+      "pushed_at": "2026-03-04T13:29:03Z",
+      "license": {
+        "key": "gpl-2.0",
+        "name": "GNU General Public License v2.0",
+        "spdx_id": "GPL-2.0",
+        "url": "https://api.github.com/licenses/gpl-2.0",
+        "node_id": "MDc6TGljZW5zZTg="
+      },
+      "source": "https://github.com/eira-fransham/seismon",
+      "manifest_observations": [
+        "name = \"seismon\"",
+        "version = \"0.2.0\"",
+        "bevy = { version = \"0.18\"}",
+        "bevy_asset = { version = \"0.18\" }",
+        "bevy_animation = { version = \"0.18\" }",
+        "bevy_app = { version = \"0.18\" }",
+        "bevy_camera = { version = \"0.18\" }",
+        "bevy_color = { version = \"0.18\" }",
+        "bevy_ecs = { version = \"0.18\" }",
+        "bevy_image = { version = \"0.18\" }",
+        "bevy_log = { version = \"0.18\" }",
+        "bevy_tasks = { version = \"0.18\" }"
+      ]
+    },
+    {
+      "repo": "Kodaskills/bevy_retro_shaders",
+      "branch": "main",
+      "revision": "2982443eea6a9cd8175c9c85388c85965b8af498",
+      "pushed_at": "2026-09-28T07:09:45Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "source": "https://github.com/kodaskills/bevy_retro_shaders",
+      "manifest_observations": [
+        "name = \"bevy_retro_shaders\"",
+        "version = \"0.2.0\"",
+        "version = \"0.19\"",
+        "version = \"1\"",
+        "version = \"0.40.1\"",
+        "version = \"0.2\"",
+        "version = \"0.4\"",
+        "version = \"0.3\"",
+        "version = \"0.3\"",
+        "version = \"0.6\"",
+        "version = \"1.0\"",
+        "version = \"0.1\""
+      ]
+    },
+    {
+      "repo": "tt-toe/bevy_tui_texture",
+      "branch": "main",
+      "revision": "ad76f318f13891b9087ce1d8bf11fe49e5a667b6",
+      "pushed_at": "2026-09-10T23:21:38Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "source": "https://github.com/tt-toe/bevy_tui_texture",
+      "manifest_observations": [
+        "name = \"bevy_tui_texture\"",
+        "version = \"0.3.5\"",
+        "rust-version = \"1.96\"",
+        "bevy = { version = \"0.19\", default-features = false, features = [",
+        "ratatui = { version = \"0.30.2\", default-features = false }",
+        "wgpu = { version = \"29.0\", default-features = false, features = [\"wgsl\", \"webgl\"] }",
+        "raqote = { version = \"0.8\", default-features = false }",
+        "bytemuck = { version = \"1.23\", features = [\"derive\"] }",
+        "bitvec = { version = \"1.0\", default-features = false, features = [\"std\"] }",
+        "indexmap = { version = \"2.11\", default-features = false, features = [\"std\"] }",
+        "evictor = { version = \"0.5\", default-features = false }",
+        "unicode-properties = { version = \"0.1\", optional = true }"
+      ]
+    }
+  ],
+  "followup_sources": [
+    "https://raw.githubusercontent.com/bevyengine/bevy/v0.19.1/crates/bevy_log/src/lib.rs",
+    "https://raw.githubusercontent.com/bevyengine/bevy/v0.19.1/examples/ui/render_ui_to_texture.rs",
+    "https://raw.githubusercontent.com/bevyengine/bevy/v0.19.1/examples/ui/ui_material.rs",
+    "https://api.github.com/search/repositories?q=bevy+console+in:name,description,readme&per_page=100&sort=stars",
+    "https://crates.io/api/v1/crates?page=1&per_page=100&q=bevy%20command"
   ]
 }

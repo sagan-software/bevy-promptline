@@ -6,6 +6,12 @@ The user requested planning and local repository initialization. Implementation 
 
 Game developers need a reusable Bevy plugin they can add to multiple projects. Players and developers need to discover and execute custom commands without knowing their names or argument syntax in advance.
 
+## Reason for building
+
+The user chose an independent implementation to control its visual design, interaction, and architecture. Existing plugins remain useful alternatives and research references. The project does not require a claim that those alternatives are defective or lack every proposed feature.
+
+A mature result requires consistent typography, deliberate spacing, readable help, accurate caret and ghost alignment, restrained default controls, complete error states, and working browser demonstrations. These are acceptance criteria for future review, not properties already established by this repository.
+
 ## Required capabilities
 
 - Render the console entirely with Bevy UI.
@@ -17,6 +23,9 @@ Game developers need a reusable Bevy plugin they can add to multiple projects. P
 - Target the upcoming Bevy release, the current release, and the previous release.
 - Provide six independent browser examples and a gallery similar to Bevy's examples page.
 - Demonstrate a Quake-style animated drawer and a Half-Life-style movable window.
+- Render the Bevy UI console onto a CRT monitor at a desk, with a screen shader and DOS-inspired example commands.
+- Expose log capture filters and formatting customization, including live console filtering.
+- Capture an actual working CRT example as a README GIF and publish runnable online examples.
 
 ## Platforms
 

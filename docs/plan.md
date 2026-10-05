@@ -1,8 +1,10 @@
 # Implementation plan
 
-Implementation begins only after the user reviews this plan and requests the next step. This repository initialization does not authorize a plugin implementation, external repository creation, push, publication, or deployment.
+The user has chosen an independent implementation and requested the final planning update. Implementation begins in a separate session using [the prepared prompt](implementation-prompt.md). This planning session changes documentation only.
 
 ## Recommendation
+
+The reason for building is control over visual design, interaction, and architecture. Do not reopen contribution to alternatives as a prerequisite. Use their behavior as research evidence and keep their links in the README.
 
 Build a small command runtime and a default Bevy UI console. Keep Clap and logs optional. Make completion, ghost text, live help, and highlighting share one input analysis model. Prove customization through six independent examples.
 
@@ -27,10 +29,15 @@ The main risks are text editing on 0.18, styled input and ghost alignment on 0.1
 - R13: Six examples compile independently to Wasm and have dedicated gallery pages.
 - R14: The README links alternatives; research distinguishes observed compatibility from tested compatibility.
 - R15: Quake-style sliding and Half-Life-style movable examples prove presentation flexibility.
+- R16: A CRT workstation renders the Bevy UI console to a screen texture with a working shader and accurate input mapping.
+- R17: DOS-inspired commands use a virtual filesystem and complete values without accessing the host filesystem.
+- R18: Capture filters, display filters, and log formatting are separately customizable, with live console filter updates.
+- R19: The README embeds a GIF captured from the real CRT example and links to deployed runnable examples.
+- R20: Rendered review establishes consistent typography, spacing, readable help, complete states, and accurate interaction across examples.
 
 ## Milestone 0: Review and resolve contracts
 
-Review the name, feature boundaries, command grammar, lifecycle ordering, Clap limits, example list, and compatibility policy. Confirm the default dependency budget and the no-shell policy.
+Resolve exact APIs against the selected Bevy source and the documented feature boundaries. Keep the chosen independent implementation, optional adapters, six-example set, and no-shell policy. Ask only about a material conflict or missing product fact.
 
 Refresh official release sources. Record versions, MSRV, renderer features, and compatible editing dependencies. Inspect actual upstream APIs before fixing public signatures. Review the next milestone's acceptance cases before production code.
 
@@ -66,21 +73,23 @@ Exit evidence covers R7 and the no-Clap half of R8. The `clap_commands` example 
 
 ## Milestone 4: Add bounded output and log capture
 
-Implement bounded scrollback, visible-row rendering, copy, filters, pause display, stable scroll position, and unread counts. Add the optional tracing layer and subscriber-composition guide.
+Implement bounded scrollback, visible-row rendering, copy, filters, pause display, stable scroll position, and unread counts. Add the optional tracing layer and subscriber-composition guide. Follow [the logging contract](logging.md) for directive grammar, live filter reload, formatting, and global-filter limits.
 
 Test log installation before and after subscriber initialization, caller-owned subscribers, multiple Apps, burst overflow, concurrent writers, disconnects, recursive output, and drop summaries. Native and browser examples must preserve their ordinary log sinks.
 
 Implement pending command completion and cooperative cancellation only to the extent required by the kitchen-sink example. Prove queued commands and UI input remain responsive while a command is pending.
 
-Exit evidence covers R11 and completes R9. Record observed resource costs without claiming allocation or frame-time guarantees that were not measured.
+Exit evidence covers R11 and R18 and completes R9. Record observed resource costs without claiming allocation or frame-time guarantees that were not measured.
 
 ## Milestone 5: Prove customization with six examples
 
-Expose UI roles and theme resources. Build the drawer, movable window, compact prompt, and kitchen-sink configurations through those public contracts. Share scene helpers and keep each Cargo example independent.
+Expose UI roles and theme resources. Build the drawer, movable window, CRT workstation, and kitchen-sink configurations through those public contracts. Keep compact presentation in the kitchen-sink target. Share scene helpers and keep each Cargo example independent.
 
 Test interrupted animations, reduced motion, window dragging and resizing, focus restoration, touch open controls, small-canvas clamping, and gameplay input gating. Review desktop and narrow views in a bounded pass and confirm fixes.
 
-Exit evidence covers R10, R13, and R15. No example may use a private library field to achieve its customization.
+Implement the CRT scene, shader, pointer mapping, virtual filesystem, and commands from [the CRT brief](crt-workstation.md). Validate the actual console texture, curved-screen selection, focus, reduced effects, and shader controls in WebGL2.
+
+Exit evidence covers R10, R13, R15, R16, R17, and R20. No example may use a private library field to achieve its customization.
 
 ## Milestone 6: Port and validate the compatibility window
 
@@ -96,7 +105,9 @@ Create the static examples index and run pages from the example inventory. Add a
 
 Write the README guide from the compiled minimal example. Add customization, Clap, log capture, input policy, performance limits, supported versions, and alternatives documentation. Finish with a separate prose-only edit after code gates pass. Run examples and doctests last.
 
-Prepare local release artifacts and a publication checklist. GitHub repository creation, Pages deployment, and crates.io publication remain separate authorized actions.
+Capture and inspect the CRT GIF, poster, and optional video. Add them to the README without placeholder media. Publish the six independently built examples through GitHub Pages when the implementation prompt authorizes it. Validate every deployed page with actual command input and verify the live CRT controls.
+
+Exit evidence covers R19. GitHub creation, non-force pushes, and Pages deployment are authorized by the prompt only when the user submits it as the next task. Crates.io publication remains outside that authorization.
 
 ## Focused acceptance cases
 
@@ -130,4 +141,4 @@ Before each commit, inspect the scoped staged diff, configured identity, message
 
 ## Planning handoff boundary
 
-Initialization preserves the template and adds this planning packet. No proposed command API, plugin, example, gallery, compatibility branch, or CI workflow has been implemented. Review the contracts before starting milestone 1.
+Initialization preserves the template and adds this planning packet. No proposed command API, plugin, example, gallery, compatibility branch, or CI workflow has been implemented. The updated plan includes the user's confirmed project direction. The next-session prompt starts milestone 1 and defines online delivery authorization.

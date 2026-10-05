@@ -102,6 +102,8 @@ Drain a bounded cross-thread queue on the main thread. Apply capture filters bef
 
 Support level and target filters, pause display, search, copy, and clear in the advanced example. Preserve structured fields for inspection where useful. Document that compile-time and upstream subscriber filters can prevent entries from reaching the console. Do not promise capture of every log.
 
+The detailed [logging contract](logging.md) controls EnvFilter behavior, runtime reload, retained structured records, and custom formatters. The [CRT brief](crt-workstation.md) controls offscreen rendering and screen-pointer mapping.
+
 Source: [tagged Bevy logging implementation](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_log/src/lib.rs).
 
 ## Customization, policy, and costs
