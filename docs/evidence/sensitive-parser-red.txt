@@ -1,0 +1,24 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 7.25s
+     Running tests/promptline_runtime.rs (target/debug/deps/promptline_runtime-f135763c51e97a0d)
+
+running 1 test
+test sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications ... FAILED
+
+failures:
+
+---- sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications stdout ----
+
+thread 'sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications' (1967151) panicked at tests/promptline_runtime.rs:356:5:
+assertion failed: !app.world().resource::<Output>().texts().any(|text|
+            text.contains("secret-value"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test promptline_runtime`

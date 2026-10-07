@@ -1,0 +1,26 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 3.74s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 1 test
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... FAILED
+
+failures:
+
+---- enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input stdout ----
+
+thread 'enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input' (1994619) panicked at tests/ui.rs:123:10:
+Requested resource <Enable the debug feature to see the name> does not exist in the `World`.
+                Did you forget to add it using `app.insert_resource` / `app.init_resource`?
+                Resources are also implicitly added via `app.add_message`,
+                and can be added by plugins.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test ui`

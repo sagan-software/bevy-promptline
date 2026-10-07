@@ -1,0 +1,37 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+warning: method `color` is never used
+  --> src/ui/colors.rs:26:19
+   |
+24 | impl SeverityColors {
+   | ------------------- method in this implementation
+25 |     /// Selects presentation color without changing the retained output entry.
+26 |     pub(super) fn color(&self, severity: Severity, theme: &ConsoleTheme) -> Color {
+   |                   ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `bevy_promptline` (lib) generated 1 warning
+    Finished `test` profile [optimized + debuginfo] target(s) in 46.12s
+     Running tests/output_colors.rs (target/debug/deps/output_colors-505d27928ce2e720)
+
+running 1 test
+test output_sections_preserve_text_and_use_configured_severity_colors ... FAILED
+
+failures:
+
+---- output_sections_preserve_text_and_use_configured_severity_colors stdout ----
+
+thread 'output_sections_preserve_text_and_use_configured_severity_colors' (2597811) panicked at tests/output_colors.rs:22:5:
+assertion `left == right` failed
+  left: [Srgba(Srgba { red: 0.88, green: 0.93, blue: 0.94, alpha: 1.0 })]
+ right: [Srgba(Srgba { red: 0.88, green: 0.93, blue: 0.94, alpha: 1.0 }), Srgba(Srgba { red: 0.8, green: 0.6, blue: 0.2, alpha: 1.0 }), Srgba(Srgba { red: 0.9, green: 0.2, blue: 0.3, alpha: 1.0 }), Srgba(Srgba { red: 0.2, green: 0.4, blue: 0.6, alpha: 1.0 })]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    output_sections_preserve_text_and_use_configured_severity_colors
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test output_colors`

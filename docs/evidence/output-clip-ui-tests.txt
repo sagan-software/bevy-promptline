@@ -1,0 +1,24 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/d66246455705b5bf68f09045ead1b6dd6a2182a20236fce73e92e0f9785c8a3a.sqlite' is busy
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 16.56s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 14 tests
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+test long_output_has_an_ancestor_clip_and_input_does_not_shrink ... ok
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... ok
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test invalid_drafts_clear_stale_discovery_after_policy_changes ... ok
+test closing_key_is_owned_for_its_frame_and_game_input_resumes_next_frame ... ok
+test configured_toggle_and_close_keys_replace_the_defaults ... ok
+test history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits ... ok
+test visible_editor_reacquires_ownership_after_pointer_focus_returns ... ok
+test showing_and_releasing_preserve_visible_console_without_editing_ownership ... ok
+test tab_accepts_a_command_preview_without_submitting_it ... ok
+test theme_changes_update_public_roles_and_the_authoritative_editor_cursor ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... ok
+test shift_space_queues_the_space_ignored_by_bevy_019_text_input ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

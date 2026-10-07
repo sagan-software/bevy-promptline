@@ -1,0 +1,71 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 54.61s
+     Running unittests src/lib.rs (target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 3 tests
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+test execution::tests::missing_runtime_resources_do_not_execute_or_panic ... ok
+test execution::tests::missing_and_exhausted_identity_sequences_reject_without_reuse ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/command_text.rs (target/debug/deps/command_text-56a33567e14a93c5)
+
+running 6 tests
+test draft_analysis_tolerates_incomplete_quotes_but_rejects_forbidden_content ... ok
+test identity_and_limits_validate_external_construction ... ok
+test empty_quotes_and_unicode_preserve_decoded_arguments_and_source_ranges ... ok
+test malformed_submission_has_distinct_errors ... ok
+test profile_edges_and_exact_replacement_round_trips ... ok
+test standard_borrowed_name_view_preserves_its_validated_spelling ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/completion.rs (target/debug/deps/completion-6118344fd3ea18d5)
+
+running 1 test
+test command_completion_previews_without_mutating_input_or_running_a_parser ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.17s
+
+     Running tests/output.rs (target/debug/deps/output-0a2f326c9c2cb204)
+
+running 3 tests
+test overlong_entries_truncate_at_unicode_boundaries_and_fit_tiny_limits ... ok
+test oldest_entries_are_evicted_at_exact_entry_and_byte_limits ... ok
+test truncation_never_splits_a_multibyte_scalar_before_the_marker ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/promptline_runtime.rs (target/debug/deps/promptline_runtime-f135763c51e97a0d)
+
+running 9 tests
+test repeated_aliases_are_rejected_and_registry_debug_omits_callbacks ... ok
+test collisions_are_atomic_and_aliases_resolve_to_one_owner ... ok
+test submission_debug_does_not_disclose_sensitive_arguments ... ok
+test parser_policy_and_input_rejections_never_reach_a_handler ... ok
+test sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications ... ok
+test lifecycle_order_and_queue_overflow_are_observable ... ok
+test public_command_reaches_system_once_in_queue_order ... ok
+test alias_collisions_and_invalid_metadata_leave_the_registry_unchanged ... ok
+test handler_failures_cancellation_and_removed_systems_have_terminal_notifications ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.52s
+
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 4 tests
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... ok
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... ok
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.61s
+
+   Doc-tests bevy_promptline
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

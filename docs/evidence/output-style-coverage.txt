@@ -1,0 +1,239 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+warning: Git tree '/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline' has uncommitted changes
+info: cargo-llvm-cov currently setting cfg(coverage); you can opt-out it by passing --no-cfg-coverage
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 3m 42s
+     Running unittests src/lib.rs (target/llvm-cov-target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 19 tests
+test tokenization::tests::forbidden_content_prevents_all_token_visits ... ok
+test ui::colors::tests::defaults_follow_background_and_overrides_preserve_info ... ok
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+test ui::scrollback::tests::assembled_ranges_preserve_unicode_and_clear_with_output ... ok
+test registry::builder::tests::discarded_builder_releases_the_owned_parser_capture_once ... ok
+test execution::tests::missing_runtime_resources_do_not_execute_or_panic ... ok
+test execution::tests::missing_and_exhausted_identity_sequences_reject_without_reuse ... ok
+test ui::scrollback::tests::scroll_range_converts_physical_geometry_to_logical_pixels ... ok
+test output::tests::exhausted_sequence_panics_before_changing_retained_output ... ok
+test execution::pending::tests::finished_execution_does_not_retain_a_pending_slot ... ok
+test execution::pending::tests::removed_private_runtime_state_does_not_panic_or_retain_work ... ok
+test ui::scrollback::tests::unavailable_shaped_line_preserves_review_position ... ok
+test ui::scrollback::tests::pixel_scroll_can_resume_at_bottom_and_nonfinite_deltas_have_no_effect ... ok
+test ui::scrollback::tests::unattached_pointer_targets_leave_review_unchanged ... ok
+test ui::scrollback::tests::wheel_review_preserves_position_counts_arrivals_and_latest_resumes ... ok
+test ui::scrollback::tests::latest_label_tracks_theme_and_retains_idle_text_ticks ... ok
+test ui::scrollback::tests::capture_ignores_unavailable_geometry_and_unmatched_roles ... ok
+test ui::scrollback::tests::capture_records_unicode_entry_and_discards_anchor_when_following ... ok
+test ui::scrollback::tests::shaped_anchor_survives_arrival_and_clamps_after_eviction ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.50s
+
+     Running tests/app_ext_compatibility.rs (target/llvm-cov-target/debug/deps/app_ext_compatibility-60b03ae5642709b7)
+
+running 1 test
+test existing_implementor_requires_no_pending_method ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/clap_adapter.rs (target/llvm-cov-target/debug/deps/clap_adapter-2a8f2bad6bbf00ea)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/command_builder.rs (target/llvm-cov-target/debug/deps/command_builder-355b5a125806ef03)
+
+running 2 tests
+test plain_builder_delivers_typed_values_and_information_without_dispatching_help ... ok
+test builder_registration_preserves_collision_atomicity_and_authorizes_before_parsing ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.89s
+
+     Running tests/command_text.rs (target/llvm-cov-target/debug/deps/command_text-56a33567e14a93c5)
+
+running 6 tests
+test draft_analysis_tolerates_incomplete_quotes_but_rejects_forbidden_content ... ok
+test empty_quotes_and_unicode_preserve_decoded_arguments_and_source_ranges ... ok
+test identity_and_limits_validate_external_construction ... ok
+test malformed_submission_has_distinct_errors ... ok
+test profile_edges_and_exact_replacement_round_trips ... ok
+test standard_borrowed_name_view_preserves_its_validated_spelling ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/completion.rs (target/llvm-cov-target/debug/deps/completion-6118344fd3ea18d5)
+
+running 4 tests
+test command_completion_previews_without_mutating_input_or_running_a_parser ... ok
+test tab_expands_the_common_prefix_then_cycles_forward_and_backward ... ok
+test completion_validates_caret_snapshot_and_candidate_before_replacement ... ok
+test denied_commands_are_absent_from_completion_and_no_match_has_no_ghost ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.46s
+
+     Running tests/completion_provider.rs (target/llvm-cov-target/debug/deps/completion_provider-f63830dec07cd659)
+
+running 3 tests
+test missing_commands_and_deferred_mutations_are_rejected_before_provider_installation ... ok
+test provider_request_debug_does_not_disclose_draft_tokens_or_prefix ... ok
+test read_only_completion_tracks_live_values_and_permission_before_execution ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests/highlighting.rs (target/llvm-cov-target/debug/deps/highlighting-11fee9777e56a75f)
+
+running 4 tests
+test draft_spans_preserve_source_and_distinguish_options_values_and_quotes ... ok
+test grammar_edges_and_unknown_commands_keep_exact_roles_and_diagnostics ... ok
+test incomplete_input_is_a_local_diagnostic_without_submission ... ok
+test permission_denial_does_not_reveal_command_membership ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests/history.rs (target/llvm-cov-target/debug/deps/history-c57ed823605fb76e)
+
+running 2 tests
+test history_browsing_restores_the_draft_and_never_retains_sensitive_commands ... ok
+test history_enforces_retention_limits_and_handles_empty_or_oldest_browsing ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/log_capture.rs (target/llvm-cov-target/debug/deps/log_capture-d49cdb9c3da5bd7e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/output.rs (target/llvm-cov-target/debug/deps/output-0a2f326c9c2cb204)
+
+running 3 tests
+test overlong_entries_truncate_at_unicode_boundaries_and_fit_tiny_limits ... ok
+test oldest_entries_are_evicted_at_exact_entry_and_byte_limits ... ok
+test truncation_never_splits_a_multibyte_scalar_before_the_marker ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/output_colors.rs (target/llvm-cov-target/debug/deps/output_colors-505d27928ce2e720)
+
+running 3 tests
+test reassigned_role_does_not_receive_output_text_or_severity_colors ... ok
+test output_sections_preserve_text_and_use_configured_severity_colors ... ok
+test sections_reuse_entities_update_theme_and_clear_without_stale_text ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running tests/pending.rs (target/llvm-cov-target/debug/deps/pending-5216db960d2bd302)
+
+running 12 tests
+test completion_endpoint_reports_receiver_loss_without_requesting_cancellation ... ok
+test pending_debug_omits_queued_worker_diagnostics ... ok
+test removed_pending_limits_cancel_new_work_with_a_terminal_failure ... ok
+test capacity_cancels_excess_work_and_preserves_existing_pending_work ... ok
+test cancellation_waits_for_worker_acknowledgement_and_ignores_finished_ids ... ok
+test invalid_pending_metadata_and_denied_input_never_start_work ... ok
+test disconnected_completion_finishes_with_a_diagnostic ... ok
+test immediate_execution_preserves_ui_origin_and_terminal_failure ... ok
+test pending_registration_collision_preserves_the_original_synchronous_handler ... ok
+test cancellation_is_selective_and_worker_outcomes_preserve_their_origin ... ok
+test stalled_work_allows_dispatch_and_analysis_then_finishes_once ... ok
+test sensitive_terminal_diagnostics_are_redacted_for_immediate_and_pending_work ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/promptline_runtime.rs (target/llvm-cov-target/debug/deps/promptline_runtime-f135763c51e97a0d)
+
+running 11 tests
+test collisions_are_atomic_and_aliases_resolve_to_one_owner ... ok
+test explicit_ascii_case_matching_preserves_default_and_rejects_ambiguous_transition ... ok
+test parser_policy_and_input_rejections_never_reach_a_handler ... ok
+test lifecycle_order_and_queue_overflow_are_observable ... ok
+test folded_collision_keeps_exact_registration_and_lookup_unchanged ... ok
+test submission_debug_does_not_disclose_sensitive_arguments ... ok
+test public_command_reaches_system_once_in_queue_order ... ok
+test alias_collisions_and_invalid_metadata_leave_the_registry_unchanged ... ok
+test repeated_aliases_are_rejected_and_registry_debug_omits_callbacks ... ok
+test sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications ... ok
+test handler_failures_cancellation_and_removed_systems_have_terminal_notifications ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/scrollback.rs (target/llvm-cov-target/debug/deps/scrollback-1bf5c566fd565676)
+
+running 5 tests
+test review_counts_entries_without_conflating_them_with_wrapped_lines ... ok
+test clearing_or_replacing_output_resets_a_stale_review_session ... ok
+test viewport_can_review_every_retained_entry_instead_of_a_fixed_tail ... ok
+test output_survives_a_temporarily_missing_text_component ... ok
+test selectable_output_receives_retained_text_after_replacing_an_existing_role ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running tests/ui.rs (target/llvm-cov-target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 15 tests
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+test closing_key_is_owned_for_its_frame_and_game_input_resumes_next_frame ... ok
+test invalid_drafts_clear_stale_discovery_after_policy_changes ... ok
+test long_output_has_an_ancestor_clip_and_input_does_not_shrink ... ok
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... ok
+test incomplete_syntax_displays_guidance_without_changing_the_editor ... ok
+test configured_toggle_and_close_keys_replace_the_defaults ... ok
+test history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits ... ok
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test shift_space_queues_the_space_ignored_by_bevy_019_text_input ... ok
+test showing_and_releasing_preserve_visible_console_without_editing_ownership ... ok
+test theme_changes_update_public_roles_and_the_authoritative_editor_cursor ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... ok
+test tab_accepts_a_command_preview_without_submitting_it ... ok
+test visible_editor_reacquires_ownership_after_pointer_focus_returns ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+    Finished report saved to target/llvm-cov/html
+
+    Finished report saved to target/llvm-cov/lcov.info
+
+    Finished report saved to target/llvm-cov/coverage.json
+Filename                            Regions    Missed Regions     Cover   Functions  Missed Functions  Executed       Lines      Missed Lines     Cover    Branches   Missed Branches     Cover
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command/history.rs                       86                 2    97.67%           9                 0   100.00%          60                 1    98.33%           0                 0         -
+command/mod.rs                           23                 0   100.00%           4                 0   100.00%          27                 0   100.00%           0                 0         -
+command/pending/cancellation.rs           8                 0   100.00%           2                 0   100.00%           6                 0   100.00%           0                 0         -
+command/pending/command.rs               27                 0   100.00%           3                 0   100.00%          31                 0   100.00%           0                 0         -
+command/pending/completion.rs            12                 0   100.00%           3                 0   100.00%           9                 0   100.00%           0                 0         -
+command/pending/execution.rs              3                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
+command/pending/mod.rs                    4                 0   100.00%           1                 0   100.00%           5                 0   100.00%           0                 0         -
+completion/highlight.rs                 159                17    89.31%          11                 1    90.91%         123                11    91.06%           0                 0         -
+completion/mod.rs                       553                63    88.61%          48                 9    81.25%         348                42    87.93%           0                 0         -
+execution/mod.rs                        287                14    95.12%          15                 0   100.00%         172                 4    97.67%           0                 0         -
+execution/pending.rs                    175                 8    95.43%          13                 0   100.00%         153                 8    94.77%           0                 0         -
+highlighting/diagnostic.rs               10                 0   100.00%           1                 0   100.00%           7                 0   100.00%           0                 0         -
+highlighting/span.rs                     12                 0   100.00%           4                 0   100.00%          12                 0   100.00%           0                 0         -
+identity.rs                              43                 0   100.00%           8                 0   100.00%          29                 0   100.00%           0                 0         -
+metadata.rs                              12                 0   100.00%           1                 0   100.00%           8                 0   100.00%           0                 0         -
+output/mod.rs                           159                 1    99.37%          15                 0   100.00%         104                 0   100.00%           0                 0         -
+output/view.rs                           45                 1    97.78%           5                 0   100.00%          29                 0   100.00%           0                 0         -
+registry/builder.rs                      42                 5    88.10%           5                 1    80.00%          32                 4    87.50%           0                 0         -
+registry/matching.rs                     29                 0   100.00%           4                 0   100.00%          19                 0   100.00%           0                 0         -
+registry/mod.rs                         243                 3    98.77%          28                 0   100.00%         196                 1    99.49%           0                 0         -
+registry/pending.rs                      11                 1    90.91%           2                 0   100.00%          11                 0   100.00%           0                 0         -
+registry/providers.rs                    86                32    62.79%          11                 4    63.64%          68                21    69.12%           0                 0         -
+tokenization.rs                         232                 0   100.00%          13                 0   100.00%         160                 0   100.00%           0                 0         -
+ui/bindings.rs                            7                 0   100.00%           1                 0   100.00%          10                 0   100.00%           0                 0         -
+ui/colors.rs                             90                 0   100.00%           2                 0   100.00%          56                 0   100.00%           0                 0         -
+ui/keyboard.rs                           69                 2    97.10%           4                 0   100.00%          36                 1    97.22%           0                 0         -
+ui/mod.rs                               839               107    87.25%          70                 9    87.14%         685                64    90.66%           0                 0         -
+ui/scrollback.rs                       1224                 0   100.00%          41                 0   100.00%        1022                 0   100.00%           0                 0         -
+ui/theme.rs                              52                 0   100.00%           3                 0   100.00%          62                 0   100.00%           0                 0         -
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                  4542               256    94.36%         328                24    92.68%        3483               157    95.49%           0                 0         -
+Uncovered Lines:
+src/command/history.rs: 122
+src/completion/highlight.rs: 159, 160, 162, 163, 166, 167, 169, 170, 171, 172
+src/completion/mod.rs: 282, 286, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 343, 367, 378, 384, 457, 458, 459, 478, 489, 493, 521, 536, 606, 612, 613, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625
+src/registry/builder.rs: 69, 70, 71, 72
+src/registry/mod.rs: 258
+src/registry/providers.rs: 98, 99, 100, 103, 104, 105, 106, 107, 109, 112, 113, 114, 115, 117, 153, 154, 155, 187
+src/ui/keyboard.rs: 33
+src/ui/mod.rs: 465, 466, 467, 495, 509, 510, 646, 661, 663, 664, 665, 666, 667, 668, 669, 670, 675, 676, 677, 709, 732, 736, 737, 740, 760, 770, 771, 772, 825, 829, 856, 906, 909, 941, 942, 943, 944, 945, 946, 947, 948, 949, 950, 951, 962, 963, 1066, 1073, 1074, 1075, 1077, 1078, 1079, 1080, 1081, 1082, 1083

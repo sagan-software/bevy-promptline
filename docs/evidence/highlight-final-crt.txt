@@ -1,0 +1,12 @@
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.61s
+     Running unittests examples/crt_workstation.rs (target/debug/examples/crt_workstation-62a0e5f6197f15bc)
+
+running 5 tests
+test crt::mapping::tests::ordered_corners_mask_center_stays_fixed_and_extremes_are_one_to_one ... ok
+test crt::pointer::tests::wheel_routes_only_a_current_glass_hit ... ok
+test crt::settings::tests::setting_ranges_reject_nonfinite_and_outside_values_before_uniforms ... ok
+test crt::dos::tests::simple_name_profile_rejects_paths_and_missing_type_prints_help_without_mutation ... ok
+test crt::dos::tests::virtual_commands_preserve_arguments_and_use_case_insensitive_relative_names ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+

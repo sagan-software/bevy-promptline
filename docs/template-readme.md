@@ -355,11 +355,11 @@ BRP port before sending a signal; never use a broad process kill.
 
 ## AI project files
 
-[`ai/AGENTS.md`](ai/AGENTS.md) is canonical. The generated root `AGENTS.md` and
+[`ai/AGENTS.md`](../ai/AGENTS.md) is canonical. The generated root `AGENTS.md` and
 `CLAUDE.md` are symlinks, as are tool-specific instruction/config paths. Edit
 the tracked files under `ai/`, then run `nix run .#setup-ai`; do not hand-edit
 generated links.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](../LICENSE).

@@ -1,0 +1,10 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0432]: unresolved import `bevy_promptline::command::output`
+ --> tests/scrollback.rs:4:31
+  |
+4 | use bevy_promptline::command::output::OutputView;
+  |                               ^^^^^^ could not find `output` in `command`
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `bevy_promptline` (test "scrollback") due to 1 previous error

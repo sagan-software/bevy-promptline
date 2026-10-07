@@ -1,0 +1,94 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+warning: unused variable: `outcome`
+  --> src/pending/completion.rs:25:25
+   |
+25 |     pub fn finish(self, outcome: CommandOutcome) -> Result<(), SendError<CommandOutcome>> {
+   |                         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_outcome`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `system`
+   --> src/registry/mod.rs:137:9
+    |
+137 |         system: impl IntoSystem<In<C>, crate::pending::CommandExecution, M> + 'static,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_system`
+
+warning: field `0` is never read
+ --> src/pending/cancellation.rs:8:32
+  |
+8 | pub struct CommandCancellation(pub(super) Arc<AtomicBool>);
+  |            ------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |            |
+  |            field in this struct
+  |
+  = help: consider removing this field
+  = note: `CommandCancellation` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `receiver` is never read
+  --> src/pending/command.rs:10:16
+   |
+ 8 | pub struct PendingCommand {
+   |            -------------- field in this struct
+ 9 |     /// Exclusive mutable access keeps the receiver Sync without runtime locking.
+10 |     pub(super) receiver: SyncCell<Receiver<CommandOutcome>>,
+   |                ^^^^^^^^
+
+warning: fields `sender` and `cancellation` are never read
+  --> src/pending/completion.rs:10:16
+   |
+ 8 | pub struct CommandCompletion {
+   |            ----------------- fields in this struct
+ 9 |     /// Private ownership prevents more than one queued terminal outcome.
+10 |     pub(super) sender: Sender<CommandOutcome>,
+   |                ^^^^^^
+11 |     /// Worker-visible cancellation request cannot directly cancel runtime state.
+12 |     pub(super) cancellation: CommandCancellation,
+   |                ^^^^^^^^^^^^
+   |
+   = note: `CommandCompletion` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: `bevy_promptline` (lib) generated 5 warnings (run `cargo fix --lib -p bevy_promptline` to apply 2 suggestions)
+    Finished `test` profile [optimized + debuginfo] target(s) in 22.74s
+     Running tests/pending.rs (target/debug/deps/pending-5216db960d2bd302)
+
+running 4 tests
+test capacity_cancels_excess_work_and_preserves_existing_pending_work ... FAILED
+test cancellation_waits_for_worker_acknowledgement_and_ignores_finished_ids ... FAILED
+test stalled_work_allows_dispatch_and_analysis_then_finishes_once ... FAILED
+test disconnected_completion_finishes_with_a_diagnostic ... FAILED
+
+failures:
+
+---- capacity_cancels_excess_work_and_preserves_existing_pending_work stdout ----
+
+thread 'capacity_cancels_excess_work_and_preserves_existing_pending_work' (2237796) panicked at src/registry/mod.rs:139:9:
+not implemented
+
+---- cancellation_waits_for_worker_acknowledgement_and_ignores_finished_ids stdout ----
+
+thread 'cancellation_waits_for_worker_acknowledgement_and_ignores_finished_ids' (2237795) panicked at src/registry/mod.rs:139:9:
+not implemented
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- stalled_work_allows_dispatch_and_analysis_then_finishes_once stdout ----
+
+thread 'stalled_work_allows_dispatch_and_analysis_then_finishes_once' (2237798) panicked at src/registry/mod.rs:139:9:
+not implemented
+
+---- disconnected_completion_finishes_with_a_diagnostic stdout ----
+
+thread 'disconnected_completion_finishes_with_a_diagnostic' (2237797) panicked at src/registry/mod.rs:139:9:
+not implemented
+
+
+failures:
+    cancellation_waits_for_worker_acknowledgement_and_ignores_finished_ids
+    capacity_cancels_excess_work_and_preserves_existing_pending_work
+    disconnected_completion_finishes_with_a_diagnostic
+    stalled_work_allows_dispatch_and_analysis_then_finishes_once
+
+test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test pending`

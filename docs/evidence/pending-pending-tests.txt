@@ -1,0 +1,27 @@
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 11.56s
+     Running tests/app_ext_compatibility.rs (target/debug/deps/app_ext_compatibility-60b03ae5642709b7)
+
+running 1 test
+test existing_implementor_requires_no_pending_method ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/pending.rs (target/debug/deps/pending-5216db960d2bd302)
+
+running 12 tests
+test completion_endpoint_reports_receiver_loss_without_requesting_cancellation ... ok
+test pending_debug_omits_queued_worker_diagnostics ... ok
+test pending_registration_collision_preserves_the_original_synchronous_handler ... ok
+test immediate_execution_preserves_ui_origin_and_terminal_failure ... ok
+test disconnected_completion_finishes_with_a_diagnostic ... ok
+test cancellation_is_selective_and_worker_outcomes_preserve_their_origin ... ok
+test removed_pending_limits_cancel_new_work_with_a_terminal_failure ... ok
+test capacity_cancels_excess_work_and_preserves_existing_pending_work ... ok
+test invalid_pending_metadata_and_denied_input_never_start_work ... ok
+test cancellation_waits_for_worker_acknowledgement_and_ignores_finished_ids ... ok
+test stalled_work_allows_dispatch_and_analysis_then_finishes_once ... ok
+test sensitive_terminal_diagnostics_are_redacted_for_immediate_and_pending_work ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

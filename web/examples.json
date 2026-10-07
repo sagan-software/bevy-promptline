@@ -1,0 +1,8 @@
+[
+  {"name":"minimal","title":"Minimal","category":"Basic integration","description":"Typed commands change a rotating primitive.","features":[],"controls":"Open console, then use echo, color, or spin. Tab completes; Up and Down recall history."},
+  {"name":"quake_drawer","title":"Quake drawer","category":"Presentation","description":"A top drawer reverses its slide continuously.","features":[],"controls":"Use scene speed, scene reset, and motion reduced. The toggle key opens and closes the drawer."},
+  {"name":"source_window","title":"Source window","category":"Presentation","description":"Drag, resize, and select output in a movable window.","features":["clipboard"],"controls":"Drag the title bar or lower-right grip. Close releases editing focus."},
+  {"name":"clap_commands","title":"Clap commands","category":"Advanced integration","description":"Existing derive and builder parsers drive visible scene effects.","features":["clap"],"controls":"Use scene spawn, scene light, scene rotate, or announce. --help and --version print without exiting."},
+  {"name":"crt_workstation","title":"CRT workstation","category":"Presentation","description":"The real console texture appears on a procedural workstation.","features":["crt-example","clipboard"],"controls":"Click the glass or Edit screen. Use HELP, DIR, CD, TYPE, and CRT controls. Escape returns to the desk."},
+  {"name":"kitchen_sink","title":"Kitchen sink","category":"Advanced integration","description":"Capture filters, retained log formatting, policy, and presentation controls.","features":["clap","log","clipboard"],"controls":"Use demo --help, demo theme light, demo layout compact, or demo burst. Up and Down recall accepted public commands."}
+]

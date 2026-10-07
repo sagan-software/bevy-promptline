@@ -1,37 +1,43 @@
 # Bevy Promptline
 
-A planned Bevy UI console for custom game commands, ghost completion, contextual help, syntax highlighting, and in-game logs.
+A Bevy UI command console with typed command delivery, completion, ghost text,
+contextual help, syntax highlighting, history, pending commands, and optional
+Clap integration and log capture.
 
-Status: research and planning only, prepared October 5, 2026. No Promptline plugin, command API, or web demo exists yet. The Rust and Nix files are the unchanged `template-bevy` baseline.
+Work in progress. The repository contains the plugin, regression tests, and six
+independent example targets. Release validation, compatibility ports, README
+media, and gallery deployment remain unfinished. See [the handoff](docs/handoff.md)
+and [validation evidence](docs/validation.md) before continuing.
 
-The working repository name is `bevy-promptline`; the proposed crate name is `bevy_promptline`. Name searches found no exact match and the crates.io and organization repository endpoints returned 404. This does not reserve either name or establish trademark clearance.
+## Run locally
 
-## Review the plan
+```sh
+nix develop --command cargo run --example minimal
+nix develop --command cargo run --example kitchen_sink --features clap,log
+nix develop --command cargo run --example crt_workstation --features crt-example
+```
 
+The host owns its window, renderer, and camera. Start with
+[the minimal example](examples/minimal.rs) and its
+[command registrations](examples/support/playground.rs). Clap and log capture
+are optional features; the default dependency graph contains no Clap.
+
+The checkout pins Bevy 0.19.1 and Rust 1.98.1. The declared Rust 1.96.1 MSRV
+has not been validated. Bevy 0.18 and 0.20 compatibility remain unfinished.
+
+## Continue implementation
+
+- [Handoff and remaining work](docs/handoff.md)
 - [Implementation plan and acceptance gates](docs/plan.md)
-- [Proposed architecture and behavioral contracts](docs/architecture.md)
-- [Console interaction and six browser examples](docs/examples.md)
-- [Bevy compatibility and release policy](docs/compatibility.md)
-- [Research, game references, and project inventory](docs/research.md)
-- [Template provenance and conversion boundary](docs/template.md)
-- [Product requirements](PRODUCT.md)
+- [Architecture and behavioral contracts](docs/architecture.md)
+- [Six examples and gallery](docs/examples.md)
+- [Compatibility policy](docs/compatibility.md)
 - [Log filtering and formatting](docs/logging.md)
-- [CRT workstation and README recording](docs/crt-workstation.md)
+- [Highlighting](docs/highlighting.md)
+- [Scrollback](docs/scrollback.md)
+- [Pending commands](docs/pending.md)
+- [CRT workstation and recording](docs/crt-workstation.md)
 - [Implementation-session prompt](docs/implementation-prompt.md)
-
-## Project direction
-
-Build an independent console with deliberate visual design and complete interactions. The owner wants control over the result across games. Alternatives inform the design and remain linked below.
-
-## Planned behavior
-
-Register game commands through traits and Bevy systems. Use existing Clap derive types or builder commands through an optional adapter. Keep the default dependency graph free of Clap.
-
-Tab completes commands, subcommands, flags, and supplied argument values. Ghost text previews a completion without changing input. A separate help area explains the selected command or current argument while typing. The editor and output use Bevy UI text and nodes.
-
-Applications can replace the layout, theme, input bindings, and animation. The default console provides a usable starting point. Examples demonstrate a top drawer, a movable window, a compact prompt, and more advanced command integration. A CRT workstation example renders the same Bevy UI onto a monitor at a desk with a WGSL screen effect and DOS-inspired commands.
-
-The target Bevy lines are 0.18, 0.19, and the upcoming 0.20. The 0.20 target remains provisional until its release passes validation. Compatibility requires matching crate releases, as explained in [the compatibility policy](docs/compatibility.md).
 
 ## Alternatives
 

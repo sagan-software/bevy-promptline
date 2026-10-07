@@ -1,43 +1,34 @@
 [package]
-name = "template-bevy"
-version.workspace = true
-edition.workspace = true
-rust-version.workspace = true
-description = "Nix-first Bevy game template"
-publish = false
+name = "bevy_promptline"
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.96.1"
+description = "A Bevy UI command console with typed systems and optional Clap integration"
+license = "MIT"
+repository = "https://github.com/Sagan-Software/bevy-promptline"
+keywords = ["bevy", "console", "completion"]
+categories = ["game-development"]
 autobenches = false
 
 [dependencies]
-avian2d.workspace = true
 bevy.workspace = true
-bevy_brp_extras.workspace = true
-bevy_hanabi.workspace = true
-bevy-inspector-egui.workspace = true
-bevy_enhanced_input.workspace = true
-clap.workspace = true
-lightyear.workspace = true
-log.workspace = true
-serde.workspace = true
+clap = { workspace = true, optional = true }
 thiserror.workspace = true
-toml.workspace = true
+tracing = { workspace = true, optional = true }
+tracing-subscriber = { workspace = true, optional = true }
 
 [dev-dependencies]
-criterion.workspace = true
-tempfile.workspace = true
+bevy = { workspace = true, features = ["ui", "2d", "webgl2", "x11"] }
 
 [features]
 default = []
-dev = ["bevy/dev"]
-dynamic_linking = ["bevy/dynamic_linking"]
-trace_chrome = ["bevy/trace_chrome"]
-trace_tracy = ["bevy/trace_tracy"]
+clap = ["dep:clap"]
+log = ["dep:tracing", "dep:tracing-subscriber"]
+clipboard = ["bevy/system_clipboard"]
+crt-example = ["bevy/3d", "bevy/mesh_picking"]
 
 [lib]
 bench = false
-
-[[bench]]
-name = "simulation"
-harness = false
 
 [lints]
 workspace = true
@@ -45,59 +36,14 @@ workspace = true
 [workspace]
 resolver = "3"
 
-[workspace.package]
-version = "0.1.0"
-edition = "2024"
-keywords = []
-rust-version = "1.96.1"
-
 [workspace.dependencies]
-avian2d = { version = "0.7.0", default-features = false, features = [
-  "2d",
-  "f32",
-  "parry-f32",
-  "parallel",
-  "serialize",
-] }
-bevy = { version = "0.19.1", default-features = false, features = [
-  "2d",
-  "bevy_remote",
-  "serialize",
-  "sysinfo_plugin",
-] }
-bevy_brp_extras = "0.22.5"
-bevy_hanabi = { version = "0.19.0", default-features = false, features = [
-  "2d",
-] }
-bevy-inspector-egui = { version = "0.37.0", default-features = false, features = [
-  "2d",
-] }
-bevy_enhanced_input = { version = "0.26.0", default-features = false, features = [
-  "serialize",
-] }
-clap = { version = "4.6.6", features = ["derive"] }
-criterion = { version = "0.8.2", features = ["html_reports"] }
-lightyear = { version = "0.29.0", default-features = false, features = [
-  "std",
-  "client",
-  "server",
-  "replication",
-  "prediction",
-  "interpolation",
-  "frame_interpolation",
-  "avian2d",
-  "input_bei",
-  "crossbeam",
-  "raw_connection",
-] }
-log = { version = "0.4.34", features = [
-  "max_level_debug",
-  "release_max_level_warn",
-] }
-serde = { version = "1.0.229", features = ["derive"] }
-tempfile = "3.27.0"
-thiserror = "2.0.20"
-toml = "1.1.5"
+bevy = { version = "=0.19.1", default-features = false, features = ["std", "bevy_ui", "bevy_ui_render", "bevy_text", "bevy_input_focus", "bevy_ui_widgets", "bevy_picking", "ui_picking"] }
+clap = { version = "4.6.7", features = ["derive"] }
+thiserror = "2.0.21"
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+wasm-bindgen = "=0.2.129"
+web-sys = "=0.3.106"
 
 [profile.dev]
 opt-level = 1
@@ -225,7 +171,8 @@ cargo_common_metadata = { level = "allow", priority = 1 }
 option_if_let_else = "warn"
 doc_markdown = "warn"
 missing_errors_doc = "warn"
-missing_docs_in_private_items = { level = "forbid", priority = 2 }
+# Clap derive allows restriction lints inside generated code; deny still checks handwritten items.
+missing_docs_in_private_items = { level = "deny", priority = 2 }
 missing_panics_doc = "warn"
 cast_precision_loss = { level = "warn", priority = 1 }
 struct_field_names = { level = "warn", priority = 1 }
@@ -240,3 +187,19 @@ missing_fields_in_debug = { level = "warn", priority = 1 }
 use_self = { level = "warn", priority = 1 }
 unused_self = { level = "warn", priority = 1 }
 unnecessary_wraps = { level = "warn", priority = 1 }
+
+[[example]]
+name = "clap_commands"
+required-features = ["clap"]
+
+[[example]]
+name = "crt_workstation"
+required-features = ["crt-example"]
+
+[[example]]
+name = "kitchen_sink"
+required-features = ["clap", "log"]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen.workspace = true
+web-sys = { workspace = true, features = ["Window", "EventTarget", "CustomEvent", "CustomEventInit"] }

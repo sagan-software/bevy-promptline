@@ -1,0 +1,12 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 16.25s
+     Running tests/input_colors.rs (target/debug/deps/input_colors-4fbda32542fed8f6)
+
+running 3 tests
+test input_palette_is_initialized_and_preserves_editor_state ... ok
+test extracted_input_colors_preserve_geometry_and_shadow_colors ... ok
+test editor_exceptions_preserve_existing_glyph_colors ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+

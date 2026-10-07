@@ -1,0 +1,33 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 36.41s
+     Running tests/completion.rs (target/debug/deps/completion-6118344fd3ea18d5)
+
+running 4 tests
+test completion_validates_caret_snapshot_and_candidate_before_replacement ... ok
+test denied_commands_are_absent_from_completion_and_no_match_has_no_ghost ... ok
+test command_completion_previews_without_mutating_input_or_running_a_parser ... ok
+test tab_expands_the_common_prefix_then_cycles_forward_and_backward ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/history.rs (target/debug/deps/history-c57ed823605fb76e)
+
+running 2 tests
+test history_browsing_restores_the_draft_and_never_retains_sensitive_commands ... ok
+test history_enforces_retention_limits_and_handles_empty_or_oldest_browsing ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 6 tests
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... ok
+test tab_accepts_a_command_preview_without_submitting_it ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... ok
+test history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

@@ -1,0 +1,71 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+warning: the item `Ime` is imported redundantly
+  --> tests/keyboard.rs:10:20
+   |
+ 7 | use bevy::prelude::*;
+   |     ---------------- the item `Ime` is already imported here
+...
+10 | use bevy::window::{Ime, PrimaryWindow};
+   |                    ^^^
+   |
+   = note: requested on the command line with `-W redundant-imports`
+
+warning: unnecessary qualification
+  --> tests/keyboard.rs:25:20
+   |
+25 |     .add_message::<bevy::picking::events::Pointer<bevy::picking::events::Release>>();
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-W unused-qualifications`
+help: remove the unnecessary path segments
+   |
+25 -     .add_message::<bevy::picking::events::Pointer<bevy::picking::events::Release>>();
+25 +     .add_message::<Pointer<bevy::picking::events::Release>>();
+   |
+
+warning: unnecessary qualification
+  --> tests/keyboard.rs:25:51
+   |
+25 |     .add_message::<bevy::picking::events::Pointer<bevy::picking::events::Release>>();
+   |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: remove the unnecessary path segments
+   |
+25 -     .add_message::<bevy::picking::events::Pointer<bevy::picking::events::Release>>();
+25 +     .add_message::<bevy::picking::events::Pointer<Release>>();
+   |
+
+warning: `bevy_promptline` (test "keyboard") generated 3 warnings (run `cargo fix --test "keyboard" -p bevy_promptline` to apply 2 suggestions)
+    Finished `test` profile [optimized + debuginfo] target(s) in 4.69s
+     Running tests/keyboard.rs (target/debug/deps/keyboard-f7ef56a2686e93c5)
+
+running 2 tests
+test space_precedes_a_shifted_quote_in_the_same_frame ... FAILED
+test control_select_all_keeps_plain_text_on_both_sides_of_the_shortcut ... FAILED
+
+failures:
+
+---- space_precedes_a_shifted_quote_in_the_same_frame stdout ----
+
+thread 'space_precedes_a_shifted_quote_in_the_same_frame' (2862411) panicked at tests/keyboard.rs:113:5:
+assertion `left == right` failed
+  left: ["insert:a", "insert:\"", "insert: "]
+ right: ["insert:a", "insert: ", "insert:\""]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- control_select_all_keeps_plain_text_on_both_sides_of_the_shortcut stdout ----
+
+thread 'control_select_all_keeps_plain_text_on_both_sides_of_the_shortcut' (2862410) panicked at tests/keyboard.rs:167:5:
+assertion `left == right` failed
+  left: ["insert:a", "insert:a", "insert:b"]
+ right: ["insert:a", "select-all", "insert:b"]
+
+
+failures:
+    control_select_all_keeps_plain_text_on_both_sides_of_the_shortcut
+    space_precedes_a_shifted_quote_in_the_same_frame
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test keyboard`

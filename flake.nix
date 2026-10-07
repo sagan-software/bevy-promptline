@@ -1,5 +1,5 @@
 {
-  description = "Bevy game template with Nix-first workflows";
+  description = "Bevy Promptline library and independent examples";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -56,14 +56,14 @@
         craneLib = (crane.mkLib pkgs).overrideToolchain rustToolchain;
 
         src = craneLib.cleanCargoSource ./.;
-        packageName = "template-bevy";
-        coverageThreshold = 50;
+        packageName = "bevy_promptline";
+        coverageThreshold = 100;
         coverageIgnoreRegex = "(^|/)(tests|benches)/";
         supportedFeatures = [
-          "dev"
-          "dynamic_linking"
-          "trace_chrome"
-          "trace_tracy"
+          "clap"
+          "log"
+          "clipboard"
+          "clap,log,clipboard"
         ];
         supportedFeatureCheckCommands = pkgs.lib.concatMapStringsSep "\n" (
           feature: "cargo check --workspace --locked --no-default-features --features '${feature}'"
@@ -127,17 +127,14 @@
 
         cargoArtifacts = craneLib.buildDepsOnly commonArgs;
 
-        templateBevy = craneLib.buildPackage (
+        promptline = craneLib.buildPackage (
           commonArgs
           // {
             inherit cargoArtifacts;
             pname = packageName;
-            version = "0.1.0";
+            version = "0.2.0";
             doCheck = false;
-            postFixup = pkgs.lib.optionalString pkgs.stdenv.isLinux ''
-              wrapProgram "$out/bin/${packageName}" \
-                --prefix LD_LIBRARY_PATH : "${runtimeLibraryPath}"
-            '';
+
           }
         );
 
@@ -263,7 +260,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-doctest";
-            version = "0.1.0";
+            version = "0.2.0";
             buildPhaseCargoCommand = "cargo test --workspace --doc --locked";
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -275,7 +272,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-private-docs";
-            version = "0.1.0";
+            version = "0.2.0";
             RUSTDOCFLAGS = "-D warnings";
             buildPhaseCargoCommand = "cargo doc --workspace --no-deps --document-private-items --locked";
             doInstallCargoArtifacts = false;
@@ -288,7 +285,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-bench-check";
-            version = "0.1.0";
+            version = "0.2.0";
             buildPhaseCargoCommand = "cargo bench --workspace --locked --no-run";
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -300,7 +297,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-feature-matrix-check";
-            version = "0.1.0";
+            version = "0.2.0";
             buildPhaseCargoCommand = supportedFeatureCheckCommands;
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -312,7 +309,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-coverage";
-            version = "0.1.0";
+            version = "0.2.0";
             nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ pkgs.cargo-llvm-cov ];
             buildPhaseCargoCommand = ''
               mkdir -p "$out"
@@ -347,7 +344,7 @@
           // {
             cargoArtifacts = null;
             pname = "${packageName}-bevy-lint";
-            version = "0.1.0";
+            version = "0.2.0";
             nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ bevyCli ];
             buildPhaseCargoCommand = ''
               CARGO_TARGET_DIR=target/bevy-lint bevy_lint --workspace --all-targets --locked
@@ -497,7 +494,7 @@
           text = withAgentLink ''
             export PKG_CONFIG_PATH="${pkgConfigPath}:''${PKG_CONFIG_PATH:-}"
             export LD_LIBRARY_PATH="${runtimeLibraryPath}:''${LD_LIBRARY_PATH:-}"
-            cargo run --locked -- "$@"
+            cargo run --locked --example minimal -- "$@"
           '';
         };
 
@@ -512,7 +509,7 @@
           text = withAgentLink ''
             export PKG_CONFIG_PATH="${pkgConfigPath}:''${PKG_CONFIG_PATH:-}"
             export LD_LIBRARY_PATH="${runtimeLibraryPath}:''${LD_LIBRARY_PATH:-}"
-            cargo run --locked --features dev -- "$@"
+            cargo run --locked --example kitchen_sink --features clap,log -- "$@"
           '';
         };
 
@@ -527,34 +524,32 @@
           text = withAgentLink ''
             export PKG_CONFIG_PATH="${pkgConfigPath}:''${PKG_CONFIG_PATH:-}"
             export LD_LIBRARY_PATH="${runtimeLibraryPath}:''${LD_LIBRARY_PATH:-}"
-            cargo run --locked -- --editor "$@"
+            cargo run --locked --example source_window -- "$@"
           '';
         };
       in
       {
         packages = {
-          default = templateBevy;
+          default = promptline;
           bevy-brp-mcp = bevyBrpMcp;
           coverage-report = coverageReport;
-          "${packageName}" = templateBevy;
+          "${packageName}" = promptline;
         };
 
-        apps =
-          pkgs.lib.mapAttrs (name: app: app // { meta.description = "Bevy template ${name} command"; })
-            {
-              default = flake-utils.lib.mkApp { drv = runDefault; };
-              bench = flake-utils.lib.mkApp { drv = runBenchmarks; };
-              bevy-brp-mcp = flake-utils.lib.mkApp { drv = bevyBrpMcp; };
-              coverage = flake-utils.lib.mkApp { drv = runCoverage; };
-              dev = flake-utils.lib.mkApp { drv = runDev; };
-              editor = flake-utils.lib.mkApp { drv = runEditor; };
-              features = flake-utils.lib.mkApp { drv = runFeatureChecks; };
-              fmt = flake-utils.lib.mkApp { drv = formatRepo; };
-              setup-ai = flake-utils.lib.mkApp { drv = ensureAgentLink; };
-              check = flake-utils.lib.mkApp { drv = runChecks; };
-              clippy = flake-utils.lib.mkApp { drv = runClippy; };
-              test = flake-utils.lib.mkApp { drv = runTests; };
-            };
+        apps = pkgs.lib.mapAttrs (name: app: app // { meta.description = "Promptline ${name} command"; }) {
+          default = flake-utils.lib.mkApp { drv = runDefault; };
+          bench = flake-utils.lib.mkApp { drv = runBenchmarks; };
+          bevy-brp-mcp = flake-utils.lib.mkApp { drv = bevyBrpMcp; };
+          coverage = flake-utils.lib.mkApp { drv = runCoverage; };
+          dev = flake-utils.lib.mkApp { drv = runDev; };
+          editor = flake-utils.lib.mkApp { drv = runEditor; };
+          features = flake-utils.lib.mkApp { drv = runFeatureChecks; };
+          fmt = flake-utils.lib.mkApp { drv = formatRepo; };
+          setup-ai = flake-utils.lib.mkApp { drv = ensureAgentLink; };
+          check = flake-utils.lib.mkApp { drv = runChecks; };
+          clippy = flake-utils.lib.mkApp { drv = runClippy; };
+          test = flake-utils.lib.mkApp { drv = runTests; };
+        };
 
         checks = {
           fmt = formatCheck;
@@ -566,15 +561,13 @@
           features = featureMatrixCheck;
           private-docs = privateDocsCheck;
           test = testCheck;
-          package = templateBevy;
+          package = promptline;
         };
 
         formatter = formatRepo;
 
         devShells.default = pkgs.mkShell {
           packages = [
-            bevyBrpMcp
-            bevyCli
             pkgs.cmake
             pkgs.clang
             pkgs.cargo-llvm-cov
@@ -587,7 +580,7 @@
           ]
           ++ bevyBuildInputs;
           shellHook = ''
-            ${aiSupport.shellHook}
+            ensure-ai-links
             export PKG_CONFIG_PATH="${pkgConfigPath}:''${PKG_CONFIG_PATH:-}"
             export LD_LIBRARY_PATH="${runtimeLibraryPath}:''${LD_LIBRARY_PATH:-}"
           '';

@@ -1,0 +1,23 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0432]: unresolved import `bevy_promptline::pending`
+ --> tests/pending.rs:6:22
+  |
+6 | use bevy_promptline::pending::{CancelCommand, CommandCompletion, CommandExecution,
+  |                      ^^^^^^^ could not find `pending` in `bevy_promptline`
+
+error[E0599]: no method named `register_pending_command` found for struct `bevy::bevy_app::App` in the current scope
+  --> tests/pending.rs:30:9
+   |
+30 |     app.register_pending_command::<Wait, _>(wait).unwrap();
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: there is a method `register_command` with a similar name
+   |
+30 -     app.register_pending_command::<Wait, _>(wait).unwrap();
+30 +     app.register_command::<Wait, _>(wait).unwrap();
+   |
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `bevy_promptline` (test "pending") due to 2 previous errors

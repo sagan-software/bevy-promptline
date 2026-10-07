@@ -1,0 +1,796 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/6114444683d5f41a469e1fa7f185b1c2d65913a2105be189af53b9d7bc72bc69.sqlite' is busy
+nix-source: 2188 files, 37947693 bytes
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+rust: running lint suite
+$ /nix/store/zrzsf8vazqrjdg7kmvvibbsaw101g07p-rust-default-1.99.0-nightly-2026-07-15/bin/cargo clippy --manifest-path /run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline/Cargo.toml --all-features -- -D warnings -W rust_2018_idioms -W future_incompatible -W unreachable_pub -W unused_crate_dependencies -W unused_extern_crates -W missing_docs -W missing_debug_implementations -W missing_copy_implementations -W single_use_lifetimes -W trivial_casts -W trivial_numeric_casts -W unused_import_braces -W unused_lifetimes -W unused_qualifications -W variant_size_differences -W clippy::string_slice -W clippy::indexing_slicing -W clippy::unwrap_used -W clippy::panic -W clippy::todo -W clippy::unimplemented -W clippy::unreachable -W clippy::get_unwrap -W clippy::unwrap_in_result -W clippy::unchecked_time_subtraction -W clippy::panic_in_result_fn -W clippy::let_underscore_future -W clippy::let_underscore_must_use -W clippy::unused_result_ok -W clippy::map_err_ignore -W clippy::assertions_on_result_states -W clippy::await_holding_lock -W clippy::await_holding_refcell_ref -W clippy::if_let_mutex -W clippy::large_futures -W clippy::cognitive_complexity -W clippy::too_many_lines -W clippy::wildcard_enum_match_arm -W clippy::mem_forget -W clippy::undocumented_unsafe_blocks -W clippy::multiple_unsafe_ops_per_block -W clippy::unnecessary_safety_doc -W clippy::unnecessary_safety_comment -W clippy::missing_docs_in_private_items -W clippy::self_named_module_files -W clippy::float_cmp -W clippy::float_cmp_const -W clippy::lossy_float_literal -W clippy::cast_sign_loss -W clippy::invalid_upcast_comparisons -W clippy::rc_mutex -W clippy::debug_assert_with_mut_call -W clippy::iter_not_returning_iterator -W clippy::expl_impl_clone_on_copy -W clippy::infallible_try_from -W clippy::dbg_macro -W clippy::allow_attributes -W clippy::allow_attributes_without_reason
+    Checking bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error: wildcard match will also match any future added variants
+   --> src/logging/capture.rs:287:9
+    |
+287 |         _ => 8,
+    |         ^ help: try: `FieldValue::Boolean(_) | FieldValue::Signed(_) | FieldValue::Unsigned(_) | FieldValue::Float(_) | FieldValue::Redacted`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#wildcard_enum_match_arm
+    = note: `-D clippy::wildcard-enum-match-arm` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::wildcard_enum_match_arm)]`
+
+error: wildcard match will also match any future added variants
+   --> src/logging/capture.rs:393:13
+    |
+393 |             value => value,
+    |             ^^^^^ help: try: `value @ FieldValue::Boolean(_) | value @ FieldValue::Signed(_) | value @ FieldValue::Signed128(_) | value @ FieldValue::Unsigned(_) | value @ FieldValue::Unsigned128(_) | value @ FieldValue::Float(_) | value @ FieldValue::Redacted`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#wildcard_enum_match_arm
+
+error: wildcard match will also match any future added variants
+   --> src/logging/capture.rs:405:17
+    |
+405 |                 _ => String::new(),
+    |                 ^ help: try: `FieldValue::Boolean(_) | FieldValue::Signed(_) | FieldValue::Signed128(_) | FieldValue::Unsigned(_) | FieldValue::Unsigned128(_) | FieldValue::Float(_)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#wildcard_enum_match_arm
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/capture.rs:447:9
+    |
+447 |         let _ = write!(writer, "{value:?}");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+    = note: `-D clippy::let-underscore-must-use` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::let_underscore_must_use)]`
+
+error: non-binding `let` on an expression with `#[must_use]` type
+  --> src/logging/format_options.rs:95:13
+   |
+95 |             let _ = write!(text, "{label} ");
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: consider explicitly using expression value
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+  --> src/logging/format_options.rs:99:13
+   |
+99 |             let _ = write!(text, "{target}: ");
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: consider explicitly using expression value
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/format_options.rs:118:13
+    |
+118 |             let _ = write!(text, "[{seconds}] ");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/format_options.rs:122:13
+    |
+122 |             let _ = write!(text, "[{seconds}.{millis:03}] ");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/format_options.rs:126:13
+    |
+126 |             let _ = write!(text, "[{seconds}.{micros:06}] ");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/format_options.rs:135:13
+    |
+135 |             let _ = write!(text, " ({file}:{line})");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/format_options.rs:137:13
+    |
+137 |             let _ = write!(text, " ({file})");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:101:9
+    |
+101 |         let _ = write!(text, " {name}=");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:104:17
+    |
+104 |                 let _ = write!(text, "{value}");
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:107:17
+    |
+107 |                 let _ = write!(text, "{value}");
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:110:17
+    |
+110 |                 let _ = write!(text, "{value}");
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:113:17
+    |
+113 |                 let _ = write!(text, "{value}");
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:116:17
+    |
+116 |                 let _ = write!(text, "{value}");
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: non-binding `let` on an expression with `#[must_use]` type
+   --> src/logging/formatter.rs:119:17
+    |
+119 |                 let _ = write!(text, "{value}");
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider explicitly using expression value
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_must_use
+
+error: wildcard match will also match any future added variants
+  --> src/logging/store.rs:98:33
+   |
+98 | ...                   _ => 8,
+   |                       ^ help: try: `super::record::FieldValue::Boolean(_) | super::record::FieldValue::Signed(_) | super::record::FieldValue::Unsigned(_) | super::record::FieldValue::Float(_) | super::record::FieldValue::Redacted`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#wildcard_enum_match_arm
+
+error: wildcard match will also match any future added variants
+   --> src/logging/store.rs:120:25
+    |
+120 |                         _ => 8,
+    |                         ^ help: try: `super::record::FieldValue::Boolean(_) | super::record::FieldValue::Signed(_) | super::record::FieldValue::Unsigned(_) | super::record::FieldValue::Float(_) | super::record::FieldValue::Redacted`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#wildcard_enum_match_arm
+
+error: could not compile `bevy_promptline` (lib) due to 20 previous errors
+clippy: finished in 3.70s (exit 101)
+$ /nix/store/zrzsf8vazqrjdg7kmvvibbsaw101g07p-rust-default-1.99.0-nightly-2026-07-15/bin/cargo check --manifest-path /run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline/Cargo.toml --all-features
+    Checking bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error: logging message uses string interpolation
+   --> src/logging/capture.rs:447:32
+    |
+447 |         let _ = write!(writer, "{value:?}");
+    |                                ^^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+    = note: `-D interpolated-logging` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(interpolated_logging)]`
+
+error: logging message uses string interpolation
+  --> src/logging/format_options.rs:95:34
+   |
+95 |             let _ = write!(text, "{label} ");
+   |                                  ^^^^^^^^^^
+   |
+   = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+  --> src/logging/format_options.rs:99:34
+   |
+99 |             let _ = write!(text, "{target}: ");
+   |                                  ^^^^^^^^^^^^
+   |
+   = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/format_options.rs:118:34
+    |
+118 |             let _ = write!(text, "[{seconds}] ");
+    |                                  ^^^^^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/format_options.rs:122:34
+    |
+122 |             let _ = write!(text, "[{seconds}.{millis:03}] ");
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/format_options.rs:126:34
+    |
+126 |             let _ = write!(text, "[{seconds}.{micros:06}] ");
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/format_options.rs:135:34
+    |
+135 |             let _ = write!(text, " ({file}:{line})");
+    |                                  ^^^^^^^^^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/format_options.rs:137:34
+    |
+137 |             let _ = write!(text, " ({file})");
+    |                                  ^^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:101:30
+    |
+101 |         let _ = write!(text, " {name}=");
+    |                              ^^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:104:38
+    |
+104 |                 let _ = write!(text, "{value}");
+    |                                      ^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:107:38
+    |
+107 |                 let _ = write!(text, "{value}");
+    |                                      ^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:110:38
+    |
+110 |                 let _ = write!(text, "{value}");
+    |                                      ^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:113:38
+    |
+113 |                 let _ = write!(text, "{value}");
+    |                                      ^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:116:38
+    |
+116 |                 let _ = write!(text, "{value}");
+    |                                      ^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: logging message uses string interpolation
+   --> src/logging/formatter.rs:119:38
+    |
+119 |                 let _ = write!(text, "{value}");
+    |                                      ^^^^^^^^^
+    |
+    = help: put runtime values in structured key/value fields and keep the message static
+
+error: struct `FormatOptions` should be the first source-order item after imports in module `format_options`
+  --> src/logging/format_options.rs:32:12
+   |
+32 | pub struct FormatOptions {
+   |            ^^^^^^^^^^^^^
+   |
+   = help: place the representative type below leading imports and above functions, constants, impls, nested modules, and other source items
+   = note: `-D module-type-first` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(module_type_first)]`
+
+error: module exports 27 reachable public names, which exceeds 25
+  --> src/lib.rs:1:1
+   |
+ 1 | / //! A Bevy UI command console with typed game-system delivery.
+ 2 | | //!
+ 3 | | //! Register a `ConsoleCommand` through `PromptlineAppExt`, then submit input
+ 4 | | //! through `SubmitCommand`. The runtime validates input and authorization
+...  |
+68 | | #[cfg(feature = "log")]
+69 | | pub mod logging;
+   | |________________^
+   |
+   = help: expose a focused facade and keep implementation modules private
+   = note: `-D public-surface-size` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(public_surface_size)]`
+
+error: method `next` looks like an iterator step
+   --> src/command/history.rs:105:5
+    |
+105 | /     pub fn next(&mut self) -> Option<&str> {
+106 | |         // Move the saved draft through exactly one browsing transition.
+107 | |         let cursor = std::mem::replace(&mut self.cursor, HistoryCursor::Draft);
+108 | |         match cursor {
+...   |
+127 | |     }
+    | |_____^
+    |
+    = help: implement `Iterator` when this is the canonical next item for the type
+    = note: `-D ad-hoc-iterator` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(ad_hoc_iterator)]`
+
+error: method `as_str` looks like an `AsRef` accessor
+  --> src/identity.rs:42:5
+   |
+42 | /     pub fn as_str(&self) -> &str {
+43 | |         &self.0
+44 | |     }
+   | |_____^
+   |
+   = help: implement `AsRef<T>` when this exposes the canonical borrowed view
+   = note: `-D ad-hoc-as-ref` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(ad_hoc_as_ref)]`
+
+error: this parameter takes owned `String` at the boundary
+   --> src/output/mod.rs:144:81
+    |
+144 |     pub fn push(&mut self, severity: Severity, target: impl Into<String>, text: String) {
+    |                                                                                 ^^^^^^
+    |
+    = help: take a borrowed type instead unless the value is stored, mutated, or consumed
+    = note: `-D ownership-at-boundaries` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(ownership_at_boundaries)]`
+
+error: boolean function `gameplay_input_allowed` does not start with `is_`
+   --> src/ui/mod.rs:116:8
+    |
+116 | pub fn gameplay_input_allowed(state: Res<'_, ConsoleState>) -> bool {
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: rename boolean values to read as predicates, such as `is_ready`, `has_items`, or `IS_READY`
+    = note: `-D bool-name-prefix` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(bool_name_prefix)]`
+
+error: MD022 in Rust doc comment at line 5, column 9: Expected 1 blank line below heading
+  --> src/logging/capture.rs:55:5
+   |
+55 | /     /// Validates and applies new layer-local directives while preserving
+56 | |     /// malformed-update state. This cannot recover upstream rejection or
+57 | |     /// compile-time removal and never changes other attached sinks.
+58 | |     ///
+59 | |     /// # Errors
+60 | |     /// Returns invalid-directive diagnostics or a disconnected-subscriber
+61 | |     /// reload error.
+   | |_____________________^
+   |
+   = note: `-D rumdl-doc-comments` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(rumdl_doc_comments)]`
+help: fix the Markdown in this Rust doc comment
+   |
+55 |     /// Validates and applies new layer-local directives while preserving
+...
+59 |     /// # Errors
+60 ~     ///
+61 ~     /// Returns invalid-directive diagnostics or a disconnected-subscriber
+   |
+
+error: MD022 in Rust doc comment at line 5, column 9: Expected 1 blank line below heading
+  --> src/logging/capture.rs:67:5
+   |
+67 | /     /// Returns the installed layer-local filter without reading process
+68 | |     /// environment variables. These directives cannot describe or widen
+69 | |     /// upstream global filters or compile-time event removal.
+70 | |     ///
+71 | |     /// # Errors
+72 | |     /// Returns a reload error when the capture subscriber is no longer
+73 | |     /// available.
+   | |__________________^
+   |
+help: fix the Markdown in this Rust doc comment
+   |
+67 |     /// Returns the installed layer-local filter without reading process
+...
+71 |     /// # Errors
+72 ~     ///
+73 ~     /// Returns a reload error when the capture subscriber is no longer
+   |
+
+error: function body has 0 intent comments but needs at least 2 for 7 statements
+   --> src/logging/capture.rs:90:5
+    |
+ 90 | /     pub fn drain_into(&self, store: &mut LogStore) {
+ 91 | |         let Ok(mut pending) = self.queue.pending.try_lock() else {
+ 92 | |             return;
+ 93 | |         };
+...   |
+100 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+    = note: `-D missing-intent-comments` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(missing_intent_comments)]`
+
+error: MD022 in Rust doc comment at line 5, column 5: Expected 1 blank line below heading
+   --> src/logging/capture.rs:120:1
+    |
+120 | / /// Creates a layer for Bevy's custom-layer hook or a caller-owned Registry
+121 | | /// subscriber. Install it during subscriber construction; an existing global
+122 | | /// subscriber cannot accept it afterward.
+123 | | ///
+124 | | /// # Errors
+125 | | /// Returns the `EnvFilter` parse error for malformed initial directives.
+    | |_________________________________________________________________________^
+    |
+help: fix the Markdown in this Rust doc comment
+    |
+120 | /// Creates a layer for Bevy's custom-layer hook or a caller-owned Registry
+...
+124 | /// # Errors
+125 ~ ///
+126 ~ /// Returns the `EnvFilter` parse error for malformed initial directives.
+    |
+
+error: function body has 0 intent comments but needs at least 1 for 5 statements
+   --> src/logging/capture.rs:126:1
+    |
+126 | / pub fn capture_layer(
+127 | |     config: CaptureConfig,
+128 | | ) -> Result<(Box<dyn Layer<Registry> + Send + Sync>, LogCapture), CaptureError> {
+129 | |     let (filter, handle) = reload::Layer::new(parse_filter(&config.directives)?);
+...   |
+147 | |     Ok((Box::new(layer), capture))
+148 | | }
+    | |_^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function `parse_filter` looks like a string parser
+   --> src/logging/capture.rs:152:1
+    |
+152 | / fn parse_filter(directives: &str) -> Result<EnvFilter, tracing_subscriber::filter::ParseError> {
+153 | |     EnvFilter::builder()
+154 | |         .with_default_directive(tracing_subscriber::filter::LevelFilter::TRACE.into())
+155 | |         .parse(directives)
+156 | | }
+    | |_^
+    |
+    = help: implement `std::str::FromStr` when the parser has one canonical meaning
+    = note: `-D ad-hoc-from-str` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(ad_hoc_from_str)]`
+
+error: function body has 0 intent comments but needs at least 1 for 5 statements
+   --> src/logging/capture.rs:187:5
+    |
+187 | /     fn on_new_span(
+188 | |         &self,
+189 | |         attributes: &tracing::span::Attributes<'_>,
+190 | |         id: &tracing::span::Id,
+...   |
+203 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 2 for 8 statements
+   --> src/logging/capture.rs:204:5
+    |
+204 | /     fn on_record(
+205 | |         &self,
+206 | |         id: &tracing::span::Id,
+207 | |         values: &tracing::span::Record<'_>,
+...   |
+224 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 1 intent comments but needs at least 3 for 14 statements
+   --> src/logging/capture.rs:225:5
+    |
+225 | /     fn on_event(&self, event: &tracing::Event<'_>, context: Context<'_, Registry>) {
+226 | |         let metadata = event.metadata();
+227 | |         let mut visitor = RecordVisitor::new(&self.redacted_fields, VisitorScope::Event);
+228 | |         event.record(&mut visitor);
+...   |
+269 | |         pending.records.push_back(record);
+270 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 2 for 8 statements
+   --> src/logging/capture.rs:293:1
+    |
+293 | / fn current_thread() -> super::record::ThreadRecord {
+294 | |     let thread = std::thread::current();
+295 | |     let identity = thread.id();
+296 | |     super::record::ThreadRecord {
+...   |
+300 | | }
+    | |_^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 2 for 6 statements
+   --> src/logging/capture.rs:309:1
+    |
+309 | / fn utf8_prefix(text: &str, maximum: usize) -> &str {
+310 | |     let mut end = text.len().min(maximum);
+311 | |     while !text.is_char_boundary(end) {
+312 | |         end -= 1;
+313 | |     }
+314 | |     text.get(..end).unwrap_or_default()
+315 | | }
+    | |_^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function has ABC size <8, 26, 12> with magnitude 29.73, which exceeds 25.00
+   --> src/logging/capture.rs:366:5
+    |
+366 | /     fn insert(&mut self, field: &tracing::field::Field, value: FieldValue) {
+367 | |         let name = field.name();
+368 | |         if (self.fields.len() >= 32 && !self.fields.contains_key(name)) || name.len() > 128 {
+369 | |             return;
+...   |
+410 | |     }
+    | |_____^
+    |
+    = help: split repeated state changes, calls, or conditions into a focused operation
+    = note: `-D abc-size` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(abc_size)]`
+
+error: function has Cyclomatic Complexity 13, which exceeds 9
+   --> src/logging/capture.rs:366:5
+    |
+366 | /     fn insert(&mut self, field: &tracing::field::Field, value: FieldValue) {
+367 | |         let name = field.name();
+368 | |         if (self.fields.len() >= 32 && !self.fields.contains_key(name)) || name.len() > 128 {
+369 | |             return;
+...   |
+410 | |     }
+    | |_____^
+    |
+    = help: split independent decisions into smaller functions or typed state transitions
+    = note: `-D cyclomatic-complexity` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(cyclomatic_complexity)]`
+
+error: function has NPath complexity 600, which exceeds 200
+   --> src/logging/capture.rs:366:5
+    |
+366 | /     fn insert(&mut self, field: &tracing::field::Field, value: FieldValue) {
+367 | |         let name = field.name();
+368 | |         if (self.fields.len() >= 32 && !self.fields.contains_key(name)) || name.len() > 128 {
+369 | |             return;
+...   |
+410 | |     }
+    | |_____^
+    |
+    = help: split independent branching stages into separate functions
+    = note: `-D npath-complexity` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(npath_complexity)]`
+
+error: function body has 1 intent comments but needs at least 5 for 22 statements
+   --> src/logging/capture.rs:366:5
+    |
+366 | /     fn insert(&mut self, field: &tracing::field::Field, value: FieldValue) {
+367 | |         let name = field.name();
+368 | |         if (self.fields.len() >= 32 && !self.fields.contains_key(name)) || name.len() > 128 {
+369 | |             return;
+...   |
+410 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: boolean expression contains complex inline work
+   --> src/logging/capture.rs:368:12
+    |
+368 |         if (self.fields.len() >= 32 && !self.fields.contains_key(name)) || name.len() > 128 {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: extract complex predicates into named boolean variables; preserve lazy evaluation and reevaluate loop predicates on every iteration
+    = note: `-D complicated-conditional` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(complicated_conditional)]`
+
+error: function body has 0 intent comments but needs at least 2 for 10 statements
+   --> src/logging/capture.rs:440:5
+    |
+440 | /     fn record_debug(&mut self, field: &tracing::field::Field, value: &dyn std::fmt::Debug) {
+441 | |         use std::fmt::Write as _;
+442 | |         if self.redacted.iter().any(|name| name == field.name()) {
+443 | |             self.insert(field, FieldValue::Redacted);
+...   |
+448 | |         self.insert(field, FieldValue::Diagnostic(writer.0));
+449 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: boolean expression contains complex inline work
+   --> src/logging/capture.rs:442:12
+    |
+442 |         if self.redacted.iter().any(|name| name == field.name()) {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: extract complex predicates into named boolean variables; preserve lazy evaluation and reevaluate loop predicates on every iteration
+
+error: function body has 0 intent comments but needs at least 1 for 5 statements
+   --> src/logging/capture.rs:454:5
+    |
+454 | /     fn write_str(&mut self, text: &str) -> std::fmt::Result {
+455 | |         let remaining = 1024usize.saturating_sub(self.0.len());
+456 | |         self.0.push_str(utf8_prefix(text, remaining));
+457 | |         if text.len() > remaining {
+...   |
+462 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: boolean field `level` does not start with `is_`
+  --> src/logging/format_options.rs:40:9
+   |
+40 |     pub level: bool,
+   |         ^^^^^
+   |
+   = help: rename boolean values to read as predicates, such as `is_ready`, `has_items`, or `IS_READY`
+
+error: boolean field `target` does not start with `is_`
+  --> src/logging/format_options.rs:44:9
+   |
+44 |     pub target: bool,
+   |         ^^^^^^
+   |
+   = help: rename boolean values to read as predicates, such as `is_ready`, `has_items`, or `IS_READY`
+
+error: boolean field `fields` does not start with `is_`
+  --> src/logging/format_options.rs:48:9
+   |
+48 |     pub fields: bool,
+   |         ^^^^^^
+   |
+   = help: rename boolean values to read as predicates, such as `is_ready`, `has_items`, or `IS_READY`
+
+error: boolean field `source` does not start with `is_`
+  --> src/logging/format_options.rs:52:9
+   |
+52 |     pub source: bool,
+   |         ^^^^^^
+   |
+   = help: rename boolean values to read as predicates, such as `is_ready`, `has_items`, or `IS_READY`
+
+error: function body has 2 intent comments but needs at least 5 for 23 statements
+   --> src/logging/format_options.rs:87:5
+    |
+ 87 | /     fn format(&self, record: &LogRecord) -> String {
+ 88 | |         let mut text = String::new();
+ 89 | |         // Elapsed formatting uses explicit units and preserves the configured fixed precision.
+ 90 | |         if let Some(precision) = self.options.elapsed {
+...   |
+109 | |         text
+110 | |     }
+    | |_____^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 4 for 19 statements
+   --> src/logging/format_options.rs:114:1
+    |
+114 | / fn append_elapsed(text: &mut String, record: &LogRecord, precision: ElapsedPrecision) {
+115 | |     let seconds = record.elapsed.as_secs();
+116 | |     match precision {
+117 | |         ElapsedPrecision::Seconds => {
+...   |
+129 | | }
+    | |_^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 3 for 12 statements
+   --> src/logging/format_options.rs:132:1
+    |
+132 | / fn append_source(text: &mut String, record: &LogRecord) {
+133 | |     if let Some(file) = &record.file {
+134 | |         if let Some(line) = record.line {
+135 | |             let _ = write!(text, " ({file}:{line})");
+...   |
+140 | | }
+    | |_^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 3 for 11 statements
+  --> src/logging/formatter.rs:21:5
+   |
+21 | /     fn format(&self, record: &LogRecord) -> String {
+22 | |         let level = severity_label(record.severity);
+23 | |         let target = &record.target;
+24 | |         let message = &record.message;
+...  |
+27 | |         text
+28 | |     }
+   | |_____^
+   |
+   = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 2 for 9 statements
+  --> src/logging/formatter.rs:37:5
+   |
+37 | /     fn format(&self, record: &LogRecord) -> String {
+38 | |         let seconds = record.elapsed.as_secs();
+39 | |         let millis = record.elapsed.subsec_millis();
+40 | |         let body = CompactFormatter.format(record);
+41 | |         format!("[{seconds}.{millis:03}] {body}")
+42 | |     }
+   | |_____^
+   |
+   = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 1 intent comments but needs at least 8 for 38 statements
+   --> src/logging/formatter.rs:98:1
+    |
+ 98 | / pub(super) fn append_fields(text: &mut String, record: &LogRecord) {
+ 99 | |     for (name, value) in &record.fields {
+100 | |         // Fields remain ordered by the record's map rather than callback order.
+101 | |         let _ = write!(text, " {name}=");
+...   |
+125 | | }
+    | |_^
+    |
+    = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: function body has 0 intent comments but needs at least 2 for 9 statements
+  --> src/logging/store.rs:66:5
+   |
+66 | /     pub(crate) fn push(&mut self, record: LogRecord) {
+67 | |         let bytes = record_bytes(&record);
+68 | |         while self.records.len() >= 2000 || self.bytes + bytes > 2 * 1024 * 1024 {
+69 | |             if let Some(old) = self.records.pop_front() {
+...  |
+75 | |         self.records.push_back(record);
+76 | |     }
+   | |_____^
+   |
+   = help: add a short `//` comment explaining ordering, invariants, or side effects
+
+error: could not compile `bevy_promptline` (lib) due to 51 previous errors
+dylint: finished in 5.41s (exit 101)
+Total: 9.12s
+rust: lint suite failed (exit 1)
+markdown: running lint suite
+python: running lint suite
+nix: running lint suite
+openapi: running lint suite

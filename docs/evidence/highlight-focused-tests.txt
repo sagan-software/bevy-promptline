@@ -1,0 +1,50 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/12d318be0d0abb508c7522e518cb8c9c293a952862aa6e28cc9d71d9f200794b.sqlite' is busy
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 5.44s
+     Running tests/clap_adapter.rs (target/debug/deps/clap_adapter-50969db0b439bf8e)
+
+running 7 tests
+test nested_metadata_completes_subcommands_flags_and_values_without_validation ... ok
+test derive_dispatches_typed_nested_input_and_never_dispatches_help_or_errors ... ok
+test help_and_version_have_terminal_information_without_started_handler_notifications ... ok
+test builder_preserves_empty_values_defaults_conflicts_and_end_of_options ... ok
+test defaults_conflicts_unknown_and_missing_values_are_enforced_before_dispatch ... ok
+test clap_command_labels_preserve_unicode_and_quoted_spaces ... ok
+test no_binary_name_multicall_external_subcommands_and_aliases_keep_clap_semantics ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/highlighting.rs (target/debug/deps/highlighting-30a1a0fbc6949fc3)
+
+running 6 tests
+test incomplete_input_is_a_local_diagnostic_without_submission ... ok
+test grammar_edges_and_unknown_commands_keep_exact_roles_and_diagnostics ... ok
+test clap_arity_aliases_assignments_and_delimiters_preserve_token_roles ... ok
+test permission_denial_does_not_reveal_command_membership ... ok
+test draft_spans_preserve_source_and_distinguish_options_values_and_quotes ... ok
+test clap_metadata_distinguishes_subcommands_from_option_values_without_validation ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/ui.rs (target/debug/deps/ui-4bc9d0629eb1990d)
+
+running 15 tests
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... ok
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+test closing_key_is_owned_for_its_frame_and_game_input_resumes_next_frame ... ok
+test invalid_drafts_clear_stale_discovery_after_policy_changes ... ok
+test long_output_has_an_ancestor_clip_and_input_does_not_shrink ... ok
+test configured_toggle_and_close_keys_replace_the_defaults ... ok
+test incomplete_syntax_displays_guidance_without_changing_the_editor ... ok
+test history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits ... ok
+test tab_accepts_a_command_preview_without_submitting_it ... ok
+test shift_space_queues_the_space_ignored_by_bevy_019_text_input ... ok
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test theme_changes_update_public_roles_and_the_authoritative_editor_cursor ... ok
+test showing_and_releasing_preserve_visible_console_without_editing_ownership ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... ok
+test visible_editor_reacquires_ownership_after_pointer_focus_returns ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

@@ -1,0 +1,12 @@
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 10.79s
+     Running unittests src/lib.rs (target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 4 tests
+test ui::scrollback::tests::scroll_range_converts_physical_geometry_to_logical_pixels ... ok
+test ui::scrollback::tests::pixel_scroll_can_resume_at_bottom_and_nonfinite_deltas_have_no_effect ... ok
+test ui::scrollback::tests::wheel_review_preserves_position_counts_arrivals_and_latest_resumes ... ok
+test ui::scrollback::tests::shaped_anchor_survives_arrival_and_clamps_after_eviction ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.01s
+

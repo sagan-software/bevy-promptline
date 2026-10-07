@@ -1,0 +1,8 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+waiting for another Nix process to finish fetching input 'git+file:///run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline'...
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/19fcf7c465ea9cc11c207642980bc51cfcad56d821c83dd04b7bdbf50d48a8c8.sqlite' is busy
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Checking bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 2.44s

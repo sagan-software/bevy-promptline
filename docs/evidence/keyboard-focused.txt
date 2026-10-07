@@ -1,0 +1,16 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 19.67s
+     Running tests/keyboard.rs (target/debug/deps/keyboard-f7ef56a2686e93c5)
+
+running 7 tests
+test space_precedes_a_shifted_quote_in_the_same_frame ... ok
+test another_widget_keeps_bevys_existing_batch_keyboard_semantics ... ok
+test held_shift_keeps_space_and_quote_in_order_without_changing_frame_keys ... ok
+test control_select_all_keeps_plain_text_on_both_sides_of_the_shortcut ... ok
+test active_composition_owns_shift_space_without_an_extra_edit ... ok
+test focused_callbacks_preserve_new_keyboard_messages_for_the_next_frame ... ok
+test window_focus_loss_releases_shortcut_modifiers_before_new_text ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

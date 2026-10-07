@@ -1,0 +1,4 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/cefaac15a7979c758644e57b63ffa256b5601e35faa067956fb626ba7d177976.sqlite' is busy
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `wasm-release` profile [optimized] target(s) in 4m 01s

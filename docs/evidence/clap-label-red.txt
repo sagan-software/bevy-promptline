@@ -1,0 +1,23 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 4.37s
+     Running tests/clap_adapter.rs (target/debug/deps/clap_adapter-50969db0b439bf8e)
+
+running 1 test
+test clap_command_labels_preserve_unicode_and_quoted_spaces ... FAILED
+
+failures:
+
+---- clap_command_labels_preserve_unicode_and_quoted_spaces stdout ----
+
+thread 'clap_command_labels_preserve_unicode_and_quoted_spaces' (2019623) panicked at tests/clap_adapter.rs:305:10:
+called `Result::unwrap()` on an `Err` value: InvalidIdentity(InvalidCommandName)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    clap_command_labels_preserve_unicode_and_quoted_spaces
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test clap_adapter`

@@ -1,0 +1,9 @@
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 27.31s
+     Running unittests examples/kitchen_sink.rs (target/debug/examples/kitchen_sink-705fa083e90cbf4a)
+
+running 1 test
+test tests::compact_hides_output_viewport_and_drawer_restores_it ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

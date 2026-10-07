@@ -1,0 +1,11 @@
+error[E0432]: unresolved import `bevy_promptline`
+ --> tests/command_text.rs:2:5
+  |
+2 | use bevy_promptline::{tokenize, TokenizeError};
+  |     ^^^^^^^^^^^^^^^ use of unresolved module or unlinked crate `bevy_promptline`
+  |
+  = help: you might be missing a crate named `bevy_promptline`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0432`.

@@ -1,0 +1,414 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+warning: Git tree '/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline' has uncommitted changes
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/45feca957bbd007d2a2f2398fbb291e7352c4e489012e3dd9d3607cafaac7bc0.sqlite' is busy
+this derivation will be built:
+  /nix/store/99vqvc3wdqjxhgagy7qxghln62pq5az4-run-coverage.drv
+building '/nix/store/99vqvc3wdqjxhgagy7qxghln62pq5az4-run-coverage.drv'...
+info: cargo-llvm-cov currently setting cfg(coverage); you can opt-out it by passing --no-cfg-coverage
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
+   Compiling serde_core v1.0.229
+   Compiling cfg-if v1.0.5
+   Compiling log v0.4.34
+   Compiling libc v0.2.190
+   Compiling equivalent v1.0.2
+   Compiling smallvec v1.16.2
+   Compiling libm v0.2.16
+   Compiling cfg_aliases v0.2.2
+   Compiling pin-project-lite v0.2.17
+   Compiling foldhash v0.2.0
+   Compiling serde v1.0.229
+   Compiling winnow v1.0.4
+   Compiling hashbrown v0.17.1
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling thiserror v2.0.21
+   Compiling parking v2.2.1
+   Compiling indexmap v2.14.2
+   Compiling syn v3.0.6
+   Compiling syn v2.0.119
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling autocfg v1.5.1
+   Compiling toml_edit v0.25.15+spec-1.1.0
+   Compiling allocator-api2 v0.2.21
+   Compiling bitflags v2.13.2
+   Compiling crossbeam-utils v0.8.23
+   Compiling arrayvec v0.7.8
+   Compiling hashbrown v0.16.1
+   Compiling futures-core v0.3.34
+   Compiling once_cell v1.21.4
+   Compiling fastrand v2.5.0
+   Compiling futures-io v0.3.34
+   Compiling event-listener v5.4.2
+   Compiling raw-window-handle v0.6.2
+   Compiling memchr v2.8.3
+   Compiling event-listener-strategy v0.5.4
+   Compiling futures-lite v2.6.1
+   Compiling getrandom v0.4.3
+   Compiling concurrent-queue v2.5.0
+   Compiling slab v0.4.12
+   Compiling foldhash v0.1.5
+   Compiling hashbrown v0.15.5
+   Compiling num-traits v0.2.19
+   Compiling version_check v0.9.5
+   Compiling rustix v1.1.5
+   Compiling typewit v1.15.2
+   Compiling uuid v1.27.0
+   Compiling const_panic v0.2.17
+   Compiling async-channel v2.5.0
+   Compiling bevy_macro_utils v0.19.1
+   Compiling encase_derive_impl v0.12.1
+   Compiling shlex v2.0.1
+   Compiling unicode-segmentation v1.13.3
+   Compiling find-msvc-tools v0.1.14
+   Compiling typeid v1.0.3
+   Compiling linux-raw-sys v0.12.1
+   Compiling rand_core v0.10.1
+   Compiling rand v0.10.3
+   Compiling convert_case v0.10.0
+   Compiling cc v1.6.0
+   Compiling unicode-xid v0.2.6
+   Compiling spin v0.10.1
+   Compiling thread_local v1.1.10
+   Compiling erased-serde v0.4.10
+   Compiling nix v0.31.3
+   Compiling fixedbitset v0.5.7
+   Compiling async-task v4.7.1
+   Compiling disqualified v1.1.0
+   Compiling atomic-waker v1.1.2
+   Compiling slotmap v1.1.1
+   Compiling bevy_ptr v0.19.1
+   Compiling inventory v0.3.24
+   Compiling downcast-rs v2.0.2
+   Compiling bevy_ecs_macro_logic v0.19.1
+   Compiling async-executor v1.14.0
+   Compiling crossbeam-queue v0.3.14
+   Compiling nonmax v0.5.5
+   Compiling bumpalo v3.20.3
+   Compiling ctrlc v3.5.2
+   Compiling zerocopy v0.8.59
+   Compiling tracing-core v0.1.36
+   Compiling either v1.18.0
+   Compiling libloading v0.8.9
+   Compiling crossbeam-channel v0.5.17
+   Compiling polling v3.11.0
+   Compiling itertools v0.14.0
+   Compiling piper v0.2.5
+   Compiling rand_distr v0.6.0
+   Compiling async-io v2.6.0
+   Compiling blocking v1.7.0
+   Compiling sysinfo v0.38.4
+   Compiling async-lock v3.4.2
+   Compiling blake3 v1.8.7
+   Compiling cpufeatures v0.3.1
+   Compiling futures-task v0.3.34
+   Compiling constant_time_eq v0.4.2
+   Compiling const-fnv1a-hash v1.1.0
+   Compiling async-fs v2.2.0
+   Compiling stackfuture v0.3.1
+   Compiling async-broadcast v0.7.2
+   Compiling atomicow v1.2.0
+   Compiling simd-adler32 v0.3.10
+   Compiling pkg-config v0.3.34
+   Compiling synstructure v0.14.0
+   Compiling adler2 v2.0.1
+   Compiling crc32fast v1.5.2
+   Compiling aho-corasick v1.1.5
+   Compiling regex-syntax v0.8.11
+   Compiling miniz_oxide v0.9.1
+   Compiling miniz_oxide v0.8.9
+   Compiling flate2 v1.1.10
+   Compiling regex-automata v0.4.18
+   Compiling fdeflate v0.3.7
+   Compiling stable_deref_trait v1.2.1
+   Compiling pxfm v0.1.30
+   Compiling png v0.18.1
+   Compiling moxcms v0.8.1
+   Compiling euclid v0.22.14
+   Compiling svg_fmt v0.4.5
+   Compiling byteorder-lite v0.1.0
+   Compiling const_soft_float v0.1.4
+   Compiling guillotiere v0.6.2
+   Compiling constgebra v0.1.4
+   Compiling rectangle-pack v0.4.2
+   Compiling lazy_static v1.5.1
+   Compiling sharded-slab v0.1.7
+   Compiling matchers v0.2.0
+   Compiling tracing-log v0.2.0
+   Compiling writeable v0.6.4
+   Compiling unicode-width v0.2.2
+   Compiling nu-ansi-term v0.50.3
+   Compiling termcolor v1.4.1
+   Compiling naga v29.0.4
+   Compiling bit-vec v0.9.1
+   Compiling codespan-reporting v0.13.1
+   Compiling bit-set v0.9.1
+   Compiling wayland-sys v0.31.11
+   Compiling dlib v0.5.3
+   Compiling spirv v0.4.0+sdk-1.4.341.0
+   Compiling hexf-parse v0.2.1
+   Compiling rustc-hash v1.1.0
+   Compiling litemap v0.8.3
+   Compiling wayland-backend v0.3.17
+   Compiling memmap2 v0.9.11
+   Compiling ash v0.38.0+1.3.281
+   Compiling scoped-tls v1.0.1
+   Compiling parking_lot_core v0.9.12
+   Compiling downcast-rs v1.2.1
+   Compiling utf8_iter v1.0.4
+   Compiling quick-xml v0.41.0
+   Compiling encase_derive v0.12.1
+   Compiling bytemuck_derive v1.12.1
+   Compiling serde_derive v1.0.229
+   Compiling thiserror-impl v2.0.21
+   Compiling derive_more-impl v2.1.1
+   Compiling bevy_reflect_derive v0.19.1
+   Compiling assert_type_match v0.1.1
+   Compiling variadics_please v1.1.0
+   Compiling bevy_ecs_macros v0.19.1
+   Compiling bytemuck v1.25.2
+   Compiling bevy_derive v0.19.1
+   Compiling zerocopy-derive v0.8.59
+   Compiling encase v0.12.1
+   Compiling glam v0.32.1
+   Compiling tracing-attributes v0.1.31
+   Compiling futures-macro v0.3.34
+   Compiling bevy_asset_macros v0.19.1
+   Compiling wgpu-types v29.0.4
+   Compiling bevy_platform v0.19.1
+   Compiling smol_str v0.2.2
+   Compiling bevy_utils v0.19.1
+   Compiling petgraph v0.8.3
+   Compiling ron v0.12.2
+   Compiling zerofrom-derive v0.1.8
+   Compiling futures-util v0.3.34
+   Compiling derive_more v2.1.1
+   Compiling bevy_tasks v0.19.1
+   Compiling bevy_reflect v0.19.1
+   Compiling yoke-derive v0.8.4
+   Compiling image v0.25.10
+   Compiling zerovec-derive v0.11.6
+   Compiling hexasphere v18.0.0
+   Compiling tracing v0.1.44
+   Compiling displaydoc v0.2.7
+   Compiling bevy_encase_derive v0.19.1
+   Compiling half v2.7.1
+   Compiling tracing-subscriber v0.3.23
+   Compiling bevy_ecs v0.19.1
+   Compiling bevy_math v0.19.1
+   Compiling font-types v0.11.3
+   Compiling icu_locale_fallback_data v2.3.0
+   Compiling scopeguard v1.2.0
+   Compiling icu_properties_data v2.3.0
+   Compiling wayland-client v0.31.15
+   Compiling lock_api v0.4.14
+   Compiling read-fonts v0.39.2
+   Compiling wayland-scanner v0.31.11
+   Compiling zerofrom v0.1.8
+   Compiling yoke v0.8.3
+   Compiling zerovec v0.11.8
+   Compiling bevy_color v0.19.1
+   Compiling tinystr v0.8.4
+   Compiling icu_locale_core v2.3.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling bevy_app v0.19.1
+   Compiling icu_provider v2.3.1
+   Compiling icu_collections v2.3.0
+   Compiling bevy_time v0.19.1
+   Compiling bevy_transform v0.19.1
+   Compiling bevy_diagnostic v0.19.1
+   Compiling bevy_asset v0.19.1
+   Compiling bevy_input v0.19.1
+   Compiling bevy_log v0.19.1
+   Compiling wgpu-naga-bridge v29.0.4
+   Compiling bevy_image v0.19.1
+   Compiling bevy_mesh v0.19.1
+   Compiling gpu-descriptor-types v0.2.0
+   Compiling wgpu-hal v29.0.4
+   Compiling presser v0.3.1
+   Compiling icu_segmenter_data v2.3.0
+   Compiling icu_normalizer_data v2.3.0
+   Compiling gpu-descriptor v0.3.2
+   Compiling parking_lot v0.12.5
+   Compiling font-types v0.12.6
+   Compiling bevy_window v0.19.1
+   Compiling bevy_camera v0.19.1
+   Compiling gpu-allocator v0.28.0
+   Compiling ordered-float v5.5.0
+   Compiling renderdoc-sys v1.1.0
+   Compiling profiling v1.0.18
+   Compiling read-fonts v0.41.0
+   Compiling icu_properties v2.3.0
+   Compiling icu_locale_fallback v2.3.0
+   Compiling codespan-reporting v0.12.0
+   Compiling regex v1.13.1
+   Compiling core_maths v0.1.1
+   Compiling wgpu-core v29.0.4
+   Compiling linebender_resource_handle v0.1.1
+   Compiling data-encoding v2.11.1
+   Compiling thiserror v1.0.69
+   Compiling litrs v1.0.0
+   Compiling rustix v0.38.44
+   Compiling parlance v0.1.0
+   Compiling document-features v0.2.12
+   Compiling fontique v0.9.0
+   Compiling naga_oil v0.22.0
+   Compiling harfrust v0.6.2
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_segmenter v2.3.0
+   Compiling parley_data v0.9.0
+   Compiling skrifa v0.44.0
+   Compiling wgpu-core-deps-windows-linux-android v29.0.4
+   Compiling bevy_picking v0.19.1
+   Compiling skrifa v0.42.1
+   Compiling thiserror-impl v1.0.69
+   Compiling wgpu v29.0.4
+   Compiling linux-raw-sys v0.4.15
+   Compiling zeno v0.3.3
+   Compiling yazi v0.2.1
+   Compiling swash v0.2.10
+   Compiling parley v0.9.0
+   Compiling bevy_shader v0.19.1
+   Compiling wayland-protocols v0.32.13
+   Compiling bevy_clipboard v0.19.1
+   Compiling bevy_material_macros v0.19.1
+   Compiling sys-locale v0.3.2
+   Compiling static_assertions v1.1.0
+   Compiling bevy_text v0.19.1
+   Compiling calloop v0.13.0
+   Compiling bevy_render_macros v0.19.1
+   Compiling bevy_material v0.19.1
+   Compiling offset-allocator v0.2.0
+   Compiling accesskit v0.24.1
+   Compiling xkeysym v0.2.1
+   Compiling getrandom v0.3.4
+   Compiling inotify-sys v0.1.8
+   Compiling strict-num v0.1.1
+   Compiling arrayref v0.3.9
+   Compiling ttf-parser v0.25.1
+   Compiling xcursor v0.3.11
+   Compiling radsort v0.1.1
+   Compiling weak-table v0.3.2
+   Compiling cursor-icon v1.2.0
+   Compiling smithay-client-toolkit v0.19.2
+   Compiling wayland-csd-frame v0.3.0
+   Compiling bevy_render v0.19.1
+   Compiling bevy_sprite v0.19.1
+   Compiling wayland-cursor v0.31.14
+   Compiling owned_ttf_parser v0.25.1
+   Compiling tiny-skia-path v0.11.4
+   Compiling wayland-protocols-wlr v0.3.12
+   Compiling calloop-wayland-source v0.3.0
+   Compiling bevy_light v0.19.1
+   Compiling x11-dl v2.21.0
+   Compiling libudev-sys v0.1.4
+   Compiling ahash v0.8.12
+   Compiling ab_glyph_rasterizer v0.1.10
+   Compiling ab_glyph v0.2.32
+   Compiling tiny-skia v0.11.4
+   Compiling bevy_a11y v0.19.1
+   Compiling bevy_input_focus v0.19.1
+   Compiling gethostname v1.1.0
+   Compiling winit v0.30.13
+   Compiling x11rb-protocol v0.13.2
+   Compiling as-raw-xcb-connection v1.0.1
+   Compiling grid v1.0.1
+   Compiling taffy v0.10.1
+   Compiling inotify v0.11.5
+   Compiling sctk-adwaita v0.10.1
+   Compiling xkbcommon-dl v0.4.2
+   Compiling wayland-protocols-plasma v0.3.12
+   Compiling x11rb v0.13.2
+   Compiling gilrs v0.11.2
+   Compiling percent-encoding v2.3.2
+   Compiling vec_map v0.8.2
+   Compiling dpi v0.1.2
+   Compiling gilrs-core v0.6.8
+   Compiling bevy_ui v0.19.1
+   Compiling bevy_gizmos_macros v0.19.1
+   Compiling fnv v1.0.7
+   Compiling accesskit_winit v0.32.2
+   Compiling bevy_animation_macros v0.19.1
+   Compiling bevy_gizmos v0.19.1
+   Compiling bevy_state_macros v0.19.1
+   Compiling bevy_core_pipeline v0.19.1
+   Compiling bevy_scene_macros v0.19.1
+   Compiling approx v0.5.1
+   Compiling bevy_winit v0.19.1
+   Compiling bevy_scene v0.19.1
+   Compiling bevy_state v0.19.1
+   Compiling bevy_ui_widgets v0.19.1
+   Compiling bevy_sprite_render v0.19.1
+   Compiling bevy_post_process v0.19.1
+   Compiling bevy_animation v0.19.1
+   Compiling bevy_ui_render v0.19.1
+   Compiling bevy_gizmos_render v0.19.1
+   Compiling bevy_gilrs v0.19.1
+   Compiling bevy_world_serialization v0.19.1
+   Compiling bevy_internal v0.19.1
+   Compiling bevy v0.19.1
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 11m 51s
+     Running unittests src/lib.rs (target/llvm-cov-target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 1 test
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/command_text.rs (target/llvm-cov-target/debug/deps/command_text-56a33567e14a93c5)
+
+running 5 tests
+test draft_analysis_tolerates_incomplete_quotes_but_rejects_forbidden_content ... ok
+test empty_quotes_and_unicode_preserve_decoded_arguments_and_source_ranges ... ok
+test identity_and_limits_validate_external_construction ... ok
+test malformed_submission_has_distinct_errors ... ok
+test profile_edges_and_exact_replacement_round_trips ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/output.rs (target/llvm-cov-target/debug/deps/output-0a2f326c9c2cb204)
+
+running 2 tests
+test oldest_entries_are_evicted_at_exact_entry_and_byte_limits ... ok
+test overlong_entries_truncate_at_unicode_boundaries_and_fit_tiny_limits ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/promptline_runtime.rs (target/llvm-cov-target/debug/deps/promptline_runtime-f135763c51e97a0d)
+
+running 8 tests
+test submission_debug_does_not_disclose_sensitive_arguments ... ok
+test collisions_are_atomic_and_aliases_resolve_to_one_owner ... ok
+test lifecycle_order_and_queue_overflow_are_observable ... ok
+test parser_policy_and_input_rejections_never_reach_a_handler ... ok
+test sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications ... ok
+test public_command_reaches_system_once_in_queue_order ... ok
+test alias_collisions_and_invalid_metadata_leave_the_registry_unchanged ... ok
+test handler_failures_cancellation_and_removed_systems_have_terminal_notifications ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+    Finished report saved to target/llvm-cov/html
+
+    Finished report saved to target/llvm-cov/lcov.info
+
+    Finished report saved to target/llvm-cov/coverage.json
+Filename                      Regions    Missed Regions     Cover   Functions  Missed Functions  Executed       Lines      Missed Lines     Cover    Branches   Missed Branches     Cover
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command.rs                         13                 0   100.00%           3                 0   100.00%          12                 0   100.00%           0                 0         -
+execution.rs                      203                12    94.09%          13                 0   100.00%         135                 4    97.04%           0                 0         -
+identity.rs                        40                 3    92.50%           7                 1    85.71%          26                 3    88.46%           0                 0         -
+metadata.rs                        12                 0   100.00%           1                 0   100.00%           8                 0   100.00%           0                 0         -
+output.rs                         122                 2    98.36%          13                 0   100.00%          80                 2    97.50%           0                 0         -
+registry.rs                       136                14    89.71%          16                 1    93.75%          98                 8    91.84%           0                 0         -
+tokenization.rs                   190                 1    99.47%          10                 0   100.00%         123                 1    99.19%           0                 0         -
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                             716                32    95.53%          63                 2    96.83%         482                18    96.27%           0                 0         -
+Uncovered Lines:
+src/execution.rs: 83, 86, 93, 94
+src/identity.rs: 74, 75, 76
+src/output.rs: 221, 222
+src/registry.rs: 99, 100, 101, 102, 103, 104, 105, 106

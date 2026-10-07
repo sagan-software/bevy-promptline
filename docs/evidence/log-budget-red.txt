@@ -1,0 +1,23 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 25.03s
+     Running tests/log_capture.rs (target/debug/deps/log_capture-993037f66e536d80)
+
+running 1 test
+test wide_fields_cannot_exceed_the_event_payload_budget ... FAILED
+
+failures:
+
+---- wide_fields_cannot_exceed_the_event_payload_budget stdout ----
+
+thread 'wide_fields_cannot_exceed_the_event_payload_budget' (2094305) panicked at tests/log_capture.rs:273:5:
+retained 8200 field bytes
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    wide_fields_cannot_exceed_the_event_payload_budget
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test log_capture`

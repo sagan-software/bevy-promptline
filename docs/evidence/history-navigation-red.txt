@@ -1,0 +1,37 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+warning: method `stop_browsing` is never used
+   --> src/history.rs:116:19
+    |
+ 44 | impl CommandHistory {
+    | ------------------- method in this implementation
+...
+116 |     pub(crate) fn stop_browsing(&mut self) {
+    |                   ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `bevy_promptline` (lib) generated 1 warning
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 4.83s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 1 test
+test history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits ... FAILED
+
+failures:
+
+---- history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits stdout ----
+
+thread 'history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits' (2034418) panicked at tests/ui.rs:218:9:
+assertion `left == right` failed
+  left: "draft"
+ right: "echo new"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    history_keys_recall_commands_restore_drafts_and_restart_after_manual_edits
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test ui`

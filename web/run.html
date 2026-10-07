@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@@title@@ · Bevy Promptline</title><link rel="stylesheet" href="../gallery.css"></head>
+<body class="run-page">
+<header><a href="../">Bevy Promptline</a><h1>@@title@@</h1><a href="https://github.com/Sagan-Software/bevy-promptline/blob/main/examples/@@name@@.rs">Source</a></header>
+<main><canvas id="bevy" tabindex="0" aria-label="@@title@@ interactive Bevy demo"></canvas><div id="status" role="status"><p id="state">Loading @@title@@…</p><button id="retry" hidden>Retry</button></div></main>
+<footer><p>@@controls@@</p></footer>
+<script type="module">
+const canvas = document.querySelector('#bevy');
+const status = document.querySelector('#status');
+const state = document.querySelector('#state');
+const retry = document.querySelector('#retry');
+let editing = false;
+window.addEventListener('bevy-promptline:editing', event => { editing = event.detail === true; });
+canvas.addEventListener('pointerdown', () => canvas.focus());
+canvas.addEventListener('keydown', event => { if (editing && event.key === 'Tab') event.preventDefault(); });
+function failure(message) { status.hidden = false; state.textContent = message; retry.hidden = false; }
+retry.addEventListener('click', () => location.reload());
+canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); failure('Graphics context lost. Retry to restart the demo.'); });
+window.addEventListener('error', () => failure('The demo stopped. Retry or read the source and controls below.'));
+window.addEventListener('unhandledrejection', () => failure('The demo could not run. Retry or read the source and controls below.'));
+try { const { default: init } = await import('./app.js'); await init(); status.hidden = true; }
+catch (error) { console.error(error); failure('Loading or graphics initialization failed. Retry to restart the demo.'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 9.67s
+     Running unittests examples/kitchen_sink.rs (target/debug/examples/kitchen_sink-705fa083e90cbf4a)
+
+running 1 test
+test tests::wrapped_log_rows_scroll_without_moving_the_loss_summary ... FAILED
+
+failures:
+
+---- tests::wrapped_log_rows_scroll_without_moving_the_loss_summary stdout ----
+
+thread 'tests::wrapped_log_rows_scroll_without_moving_the_loss_summary' (2863394) panicked at examples/kitchen_sink.rs:485:9:
+assertion `left == right` failed: wrapped log rows must scroll
+  left: 0.0
+ right: 50.0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::wrapped_log_rows_scroll_without_moving_the_loss_summary
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--example kitchen_sink`

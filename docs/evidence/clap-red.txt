@@ -1,0 +1,47 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling utf8parse v0.2.2
+   Compiling anstyle v1.0.14
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstyle-query v1.1.5
+   Compiling colorchoice v1.0.5
+   Compiling anstyle-parse v1.0.0
+   Compiling clap_lex v1.1.1
+   Compiling strsim v0.11.1
+   Compiling anstream v1.0.0
+   Compiling clap_derive v4.6.7
+   Compiling clap_builder v4.6.7
+   Compiling clap v4.6.7
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0432]: unresolved import `bevy_promptline::clap`
+ --> tests/clap_adapter.rs:4:22
+  |
+4 | use bevy_promptline::clap::ClapAppExt;
+  |                      ^^^^ could not find `clap` in `bevy_promptline`
+
+error[E0599]: no method named `register_clap` found for struct `bevy::bevy_app::App` in the current scope
+   --> tests/clap_adapter.rs:28:9
+    |
+ 28 |     app.register_clap::<Scene, _>(|In(command): In<Scene>, mut output: ResMut<'_, Output>| {
+    |     ----^^^^^^^^^^^^^
+    |
+help: there is a method `register_type` with a similar name, but with different arguments
+   --> /home/deck/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_app-0.19.1/src/app.rs:677:5
+    |
+677 |     pub fn register_type<T: bevy_reflect::GetTypeRegistration>(&mut self) -> &mut Self {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `register_clap_builder` found for struct `bevy::bevy_app::App` in the current scope
+   --> tests/clap_adapter.rs:68:9
+    |
+ 68 |     app.register_clap_builder(
+    |     ----^^^^^^^^^^^^^^^^^^^^^
+    |
+help: there is a method `register_type` with a similar name, but with different arguments
+   --> /home/deck/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_app-0.19.1/src/app.rs:677:5
+    |
+677 |     pub fn register_type<T: bevy_reflect::GetTypeRegistration>(&mut self) -> &mut Self {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `bevy_promptline` (test "clap_adapter") due to 3 previous errors

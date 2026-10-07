@@ -1,0 +1,12 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0046]: not all trait items implemented, missing: `register_pending_command`
+ --> tests/app_ext_compatibility.rs:8:1
+  |
+8 | impl PromptlineAppExt for Host {
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing `register_pending_command` in implementation
+  |
+  = help: implement the missing item: `fn register_pending_command<C, M>(&mut self, _: impl IntoSystem<In<C>, crate::pending::CommandExecution, M> + 'static) -> std::result::Result<&mut Self, RegistrationError> where C: ConsoleCommand { todo!() }`
+
+For more information about this error, try `rustc --explain E0046`.
+error: could not compile `bevy_promptline` (test "app_ext_compatibility") due to 1 previous error

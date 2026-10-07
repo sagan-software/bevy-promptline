@@ -1,0 +1,71 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+warning: fields `metadata` and `parse` are never read
+  --> src/registry/builder.rs:8:16
+   |
+ 6 | pub struct CommandBuilder<C> {
+   |            -------------- fields in this struct
+ 7 |     /// Metadata retained until the whole identity set can be checked atomically.
+ 8 |     pub(super) metadata: crate::CommandMetadata,
+   |                ^^^^^^^^
+ 9 |     /// Author-supplied parser invoked only after runtime validation and authorization.
+10 |     pub(super) parse: Box<Parser<C>>,
+   |                ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: non-binding let on a type that has a destructor
+  --> src/registry/mod.rs:83:9
+   |
+83 |         let _ = (builder, system);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-W let-underscore-drop`
+help: consider binding to an unused variable to avoid immediately dropping the value
+   |
+83 |         let _unused = (builder, system);
+   |              ++++++
+help: consider immediately dropping the value
+   |
+83 -         let _ = (builder, system);
+83 +         drop((builder, system));
+   |
+
+warning: non-binding let on a type that has a destructor
+  --> src/registry/builder.rs:24:9
+   |
+24 |         let _ = (metadata, parse);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: consider binding to an unused variable to avoid immediately dropping the value
+   |
+24 |         let _unused = (metadata, parse);
+   |              ++++++
+help: consider immediately dropping the value
+   |
+24 -         let _ = (metadata, parse);
+24 +         drop((metadata, parse));
+   |
+
+warning: `bevy_promptline` (lib) generated 3 warnings (run `cargo fix --lib -p bevy_promptline` to apply 2 suggestions)
+    Finished `test` profile [optimized + debuginfo] target(s) in 24.56s
+     Running tests/command_builder.rs (target/debug/deps/command_builder-355b5a125806ef03)
+
+running 1 test
+test plain_builder_delivers_typed_values_and_information_without_dispatching_help ... FAILED
+
+failures:
+
+---- plain_builder_delivers_typed_values_and_information_without_dispatching_help stdout ----
+
+thread 'plain_builder_delivers_typed_values_and_information_without_dispatching_help' (2099655) panicked at src/registry/builder.rs:25:9:
+not yet implemented: builder construction is not implemented
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    plain_builder_delivers_typed_values_and_information_without_dispatching_help
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test command_builder`

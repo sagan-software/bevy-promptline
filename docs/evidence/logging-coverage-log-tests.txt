@@ -1,0 +1,90 @@
+info: cargo-llvm-cov currently setting cfg(coverage); you can opt-out it by passing --no-cfg-coverage
+   Compiling wayland-sys v0.31.11
+   Compiling libudev-sys v0.1.4
+   Compiling wayland-backend v0.3.17
+   Compiling x11-dl v2.21.0
+   Compiling wayland-client v0.31.15
+   Compiling wayland-protocols v0.32.13
+   Compiling calloop-wayland-source v0.3.0
+   Compiling wayland-cursor v0.31.14
+   Compiling wayland-csd-frame v0.3.0
+   Compiling gilrs-core v0.6.8
+   Compiling wayland-protocols-wlr v0.3.12
+   Compiling smithay-client-toolkit v0.19.2
+   Compiling sctk-adwaita v0.10.1
+   Compiling wayland-protocols-plasma v0.3.12
+   Compiling winit v0.30.13
+   Compiling gilrs v0.11.2
+   Compiling accesskit_winit v0.32.2
+   Compiling bevy_winit v0.19.1
+   Compiling bevy_gilrs v0.19.1
+   Compiling bevy_internal v0.19.1
+   Compiling bevy v0.19.1
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 22s
+     Running unittests src/lib.rs (target/llvm-cov-target/debug/deps/bevy_promptline-b72dc432e1a9de27)
+
+running 26 tests
+test execution::tests::missing_runtime_resources_do_not_execute_or_panic ... ok
+test logging::capture::tests::diagnostic_writer_bounds_utf8_and_refuses_the_rejected_suffix ... ok
+test execution::tests::missing_and_exhausted_identity_sequences_reject_without_reuse ... ok
+test logging::record::tests::field_display_propagates_sink_errors ... ok
+test logging::capture::tests::contended_capture_finishes_before_the_app_releases_the_queue_guard ... ok
+test registry::builder::tests::discarded_builder_releases_the_owned_parser_capture_once ... ok
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+test output::tests::exhausted_sequence_panics_before_changing_retained_output ... ok
+test ui::colors::tests::defaults_follow_background_and_overrides_preserve_info ... ok
+test tokenization::tests::forbidden_content_prevents_all_token_visits ... ok
+test ui::highlight::paint::tests::only_wholly_contained_clusters_receive_token_colors ... ok
+test ui::highlight::palette::tests::overrides_and_both_surface_defaults_resolve_all_roles ... ok
+test ui::scrollback::tests::assembled_ranges_preserve_unicode_and_clear_with_output ... ok
+test ui::highlight::render::tests::ignores_decorators_and_invalid_ranges_before_valid_text ... ok
+test ui::scrollback::tests::scroll_range_converts_physical_geometry_to_logical_pixels ... ok
+test execution::pending::tests::finished_execution_does_not_retain_a_pending_slot ... ok
+test ui::highlight::tests::cache_handles_absence_and_preserves_change_detection ... ok
+test execution::pending::tests::removed_private_runtime_state_does_not_panic_or_retain_work ... ok
+test ui::scrollback::tests::unavailable_shaped_line_preserves_review_position ... ok
+test ui::scrollback::tests::pixel_scroll_can_resume_at_bottom_and_nonfinite_deltas_have_no_effect ... ok
+test ui::scrollback::tests::capture_ignores_unavailable_geometry_and_unmatched_roles ... ok
+test ui::scrollback::tests::capture_records_unicode_entry_and_discards_anchor_when_following ... ok
+test ui::scrollback::tests::latest_label_tracks_theme_and_retains_idle_text_ticks ... ok
+test ui::scrollback::tests::unattached_pointer_targets_leave_review_unchanged ... ok
+test ui::scrollback::tests::shaped_anchor_survives_arrival_and_clamps_after_eviction ... ok
+test ui::scrollback::tests::wheel_review_preserves_position_counts_arrivals_and_latest_resumes ... ok
+
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/log_capture.rs (target/llvm-cov-target/debug/deps/log_capture-993037f66e536d80)
+
+running 12 tests
+test debug_failure_retains_prefix_without_formatting_redacted_values ... ok
+test capture_reload_never_changes_another_sink_and_upstream_rejection_remains_final ... ok
+test display_and_format_changes_reuse_records_without_recapture ... ok
+test formatter_options_control_elapsed_precision_labels_fields_and_source ... ok
+test capture_retains_bounded_span_context_and_available_thread_metadata ... ok
+test field_display_preserves_numeric_edges_and_literal_text ... ok
+test invalid_initial_directives_fail_and_disconnected_reload_reports_unavailability ... ok
+test reload_enables_a_previously_disabled_callsite_and_preserves_typed_redacted_fields ... ok
+test wide_fields_cannot_exceed_the_event_payload_budget ... ok
+test wide_integer_fields_preserve_values_beyond_the_64_bit_range ... ok
+test stalled_drain_keeps_enqueue_bounded_and_limits_per_frame_work ... ok
+test idle_capture_does_not_mark_retained_records_changed ... FAILED
+
+failures:
+
+---- idle_capture_does_not_mark_retained_records_changed stdout ----
+
+thread 'idle_capture_does_not_mark_retained_records_changed' (2859156) panicked at tests/log_capture.rs:383:5:
+assertion `left == right` failed
+  left: 2
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    idle_capture_does_not_mark_retained_records_changed
+
+test result: FAILED. 11 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test log_capture`
+error: process didn't exit successfully: `/nix/store/z035s3rf4fpi4gli5jc90zbksrk79a3f-cargo-1.98.1-x86_64-unknown-linux-gnu/bin/cargo test --manifest-path /run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline/Cargo.toml --target-dir /run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline/target/llvm-cov-target --locked --features log --lib --test log_capture` (exit status: 101)

@@ -1,0 +1,42 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+warning: type could implement `Copy`; consider adding `impl Copy`
+  --> src/ui.rs:57:1
+   |
+57 | / pub struct ConsoleState {
+58 | |     /// Current visibility and editing ownership.
+59 | |     mode: ConsoleMode,
+60 | |     /// Prior focus restored only when its entity still exists.
+...  |
+63 | |     request: Option<VisibilityRequest>,
+64 | | }
+   | |_^
+   |
+   = note: requested on the command line with `-W missing-copy-implementations`
+
+warning: `bevy_promptline` (lib) generated 1 warning
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 3.03s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 3 tests
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... FAILED
+
+failures:
+
+---- repeated_open_and_close_requests_preserve_focus_ownership stdout ----
+
+thread 'repeated_open_and_close_requests_preserve_focus_ownership' (1993571) panicked at tests/ui.rs:75:5:
+assertion `left == right` failed
+  left: None
+ right: Some(18v0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    repeated_open_and_close_requests_preserve_focus_ownership
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test ui`

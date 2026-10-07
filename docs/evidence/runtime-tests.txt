@@ -1,0 +1,42 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 33.70s
+     Running unittests src/lib.rs (target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 1 test
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/command_text.rs (target/debug/deps/command_text-56a33567e14a93c5)
+
+running 5 tests
+test draft_analysis_tolerates_incomplete_quotes_but_rejects_forbidden_content ... ok
+test empty_quotes_and_unicode_preserve_decoded_arguments_and_source_ranges ... ok
+test identity_and_limits_validate_external_construction ... ok
+test malformed_submission_has_distinct_errors ... ok
+test profile_edges_and_exact_replacement_round_trips ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/output.rs (target/debug/deps/output-0a2f326c9c2cb204)
+
+running 2 tests
+test oldest_entries_are_evicted_at_exact_entry_and_byte_limits ... ok
+test overlong_entries_truncate_at_unicode_boundaries_and_fit_tiny_limits ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/promptline_runtime.rs (target/debug/deps/promptline_runtime-f135763c51e97a0d)
+
+running 7 tests
+test submission_debug_does_not_disclose_sensitive_arguments ... ok
+test collisions_are_atomic_and_aliases_resolve_to_one_owner ... ok
+test parser_policy_and_input_rejections_never_reach_a_handler ... ok
+test lifecycle_order_and_queue_overflow_are_observable ... ok
+test public_command_reaches_system_once_in_queue_order ... ok
+test alias_collisions_and_invalid_metadata_leave_the_registry_unchanged ... ok
+test handler_failures_cancellation_and_removed_systems_have_terminal_notifications ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

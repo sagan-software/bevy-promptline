@@ -1,0 +1,16 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 9.09s
+     Running unittests examples/kitchen_sink.rs (target/debug/examples/kitchen_sink-705fa083e90cbf4a)
+
+running 7 tests
+test pending::tests::task_retains_completion_until_deadline_then_cannot_finish_twice ... ok
+test pending::tests::invalid_wait_and_cancel_arguments_cannot_create_or_cancel_work ... ok
+test pending::tests::excess_host_work_releases_its_completion_and_reports_destination_loss ... ok
+test tests::wrapped_log_rows_scroll_without_moving_the_loss_summary ... ok
+test pending::tests::host_cancellation_acknowledges_work_and_cleans_up_its_identity ... ok
+test tests::full_log_history_reformats_only_after_records_or_selection_change ... ok
+test tests::compact_hides_output_viewport_and_drawer_restores_it ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

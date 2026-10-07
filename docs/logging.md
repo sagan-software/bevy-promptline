@@ -1,6 +1,6 @@
 # Logging capture, filters, and formatting
 
-This is a proposed contract for the optional `log` feature. No capture layer or UI controls have been implemented.
+This document defines the `log` feature contract. Capture and retained-record APIs now exist. UI controls and deployed browser validation remain unfinished.
 
 ## What Bevy supplies
 
@@ -59,3 +59,26 @@ Test live reload at a callsite that was previously disabled. Keep another sink a
 Test typed fields, diagnostic values, missing metadata, redaction, field ordering, and exact compact/custom output. Change format after capture and assert the retained event renders differently without duplicate capture. Snapshot representative and empty/failure output while retaining focused assertions for filtering and escaping.
 
 Stall the app's drain, generate a bounded burst from several writers, and prove enqueue does not block waiting for drain. Verify overflow counts, truncation, disconnect behavior, and no recursion from overflow reporting. Resume drain and assert bounded work per frame and stable input progress.
+
+## Current capture profile
+
+`logging::capture_layer(CaptureConfig)` returns the layer and its shared `LogCapture` resource. Install the layer through `LogPlugin::custom_layer` or a caller-owned Registry subscriber before initialization. `PromptlineLogPlugin` drains an installed capture resource and creates `LogStore`, `DisplayFilter`, and `LogPresentation`. It does not install a global subscriber.
+
+The queue retains at most 1,024 events and drops new events on capacity exhaustion or writer contention. Each drain moves at most 64 events. `LogStore` retains at most 2,000 records and 2 MiB of measured payload. Its eviction count remains separate from capture losses. These payload budgets do not measure allocator overhead.
+
+Capture bounds event field payload to 8,192 bytes, individual text values to 1,024 bytes, and field names to 128 bytes. It retains at most 32 non-message event fields. Event messages remain separate.
+
+Span context retains up to eight scopes from root toward leaf, each with a 512-byte field budget and 64-byte names and targets. Span `message` fields remain ordinary named fields. Event targets use 256 bytes, source filenames use 512 bytes, and native thread names use 128 bytes. Truncation preserves UTF-8 boundaries; excess fields and suffixes are discarded. Detailed field-loss indicators remain unfinished.
+
+Default redaction replaces exact `password`, `secret`, and `token` field names before retention. This affects console capture. Other host sinks retain their own policy. Browser records omit native thread context. The current filter getter returns EnvFilter's rendered directives, including its default directive, rather than preserving the original directive spelling.
+
+`FieldValue::fmt` delegates booleans and integers to their original Rust types.
+It uses standard `f64` display spelling, including `-0`, `NaN`, `inf`, and
+`-inf`. Strings and diagnostic text preserve their bytes; redacted values
+emit `<redacted>`. Formatting errors propagate to caller-owned sinks.
+Capture retains a debug formatter's accepted prefix after a formatting error.
+Redacted debug callbacks do not run.
+
+`CompactFormatter` emits level, target, message, and lexical field order. `ReadableFormatter` adds elapsed seconds with three fractional digits. `ConfiguredFormatter` independently selects labels, fields, source context, and whole-second, millisecond, or microsecond elapsed precision. Elapsed precision truncates smaller units. These timestamps do not represent UTC. `LogPresentation` accepts a custom `LogFormatter`; `LogStore::rows` lazily applies display selection and formatting without recapture.
+
+[Validation evidence](validation.md#history-completion-and-structured-capture-checkpoint) records the passing tests and remaining integration gates. Browser behavior, isolated global-subscriber environment tests, field-loss reporting, and rendered controls remain unverified.

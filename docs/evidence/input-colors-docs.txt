@@ -1,0 +1,10 @@
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.86s
+   Doc-tests bevy_promptline
+
+running 3 tests
+test src/command/pending/completion.rs - command::pending::completion::CommandCompletion::finish (line 29) - compile fail ... ok
+test src/registry/mod.rs - registry::PromptlineAppExt::register_completion_system (line 76) - compile fail ... ok
+test src/highlighting/span.rs - highlighting::span::HighlightSpan (line 10) - compile fail ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.64s
+

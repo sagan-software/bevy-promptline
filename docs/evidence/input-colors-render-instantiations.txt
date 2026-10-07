@@ -1,0 +1,7 @@
+The full LLVM JSON reports two compiled copies of ui::highlight::render::tint.
+The normal library copy has 9 calls and zero-hit regions only at render.rs:63 and :67.
+The cfg(test) copy has 1 call and a zero-hit role guard at render.rs:53.
+The private decorator/range test exercises :63 and :67 in the test copy.
+The public PreserveCase::Role fixture exercises :53 in the normal copy.
+Every renderer source line is hit across the copies, but the aggregate still counts one missed line.
+The exact 100% coverage gate remains failed; no threshold or exclusion changed.

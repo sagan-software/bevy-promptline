@@ -1,0 +1,16 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0425]: cannot find function `wheel_input` in this scope
+   --> examples/support/crt/pointer.rs:226:21
+    |
+226 |             assert!(wheel_input(None, &target, &wheel).is_none());
+    |                     ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `wheel_input` in this scope
+   --> examples/support/crt/pointer.rs:227:25
+    |
+227 |             let input = wheel_input(Some(Vec2::new(120.0, 240.0)), &target, &wheel)
+    |                         ^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `bevy_promptline` (example "crt_workstation" test) due to 2 previous errors

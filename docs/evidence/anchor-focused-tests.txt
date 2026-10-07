@@ -1,0 +1,26 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+error (ignored): SQLite database '/home/deck/.cache/nix/eval-cache-v6/a499da79a636d72cf9c28c0fe6ec0e0c4fee7ec7182109d44abbd9aa098ba756.sqlite' is busy
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 16.69s
+     Running unittests src/lib.rs (target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 16 tests
+test output::tests::exhausted_sequence_panics_before_changing_retained_output ... ok
+test execution::tests::missing_runtime_resources_do_not_execute_or_panic ... ok
+test execution::tests::missing_and_exhausted_identity_sequences_reject_without_reuse ... ok
+test registry::builder::tests::discarded_builder_releases_the_owned_parser_capture_once ... ok
+test ui::scrollback::tests::assembled_ranges_preserve_unicode_and_clear_with_output ... ok
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+test ui::scrollback::tests::scroll_range_converts_physical_geometry_to_logical_pixels ... ok
+test execution::pending::tests::finished_execution_does_not_retain_a_pending_slot ... ok
+test execution::pending::tests::removed_private_runtime_state_does_not_panic_or_retain_work ... ok
+test ui::scrollback::tests::unattached_pointer_targets_leave_review_unchanged ... ok
+test ui::scrollback::tests::capture_ignores_unavailable_geometry_and_unmatched_roles ... ok
+test ui::scrollback::tests::capture_records_unicode_entry_and_discards_anchor_when_following ... ok
+test ui::scrollback::tests::pixel_scroll_can_resume_at_bottom_and_nonfinite_deltas_have_no_effect ... ok
+test ui::scrollback::tests::latest_label_tracks_theme_and_retains_idle_text_ticks ... ok
+test ui::scrollback::tests::shaped_anchor_survives_arrival_and_clamps_after_eviction ... ok
+test ui::scrollback::tests::wheel_review_preserves_position_counts_arrivals_and_latest_resumes ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

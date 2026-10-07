@@ -1,0 +1,16 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 9.62s
+     Running tests/clap_adapter.rs (target/debug/deps/clap_adapter-50969db0b439bf8e)
+
+running 7 tests
+test nested_metadata_completes_subcommands_flags_and_values_without_validation ... ok
+test builder_preserves_empty_values_defaults_conflicts_and_end_of_options ... ok
+test help_and_version_have_terminal_information_without_started_handler_notifications ... ok
+test defaults_conflicts_unknown_and_missing_values_are_enforced_before_dispatch ... ok
+test derive_dispatches_typed_nested_input_and_never_dispatches_help_or_errors ... ok
+test clap_command_labels_preserve_unicode_and_quoted_spaces ... ok
+test no_binary_name_multicall_external_subcommands_and_aliases_keep_clap_semantics ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

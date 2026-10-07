@@ -1,0 +1,36 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+    Blocking waiting for file lock on build directory
+warning: variant `Incomplete` is never constructed
+  --> src/tokenization.rs:46:5
+   |
+42 | pub(crate) enum DecodeMode {
+   |                 ---------- variant in this enum
+...
+46 |     Incomplete,
+   |     ^^^^^^^^^^
+   |
+   = note: `DecodeMode` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `bevy_promptline` (lib) generated 1 warning
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0425]: cannot find function `analyze_tokens` in module `bevy_promptline::command`
+  --> tests/command_text.rs:87:44
+   |
+87 |     let tokens = bevy_promptline::command::analyze_tokens("echo 'unfinished").unwrap();
+   |                                            ^^^^^^^^^^^^^^ not found in `bevy_promptline::command`
+
+error[E0425]: cannot find function `analyze_tokens` in module `bevy_promptline::command`
+  --> tests/command_text.rs:90:35
+   |
+90 |         bevy_promptline::command::analyze_tokens("echo\n"),
+   |                                   ^^^^^^^^^^^^^^ not found in `bevy_promptline::command`
+
+error[E0425]: cannot find function `analyze_tokens` in module `bevy_promptline::command`
+  --> tests/command_text.rs:94:35
+   |
+94 |         bevy_promptline::command::analyze_tokens("echo\0"),
+   |                                   ^^^^^^^^^^^^^^ not found in `bevy_promptline::command`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `bevy_promptline` (test "command_text") due to 3 previous errors

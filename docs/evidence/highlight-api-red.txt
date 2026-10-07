@@ -1,0 +1,41 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0432]: unresolved import `bevy_promptline::input::highlight`
+ --> tests/highlighting.rs:4:39
+  |
+4 | use bevy_promptline::input::{analyze, highlight::{HighlightRole, EditDiagnostic}};
+  |                                       ^^^^^^^^^ could not find `highlight` in `input`
+
+error[E0599]: no method named `highlights` found for struct `bevy_promptline::input::Analysis` in the current scope
+  --> tests/highlighting.rs:25:34
+   |
+25 |     let roles: Vec<_> = analysis.highlights().iter().map(|span| span.role()).collect();
+   |                                  ^^^^^^^^^^ method not found in `bevy_promptline::input::Analysis`
+
+error[E0599]: no method named `highlights` found for struct `bevy_promptline::input::Analysis` in the current scope
+  --> tests/highlighting.rs:27:35
+   |
+27 |     let source: Vec<_> = analysis.highlights().iter().map(|span| &input[span.source_range().clone()]).collect();
+   |                                   ^^^^^^^^^^ method not found in `bevy_promptline::input::Analysis`
+
+error[E0599]: no method named `diagnostic` found for struct `bevy_promptline::input::Analysis` in the current scope
+  --> tests/highlighting.rs:29:25
+   |
+29 |     assert_eq!(analysis.diagnostic(), None);
+   |                         ^^^^^^^^^^ method not found in `bevy_promptline::input::Analysis`
+
+error[E0599]: no method named `diagnostic` found for struct `bevy_promptline::input::Analysis` in the current scope
+  --> tests/highlighting.rs:42:29
+   |
+42 |         assert_eq!(analysis.diagnostic(), Some(expected));
+   |                             ^^^^^^^^^^ method not found in `bevy_promptline::input::Analysis`
+
+error[E0599]: no method named `highlights` found for struct `bevy_promptline::input::Analysis` in the current scope
+  --> tests/highlighting.rs:43:29
+   |
+43 |         assert_eq!(analysis.highlights().last().unwrap().role(), HighlightRole::Incomplete);
+   |                             ^^^^^^^^^^ method not found in `bevy_promptline::input::Analysis`
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `bevy_promptline` (test "highlighting") due to 6 previous errors

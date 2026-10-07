@@ -1,0 +1,18 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0432]: unresolved import `bevy_promptline::input::highlight::HighlightColors`
+ --> tests/input_colors.rs:4:63
+  |
+4 | use bevy_promptline::input::{ConsoleRole, PromptlineUiPlugin, highlight::HighlightColors};
+  |                                                               ^^^^^^^^^^^---------------
+  |                                                                          |
+  |                                                                          no `HighlightColors` in `input::highlight`
+  |
+help: a similar name exists in the module
+  |
+4 - use bevy_promptline::input::{ConsoleRole, PromptlineUiPlugin, highlight::HighlightColors};
+4 + use bevy_promptline::input::{ConsoleRole, PromptlineUiPlugin, highlight::HighlightRole};
+  |
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `bevy_promptline` (test "input_colors") due to 1 previous error

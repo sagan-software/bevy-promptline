@@ -1,0 +1,23 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 3.77s
+     Running tests/log_capture.rs (target/debug/deps/log_capture-993037f66e536d80)
+
+running 1 test
+test capture_retains_bounded_span_context_and_available_thread_metadata ... FAILED
+
+failures:
+
+---- capture_retains_bounded_span_context_and_available_thread_metadata stdout ----
+
+thread 'capture_retains_bounded_span_context_and_available_thread_metadata' (2059380) panicked at tests/log_capture.rs:173:38:
+no entry found for key
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    capture_retains_bounded_span_context_and_available_thread_metadata
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test log_capture`

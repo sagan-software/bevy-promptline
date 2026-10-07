@@ -1,0 +1,23 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 8.42s
+     Running tests/scrollback.rs (target/debug/deps/scrollback-1bf5c566fd565676)
+
+running 1 test
+test selectable_output_receives_retained_text_after_replacing_an_existing_role ... FAILED
+
+failures:
+
+---- selectable_output_receives_retained_text_after_replacing_an_existing_role stdout ----
+
+thread 'selectable_output_receives_retained_text_after_replacing_an_existing_role' (2387446) panicked at tests/scrollback.rs:90:5:
+assertion failed: editor.editor.raw_text().starts_with("row 0 日本語\n")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    selectable_output_receives_retained_text_after_replacing_an_existing_role
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test scrollback`

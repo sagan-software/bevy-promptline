@@ -1,0 +1,13 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 9.76s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 4 tests
+test opening_acquires_editor_focus_and_closing_restores_a_valid_prior_target ... ok
+test repeated_open_and_close_requests_preserve_focus_ownership ... ok
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... ok
+test enter_delivers_the_actual_editor_value_once_and_clears_only_accepted_input ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

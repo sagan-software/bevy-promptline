@@ -1,0 +1,29 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+    Blocking waiting for file lock on build directory
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0599]: no variant, associated function, or constant named `Signed128` found for enum `FieldValue` in the current scope
+   --> tests/log_capture.rs:238:53
+    |
+238 |     assert_eq!(record.fields["signed"], FieldValue::Signed128(i128::MIN));
+    |                                                     ^^^^^^^^^ variant, associated function, or constant not found in `FieldValue`
+    |
+help: there is a variant with a similar name
+    |
+238 -     assert_eq!(record.fields["signed"], FieldValue::Signed128(i128::MIN));
+238 +     assert_eq!(record.fields["signed"], FieldValue::Signed(i128::MIN));
+    |
+
+error[E0599]: no variant, associated function, or constant named `Unsigned128` found for enum `FieldValue` in the current scope
+   --> tests/log_capture.rs:239:55
+    |
+239 |     assert_eq!(record.fields["unsigned"], FieldValue::Unsigned128(u128::MAX));
+    |                                                       ^^^^^^^^^^^ variant, associated function, or constant not found in `FieldValue`
+    |
+help: there is a variant with a similar name
+    |
+239 -     assert_eq!(record.fields["unsigned"], FieldValue::Unsigned128(u128::MAX));
+239 +     assert_eq!(record.fields["unsigned"], FieldValue::Unsigned(u128::MAX));
+    |
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `bevy_promptline` (test "log_capture") due to 2 previous errors

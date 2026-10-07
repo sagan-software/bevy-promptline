@@ -1,0 +1,27 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 4.29s
+     Running tests/highlighting.rs (target/debug/deps/highlighting-30a1a0fbc6949fc3)
+
+running 3 tests
+test incomplete_input_is_a_local_diagnostic_without_submission ... ok
+test draft_spans_preserve_source_and_distinguish_options_values_and_quotes ... ok
+test clap_metadata_distinguishes_subcommands_from_option_values_without_validation ... FAILED
+
+failures:
+
+---- clap_metadata_distinguishes_subcommands_from_option_values_without_validation stdout ----
+
+thread 'clap_metadata_distinguishes_subcommands_from_option_values_without_validation' (2503557) panicked at tests/highlighting.rs:86:5:
+assertion `left == right` failed
+  left: [Command, Value, Option, Value]
+ right: [Command, Subcommand, Option, Value]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    clap_metadata_distinguishes_subcommands_from_option_values_without_validation
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test highlighting`

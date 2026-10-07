@@ -1,0 +1,67 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+warning: Git tree '/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline' has uncommitted changes
+info: cargo-llvm-cov currently setting cfg(coverage); you can opt-out it by passing --no-cfg-coverage
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 41.52s
+     Running unittests src/lib.rs (target/llvm-cov-target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 3 tests
+test tokenization::tests::incomplete_analysis_retains_unfinished_quotes_and_escapes ... ok
+test execution::tests::missing_runtime_resources_do_not_execute_or_panic ... ok
+test execution::tests::missing_and_exhausted_identity_sequences_reject_without_reuse ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/command_text.rs (target/llvm-cov-target/debug/deps/command_text-56a33567e14a93c5)
+
+running 6 tests
+test draft_analysis_tolerates_incomplete_quotes_but_rejects_forbidden_content ... ok
+test empty_quotes_and_unicode_preserve_decoded_arguments_and_source_ranges ... ok
+test identity_and_limits_validate_external_construction ... ok
+test profile_edges_and_exact_replacement_round_trips ... ok
+test malformed_submission_has_distinct_errors ... ok
+test standard_borrowed_name_view_preserves_its_validated_spelling ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/output.rs (target/llvm-cov-target/debug/deps/output-0a2f326c9c2cb204)
+
+running 3 tests
+test oldest_entries_are_evicted_at_exact_entry_and_byte_limits ... ok
+test truncation_never_splits_a_multibyte_scalar_before_the_marker ... ok
+test overlong_entries_truncate_at_unicode_boundaries_and_fit_tiny_limits ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/promptline_runtime.rs (target/llvm-cov-target/debug/deps/promptline_runtime-f135763c51e97a0d)
+
+running 9 tests
+test repeated_aliases_are_rejected_and_registry_debug_omits_callbacks ... ok
+test collisions_are_atomic_and_aliases_resolve_to_one_owner ... ok
+test submission_debug_does_not_disclose_sensitive_arguments ... ok
+test parser_policy_and_input_rejections_never_reach_a_handler ... ok
+test public_command_reaches_system_once_in_queue_order ... ok
+test sensitive_rejection_does_not_expose_parser_arguments_in_output_or_notifications ... ok
+test lifecycle_order_and_queue_overflow_are_observable ... ok
+test alias_collisions_and_invalid_metadata_leave_the_registry_unchanged ... ok
+test handler_failures_cancellation_and_removed_systems_have_terminal_notifications ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+    Finished report saved to target/llvm-cov/html
+
+    Finished report saved to target/llvm-cov/lcov.info
+
+    Finished report saved to target/llvm-cov/coverage.json
+Filename                      Regions    Missed Regions     Cover   Functions  Missed Functions  Executed       Lines      Missed Lines     Cover    Branches   Missed Branches     Cover
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command.rs                         13                 0   100.00%           3                 0   100.00%          12                 0   100.00%           0                 0         -
+execution.rs                      272                13    95.22%          15                 0   100.00%         168                 4    97.62%           0                 0         -
+identity.rs                        40                 0   100.00%           7                 0   100.00%          26                 0   100.00%           0                 0         -
+metadata.rs                        12                 0   100.00%           1                 0   100.00%           8                 0   100.00%           0                 0         -
+output.rs                         122                 1    99.18%          13                 0   100.00%          80                 0   100.00%           0                 0         -
+registry.rs                       136                 2    98.53%          16                 0   100.00%          98                 0   100.00%           0                 0         -
+tokenization.rs                   190                 1    99.47%          10                 0   100.00%         123                 1    99.19%           0                 0         -
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                             785                17    97.83%          65                 0   100.00%         515                 5    99.03%           0                 0         -

@@ -1,0 +1,25 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 21.85s
+     Running tests/pending.rs (target/debug/deps/pending-5216db960d2bd302)
+
+running 1 test
+test sensitive_terminal_diagnostics_are_redacted_for_immediate_and_pending_work ... FAILED
+
+failures:
+
+---- sensitive_terminal_diagnostics_are_redacted_for_immediate_and_pending_work stdout ----
+
+thread 'sensitive_terminal_diagnostics_are_redacted_for_immediate_and_pending_work' (2282975) panicked at tests/pending.rs:414:9:
+assertion `left == right` failed
+  left: Finished(Failure("sensitive-value"))
+ right: Finished(Failure("command failed for a sensitive command"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    sensitive_terminal_diagnostics_are_redacted_for_immediate_and_pending_work
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.21s
+
+error: test failed, to rerun pass `--test pending`

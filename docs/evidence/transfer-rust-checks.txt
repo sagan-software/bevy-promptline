@@ -1,0 +1,11 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+format: 0
+check: 0
+tests: 0
+features: 0
+keyboard: 0
+kitchen: 0
+source: 0
+crt: 0
+clippy: 0
+docs: 0

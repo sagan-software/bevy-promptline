@@ -1,0 +1,26 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+    Blocking waiting for file lock on build directory
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 3m 54s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 1 test
+test long_output_has_an_ancestor_clip_and_input_does_not_shrink ... FAILED
+
+failures:
+
+---- long_output_has_an_ancestor_clip_and_input_does_not_shrink stdout ----
+
+thread 'long_output_has_an_ancestor_clip_and_input_does_not_shrink' (2202922) panicked at tests/ui.rs:17:5:
+assertion `left == right` failed
+  left: 1.0
+ right: 0.0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    long_output_has_an_ancestor_clip_and_input_does_not_shrink
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test ui`

@@ -1,0 +1,65 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+warning: unused import: `bevy::input_focus::InputFocus`
+ --> src/ui.rs:2:5
+  |
+2 | use bevy::input_focus::InputFocus;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `app`
+  --> src/ui.rs:92:21
+   |
+92 |     fn build(&self, app: &mut App) {
+   |                     ^^^ help: if this is intentional, prefix it with an underscore: `_app`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `previous_focus` is never read
+  --> src/ui.rs:60:5
+   |
+56 | pub struct ConsoleState {
+   |            ------------ field in this struct
+...
+60 |     previous_focus: Option<Entity>,
+   |     ^^^^^^^^^^^^^^
+   |
+   = note: `ConsoleState` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: type could implement `Copy`; consider adding `impl Copy`
+  --> src/ui.rs:56:1
+   |
+56 | / pub struct ConsoleState {
+57 | |     /// Current visibility and editing ownership.
+58 | |     mode: ConsoleMode,
+59 | |     /// Prior focus restored only when its entity still exists.
+60 | |     previous_focus: Option<Entity>,
+61 | | }
+   | |_^
+   |
+   = note: requested on the command line with `-W missing-copy-implementations`
+
+warning: `bevy_promptline` (lib) generated 4 warnings (run `cargo fix --lib -p bevy_promptline` to apply 2 suggestions)
+    Finished `test` profile [optimized + debuginfo] target(s) in 5.13s
+     Running tests/ui.rs (target/debug/deps/ui-edd835bd13aeaa5f)
+
+running 1 test
+test default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window ... FAILED
+
+failures:
+
+---- default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window stdout ----
+
+thread 'default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window' (1992549) panicked at src/ui.rs:93:9:
+not yet implemented
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    default_ui_exposes_replaceable_roles_without_creating_a_camera_or_window
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test ui`

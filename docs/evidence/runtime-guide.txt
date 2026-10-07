@@ -1,0 +1,5 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 45.77s
+     Running `target/debug/examples/minimal`
+hello

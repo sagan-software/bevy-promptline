@@ -1,0 +1,67 @@
+nix-source: 2188 files, 37947693 bytes
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+rust: running lint suite
+$ /nix/store/zrzsf8vazqrjdg7kmvvibbsaw101g07p-rust-default-1.99.0-nightly-2026-07-15/bin/cargo clippy --manifest-path /run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline/Cargo.toml -- -D warnings -W rust_2018_idioms -W future_incompatible -W unreachable_pub -W unused_crate_dependencies -W unused_extern_crates -W missing_docs -W missing_debug_implementations -W missing_copy_implementations -W single_use_lifetimes -W trivial_casts -W trivial_numeric_casts -W unused_import_braces -W unused_lifetimes -W unused_qualifications -W variant_size_differences -W clippy::string_slice -W clippy::indexing_slicing -W clippy::unwrap_used -W clippy::panic -W clippy::todo -W clippy::unimplemented -W clippy::unreachable -W clippy::get_unwrap -W clippy::unwrap_in_result -W clippy::unchecked_time_subtraction -W clippy::panic_in_result_fn -W clippy::let_underscore_future -W clippy::let_underscore_must_use -W clippy::unused_result_ok -W clippy::map_err_ignore -W clippy::assertions_on_result_states -W clippy::await_holding_lock -W clippy::await_holding_refcell_ref -W clippy::if_let_mutex -W clippy::large_futures -W clippy::cognitive_complexity -W clippy::too_many_lines -W clippy::wildcard_enum_match_arm -W clippy::mem_forget -W clippy::undocumented_unsafe_blocks -W clippy::multiple_unsafe_ops_per_block -W clippy::unnecessary_safety_doc -W clippy::unnecessary_safety_comment -W clippy::missing_docs_in_private_items -W clippy::self_named_module_files -W clippy::float_cmp -W clippy::float_cmp_const -W clippy::lossy_float_literal -W clippy::cast_sign_loss -W clippy::invalid_upcast_comparisons -W clippy::rc_mutex -W clippy::debug_assert_with_mut_call -W clippy::iter_not_returning_iterator -W clippy::expl_impl_clone_on_copy -W clippy::infallible_try_from -W clippy::dbg_macro -W clippy::allow_attributes -W clippy::allow_attributes_without_reason
+    Finished `dev` profile [optimized] target(s) in 0.94s
+clippy: finished in 1.10s (exit 0)
+$ /nix/store/zrzsf8vazqrjdg7kmvvibbsaw101g07p-rust-default-1.99.0-nightly-2026-07-15/bin/cargo check --manifest-path /run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline/Cargo.toml
+    Checking bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error: method `next` looks like an iterator step
+   --> src/command/history.rs:105:5
+    |
+105 | /     pub fn next(&mut self) -> Option<&str> {
+106 | |         // Move the saved draft through exactly one browsing transition.
+107 | |         let cursor = std::mem::replace(&mut self.cursor, HistoryCursor::Draft);
+108 | |         match cursor {
+...   |
+127 | |     }
+    | |_____^
+    |
+    = help: implement `Iterator` when this is the canonical next item for the type
+    = note: `-D ad-hoc-iterator` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(ad_hoc_iterator)]`
+
+error: method `as_str` looks like an `AsRef` accessor
+  --> src/identity.rs:42:5
+   |
+42 | /     pub fn as_str(&self) -> &str {
+43 | |         &self.0
+44 | |     }
+   | |_____^
+   |
+   = help: implement `AsRef<T>` when this exposes the canonical borrowed view
+   = note: `-D ad-hoc-as-ref` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(ad_hoc_as_ref)]`
+
+error: this parameter takes owned `String` at the boundary
+   --> src/output/mod.rs:144:81
+    |
+144 |     pub fn push(&mut self, severity: Severity, target: impl Into<String>, text: String) {
+    |                                                                                 ^^^^^^
+    |
+    = help: take a borrowed type instead unless the value is stored, mutated, or consumed
+    = note: `-D ownership-at-boundaries` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(ownership_at_boundaries)]`
+
+error: boolean function `gameplay_input_allowed` does not start with `is_`
+   --> src/ui/mod.rs:120:8
+    |
+120 | pub fn gameplay_input_allowed(state: Res<'_, ConsoleState>) -> bool {
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: rename boolean values to read as predicates, such as `is_ready`, `has_items`, or `IS_READY`
+    = note: `-D bool-name-prefix` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(bool_name_prefix)]`
+
+error: could not compile `bevy_promptline` (lib) due to 4 previous errors
+dylint: finished in 4.90s (exit 101)
+Total: 6.02s
+rust: lint suite failed (exit 1)
+markdown: running lint suite
+docs/highlighting.md:51:1: error LIAMC005: Split this paragraph; it contains 7 sentences and the limit is 6.
+docs/validation.md:527:1: error LIAMC005: Split this paragraph; it contains 7 sentences and the limit is 6.
+docs/validation.md:542:1: error LIAMC005: Split this paragraph; it contains 8 sentences and the limit is 6.
+markdown: lint suite failed (exit 1)
+python: running lint suite
+nix: running lint suite
+openapi: running lint suite

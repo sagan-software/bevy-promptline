@@ -1,0 +1,19 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+error[E0599]: `FieldValue` doesn't implement `std::fmt::Display`
+   --> tests/log_capture.rs:311:26
+    |
+311 |         assert_eq!(value.to_string(), expected);
+    |                          ^^^^^^^^^ method cannot be called on `FieldValue` due to unsatisfied trait bounds
+    |
+   ::: src/logging/record.rs:56:1
+    |
+ 56 | pub enum FieldValue {
+    | ------------------- doesn't satisfy `FieldValue: ToString` or `FieldValue: std::fmt::Display`
+    |
+    = note: the following trait bounds were not satisfied:
+            `FieldValue: std::fmt::Display`
+            which is required by `FieldValue: ToString`
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `bevy_promptline` (test "log_capture") due to 1 previous error

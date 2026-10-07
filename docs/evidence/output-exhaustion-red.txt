@@ -1,0 +1,28 @@
+error (ignored): opening file "/etc/nix/sentry-endpoint": Permission denied
+   Compiling bevy_promptline v0.2.0 (/run/media/deck/Emulation/Code/github.com/sagan-software/bevy-promptline)
+    Finished `test` profile [optimized + debuginfo] target(s) in 12.47s
+     Running unittests src/lib.rs (target/debug/deps/bevy_promptline-88fbd55a1a5f2a38)
+
+running 1 test
+test output::tests::exhausted_sequence_panics_before_changing_retained_output ... FAILED
+
+failures:
+
+---- output::tests::exhausted_sequence_panics_before_changing_retained_output stdout ----
+
+thread 'output::tests::exhausted_sequence_panics_before_changing_retained_output' (2443778) panicked at src/output/mod.rs:143:9:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'output::tests::exhausted_sequence_panics_before_changing_retained_output' (2443778) panicked at src/output/mod.rs:252:9:
+assertion `left == right` failed
+  left: []
+ right: [OutputEntry { sequence: 18446744073709551615, severity: Info, target: "game", text: "retained" }]
+
+
+failures:
+    output::tests::exhausted_sequence_panics_before_changing_retained_output
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`
