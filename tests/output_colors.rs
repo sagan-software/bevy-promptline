@@ -69,7 +69,12 @@ fn output_sections_preserve_text_and_use_configured_severity_colors() {
         .run_system_once(move |mut reader: TextUiReader<'_, '_>| {
             reader
                 .iter(root)
-                .map(|(_, _, text, _, color, ..)| (text.to_owned(), color))
+                .filter_map(|(_, _, item)| match item {
+                    bevy::text::TextElement::Text { text, color, .. } => {
+                        Some((text.to_owned(), color))
+                    }
+                    bevy::text::TextElement::Box(_) => None,
+                })
                 .collect::<Vec<_>>()
         })
         .unwrap();

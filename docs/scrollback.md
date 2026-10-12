@@ -18,9 +18,10 @@ Clearing output preserves the counter and does not reset exhaustion.
 
 The viewport uses Bevy `ScrollPosition` in logical pixels. Physical content and
 viewport sizes are multiplied by `ComputedNode::inverse_scale_factor` to obtain
-the logical scroll range. Line wheel units use Bevy 0.19.1's
-`MouseScrollUnit::SCROLL_UNIT_CONVERSION_FACTOR`; pixel units retain their input
-value. Nonfinite deltas have no effect.
+the logical scroll range. Line wheel units use Bevy 0.20.0's
+`MouseScrollPixelsPerLine` resource. If the resource is absent, Bevy's default
+of 100 pixels per line applies. Pixel units retain their input value.
+Nonfinite deltas have no effect.
 
 Review anchors use retained entry identity and the UTF-8 byte range of the first
 visible shaped line. Parley's line metrics control placement after arrival,
@@ -37,10 +38,11 @@ bound beyond the configured retained text and entry limits; glyph layout and
 atlas storage add overhead. Rendering cost still needs representative native
 and browser measurement.
 
-Sources are the tagged [scroll widget](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ui_widgets/src/scrollarea.rs),
-[UI layout](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ui/src/layout/mod.rs),
-[text layout](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_text/src/text.rs), and
-[glyph clipping](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ui_render/src/lib.rs).
+Sources are the tagged [scroll widget](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ui_widgets/src/scrollarea.rs),
+[UI layout](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ui/src/layout/mod.rs),
+[text layout](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_text/src/text.rs),
+[mouse scroll units](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_input/src/mouse.rs), and
+[glyph clipping](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ui_render/src/lib.rs).
 
 Replacement output roles can use Bevy `EditableText` instead of `Text`. Both
 presentations receive every retained entry and share the source ranges used by

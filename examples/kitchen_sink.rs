@@ -344,10 +344,7 @@ fn show_logs(
     }
 }
 /// Manual wheel input begins review before Bevy applies the scroll delta.
-fn mark_log_review(
-    event: On<'_, '_, Pointer<Scroll>>,
-    mut modes: Query<'_, '_, &mut LogScrollMode>,
-) {
+fn mark_log_review(event: On<'_, '_, PointerScroll>, mut modes: Query<'_, '_, &mut LogScrollMode>) {
     // Horizontal movement does not change vertical reading ownership.
     if event.y != 0.0
         && let Ok(mut mode) = modes.get_mut(event.entity)

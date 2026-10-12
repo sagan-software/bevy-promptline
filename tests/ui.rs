@@ -491,7 +491,7 @@ fn showing_and_releasing_preserve_visible_console_without_editing_ownership() {
 }
 
 #[test]
-fn shift_space_queues_the_space_ignored_by_bevy_019_text_input() {
+fn shift_space_queues_the_space_ignored_by_bevy_text_input() {
     use bevy::input::{
         ButtonState,
         keyboard::{Key, KeyboardInput},
@@ -580,4 +580,80 @@ fn incomplete_syntax_displays_guidance_without_changing_the_editor() {
                 .is_empty()
         );
     }
+}
+
+/// Console editors receive Bevy 0.20's `TextInput` marker in either insertion order.
+#[test]
+fn console_editors_receive_text_input_and_other_editors_do_not() {
+    use bevy::text::EditableText;
+    use bevy::ui_widgets::TextInput;
+
+    let mut app = App::new();
+    app.add_plugins(PromptlineUiPlugin);
+    app.update();
+    let default_input = app
+        .world_mut()
+        .query::<(Entity, &ConsoleRole)>()
+        .iter(app.world())
+        .find_map(|(entity, role)| (*role == ConsoleRole::Input).then_some(entity))
+        .unwrap();
+    let role_first = app.world_mut().spawn(ConsoleRole::Output).id();
+    app.world_mut()
+        .entity_mut(role_first)
+        .insert(EditableText::default());
+    let editor_first = app.world_mut().spawn(EditableText::default()).id();
+    app.world_mut()
+        .entity_mut(editor_first)
+        .insert(ConsoleRole::Input);
+    // Reinserting a role keeps the existing marker.
+    app.world_mut()
+        .entity_mut(editor_first)
+        .insert(ConsoleRole::Input);
+    let plain_role = app.world_mut().spawn(ConsoleRole::Help).id();
+    let other = app.world_mut().spawn(EditableText::default()).id();
+    app.update();
+    for entity in [default_input, role_first, editor_first] {
+        assert!(app.world().get::<TextInput>(entity).is_some());
+    }
+    assert!(app.world().get::<TextInput>(plain_role).is_none());
+    assert!(app.world().get::<TextInput>(other).is_none());
+}
+
+/// Clicking the visible open control opens the console through Bevy 0.20's flat pointer event.
+#[test]
+fn open_control_click_opens_the_console() {
+    use bevy::picking::backend::HitData;
+    use bevy::picking::pointer::{Location, PointerId};
+    use bevy_promptline::input::ConsoleMode;
+
+    let mut app = App::new();
+    app.add_plugins(PromptlineUiPlugin);
+    app.update();
+    let control = app
+        .world_mut()
+        .query::<(Entity, &ConsoleRole)>()
+        .iter(app.world())
+        .find_map(|(entity, role)| (*role == ConsoleRole::OpenControl).then_some(entity))
+        .unwrap();
+    let location = Location {
+        target: bevy::camera::RenderTarget::None {
+            size: UVec2::new(200, 100),
+        }
+        .normalize(None)
+        .unwrap(),
+        position: Vec2::ZERO,
+    };
+    app.world_mut().trigger(PointerClick {
+        entity: control,
+        pointer: Pointer::new(PointerId::Mouse, location),
+        button: PointerButton::Primary,
+        hit: HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
+        duration: std::time::Duration::ZERO,
+        count: 1,
+    });
+    app.update();
+    assert_ne!(
+        app.world().resource::<ConsoleState>().mode(),
+        ConsoleMode::Closed
+    );
 }

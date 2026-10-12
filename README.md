@@ -22,8 +22,16 @@ The host owns its window, renderer, and camera. Start with
 [command registrations](examples/support/playground.rs). Clap and log capture
 are optional features; the default dependency graph contains no Clap.
 
-The checkout pins Bevy 0.19.1 and Rust 1.98.1. The declared Rust 1.96.1 MSRV
-has not been validated. Bevy 0.18 and 0.20 compatibility remain unfinished.
+## Bevy compatibility
+
+| `bevy_promptline` | Bevy | Declared Rust minimum |
+| --- | --- | --- |
+| 0.3 (`main`) | 0.20 | 1.97.1 |
+| 0.2 (commit `2a3ad35`) | 0.19 | 1.96.1 |
+
+The checkout pins Bevy 0.20.0 and Rust 1.98.1. Bevy 0.20.0 declares Rust
+1.97.1 as its minimum; that minimum has not been validated here. Bevy 0.18
+compatibility remains unfinished.
 
 ## Continue implementation
 

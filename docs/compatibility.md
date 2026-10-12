@@ -2,6 +2,17 @@
 
 Research date: October 5, 2026. These are intended targets; no Promptline build has validated them.
 
+Update, October 12, 2026: [Bevy 0.20.0](https://crates.io/crates/bevy/0.20.0) is released. `main` targets it as Promptline 0.3.0, following the [0.19 to 0.20 migration guide](https://bevy.org/learn/migration-guides/0-19-to-0-20/). Commit `2a3ad35` is the last Bevy 0.19.1 revision. Bevy 0.20.0 requires Rust 1.97.1, so the declared minimum and the Clippy `msrv` moved from 1.96.1 to 1.97.1.
+
+The port changed these integration points:
+
+- Console editors carry Bevy's `TextInput` widget marker beside `EditableText`. The UI plugin inserts it on every `ConsoleRole` entity that has an editor, so replacement roles keep keyboard, pointer, and IME editing.
+- Pointer observers use the flattened `PointerClick`, `PointerScroll`, and `PointerDrag` events. Buttons use `bevy::ui_widgets::Button`.
+- Line wheel units read the `MouseScrollPixelsPerLine` resource, which replaced `MouseScrollUnit::SCROLL_UNIT_CONVERSION_FACTOR`. Without Bevy's input plugin, Bevy's default of 100 pixels per line applies.
+- The ghost reads the editor's `EditableText::viewport` offset, which replaced `TextScroll`.
+- Bevy's text input clears `InputFocus` on Escape and lets the key propagate. When Escape is also the close binding, the console treats that blur as its close action and restores the saved focus. With another close binding, Escape releases editing and leaves the console visible.
+- UI extraction is retained. Token tints apply when Bevy rebuilds an input's glyph nodes. A refreshed tint buffer marks the input's `TextColor` as changed so that Bevy rebuilds those nodes.
+
 ## Observed Bevy versions
 
 [Bevy's latest release](https://github.com/bevyengine/bevy/releases/tag/v0.19.1) is 0.19.1, published August 13, 2026. The [0.18.1 manifest](https://github.com/bevyengine/bevy/blob/v0.18.1/Cargo.toml) supplies the previous-line baseline. Bevy main identifies itself as `0.20.0-dev`; research inspected revision `85cf8037abde4868f406c54d1a8fba9c29c53489`.

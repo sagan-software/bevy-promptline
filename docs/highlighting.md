@@ -65,9 +65,13 @@ renderer exists. Default dependencies now include `bevy_ui_render`; Clap
 remains optional. The lockfile resolves the feature change without new
 package versions.
 
-The implementation targets Bevy 0.19.1. Its controlling sources are
-[editable layout](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ui/src/widget/text_input_layout.rs)
-and [UI extraction](https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ui_render/src/lib.rs).
+The implementation targets Bevy 0.20.0. Its controlling sources are
+[editable layout](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ui/src/widget/text_input_layout.rs)
+and [UI extraction](https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ui_render/src/lib.rs).
+Bevy 0.20 retains extracted UI nodes between frames. The tint pass changes
+only inputs that Bevy rebuilt in the current frame. It skips the nodes already
+present before ordinary text extraction, such as shadows. A refreshed tint
+buffer marks the input's `TextColor` as changed, so Bevy rebuilds its glyphs.
 Release verification on October 6, 2026 confirmed
 [Bevy 0.19.1](https://github.com/bevyengine/bevy/releases/tag/v0.19.1)
 and [Rust 1.99.0](https://blog.rust-lang.org/2026/10/01/Rust-1.99.0/).

@@ -7,7 +7,8 @@ original completion goal remains unfinished. Resume from `main` and inspect
 The checkout contains the typed command runtime, optional Clap adapter,
 completion and help analysis, token colors, bounded selectable output,
 pending completion and cancellation, optional structured log capture, and
-six example targets. It pins Bevy 0.19.1, Rust 1.98.1, and wasm-bindgen 0.2.129.
+six example targets. It pins Bevy 0.20.0, Rust 1.98.1, and wasm-bindgen 0.2.129.
+The Bevy 0.20 port is described in [the compatibility policy](compatibility.md).
 
 The latest changes preserve keyboard event order for console editors, release
 logical modifiers after window focus loss, and retain callback-generated

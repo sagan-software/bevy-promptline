@@ -149,7 +149,7 @@ pub(crate) fn setup(
                 padding: px(10).all(),
                 ..default()
             },
-            Button,
+            bevy::ui_widgets::Button,
             BackgroundColor(Color::srgb(0.08, 0.12, 0.1)),
             UiTargetCamera(main),
         ))
@@ -161,7 +161,7 @@ pub(crate) fn setup(
             ));
         })
         .observe(
-            |_: On<'_, '_, Pointer<Click>>,
+            |_: On<'_, '_, PointerClick>,
              mut state: ResMut<'_, ConsoleState>,
              mut view: ResMut<'_, View>| {
                 state.open();

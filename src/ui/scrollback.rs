@@ -2,7 +2,7 @@
 //! character-width estimates.
 use super::{ConsoleRole, ConsoleTheme};
 use crate::output::{Output, OutputView};
-use bevy::input::mouse::MouseScrollUnit;
+use bevy::input::mouse::{MouseScrollPixelsPerLine, MouseScrollUnit};
 use bevy::prelude::*;
 use bevy::text::{ComputedTextBlock, EditableText};
 use std::{num::NonZeroU64, ops::Range};
@@ -81,7 +81,7 @@ pub(super) fn decorate(mut commands: Commands<'_, '_>, viewport: Entity) {
     let control = commands
         .spawn((
             LatestControl,
-            Button,
+            bevy::ui_widgets::Button,
             IgnoreScroll(BVec2::TRUE),
             Node {
                 position_type: PositionType::Absolute,
@@ -110,8 +110,9 @@ pub(super) fn decorate(mut commands: Commands<'_, '_>, viewport: Entity) {
 /// Applies the tagged Bevy scroll convention and records explicit review
 /// ownership.
 fn scroll(
-    mut event: On<'_, '_, Pointer<Scroll>>,
+    mut event: On<'_, '_, PointerScroll>,
     output: Res<'_, Output>,
+    line_pixels: Option<Res<'_, MouseScrollPixelsPerLine>>,
     mut viewports: Query<'_, '_, (&ComputedNode, &mut ScrollPosition, &mut OutputView)>,
 ) {
     let Ok((node, mut position, mut view)) = viewports.get_mut(event.entity) else {
@@ -119,7 +120,8 @@ fn scroll(
     };
     let delta = Vec2::new(event.x, event.y)
         * match event.unit {
-            MouseScrollUnit::Line => MouseScrollUnit::SCROLL_UNIT_CONVERSION_FACTOR,
+            // Bevy's input plugin owns the platform ratio; hosts without it use Bevy's default.
+            MouseScrollUnit::Line => *line_pixels.map_or_else(default, |ratio| *ratio),
             MouseScrollUnit::Pixel => 1.0,
         };
     // Nonfinite external deltas cannot corrupt the retained reading position.
@@ -479,7 +481,7 @@ fn restore_anchor(
 
 /// The visible resume control discards review without changing input focus.
 fn latest(
-    event: On<'_, '_, Pointer<Click>>,
+    event: On<'_, '_, PointerClick>,
     parents: Query<'_, '_, &ChildOf>,
     mut views: Query<'_, '_, &mut OutputView>,
 ) {
@@ -897,18 +899,13 @@ mod tests {
             .id();
         app.world_mut()
             .trigger(wheel(target, MouseScrollUnit::Pixel, 100.0));
-        let click = |entity| {
-            Pointer::new(
-                bevy::picking::pointer::PointerId::Mouse,
-                wheel(entity, MouseScrollUnit::Pixel, 0.0).pointer_location,
-                Click {
-                    button: PointerButton::Primary,
-                    count: 1,
-                    hit: bevy::picking::backend::HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
-                    duration: std::time::Duration::ZERO,
-                },
-                entity,
-            )
+        let click = |entity| PointerClick {
+            entity,
+            pointer: wheel(entity, MouseScrollUnit::Pixel, 0.0).pointer,
+            button: PointerButton::Primary,
+            count: 1,
+            hit: bevy::picking::backend::HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
+            duration: std::time::Duration::ZERO,
         };
         app.world_mut().trigger(click(target));
         assert!(
@@ -1010,11 +1007,13 @@ mod tests {
                                 std::iter::once((
                                     Entity::PLACEHOLDER,
                                     0,
-                                    text,
-                                    &font,
-                                    Color::WHITE,
-                                    LineHeight::default(),
-                                    LetterSpacing::default(),
+                                    bevy::text::TextElement::Text {
+                                        text,
+                                        font: &font,
+                                        color: Color::WHITE,
+                                        line_height: LineHeight::default(),
+                                        letter_spacing: LetterSpacing::default(),
+                                    },
                                 )),
                                 LineBreak::WordOrCharacter,
                                 Justify::Left,
@@ -1027,7 +1026,7 @@ mod tests {
                                 &mut font_cx,
                                 &mut layout_cx,
                                 Vec2::new(width, 600.0),
-                                16.0,
+                                RemSize(16.0),
                             )
                             .unwrap();
                     });
@@ -1108,26 +1107,26 @@ mod tests {
         assert_eq!(scroll_range(&ComputedNode::default()), Vec2::ZERO);
     }
     /// Builds a physical-pixel scroll event targeting the actual default viewport.
-    fn wheel(entity: Entity, unit: MouseScrollUnit, y: f32) -> Pointer<Scroll> {
-        Pointer::new(
-            bevy::picking::pointer::PointerId::Mouse,
-            bevy::picking::pointer::Location {
-                target: bevy::camera::RenderTarget::None {
-                    size: UVec2::new(200, 100),
-                }
-                .normalize(None)
-                .unwrap(),
-                position: Vec2::ZERO,
-            },
-            Scroll {
-                unit,
-                x: 0.0,
-                y,
-                hit: bevy::picking::backend::HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
-                phase: bevy::input::touch::TouchPhase::Moved,
-            },
+    fn wheel(entity: Entity, unit: MouseScrollUnit, y: f32) -> PointerScroll {
+        PointerScroll {
             entity,
-        )
+            pointer: Pointer::new(
+                bevy::picking::pointer::PointerId::Mouse,
+                bevy::picking::pointer::Location {
+                    target: bevy::camera::RenderTarget::None {
+                        size: UVec2::new(200, 100),
+                    }
+                    .normalize(None)
+                    .unwrap(),
+                    position: Vec2::ZERO,
+                },
+            ),
+            unit,
+            x: 0.0,
+            y,
+            hit: bevy::picking::backend::HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
+            phase: bevy::input::touch::TouchPhase::Moved,
+        }
     }
 
     #[test]
@@ -1180,18 +1179,15 @@ mod tests {
             app.world().get::<Node>(button).unwrap().display,
             Display::Flex
         );
-        let location = wheel(viewport, MouseScrollUnit::Pixel, 0.0).pointer_location;
-        app.world_mut().trigger(Pointer::new(
-            bevy::picking::pointer::PointerId::Mouse,
-            location,
-            Click {
-                button: PointerButton::Primary,
-                count: 1,
-                hit: bevy::picking::backend::HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
-                duration: std::time::Duration::ZERO,
-            },
-            button,
-        ));
+        let pointer = wheel(viewport, MouseScrollUnit::Pixel, 0.0).pointer;
+        app.world_mut().trigger(PointerClick {
+            entity: button,
+            pointer,
+            button: PointerButton::Primary,
+            count: 1,
+            hit: bevy::picking::backend::HitData::new(Entity::PLACEHOLDER, 0.0, None, None),
+            duration: std::time::Duration::ZERO,
+        });
         app.update();
         assert!(
             app.world()
@@ -1203,6 +1199,33 @@ mod tests {
             app.world().get::<Node>(button).unwrap().display,
             Display::None
         );
+    }
+
+    /// Line wheel units follow the host's configured pixels-per-line ratio.
+    #[test]
+    fn line_scroll_uses_the_configured_pixels_per_line() {
+        let mut app = App::new();
+        app.add_plugins(super::super::PromptlineUiPlugin);
+        let mut ratio = MouseScrollPixelsPerLine::default();
+        *ratio = 40.0;
+        app.insert_resource(ratio);
+        app.world_mut().resource_mut::<Output>().write("old");
+        app.update();
+        let viewport = app
+            .world_mut()
+            .query_filtered::<Entity, With<OutputView>>()
+            .iter(app.world())
+            .next()
+            .unwrap();
+        *app.world_mut().get_mut::<ComputedNode>(viewport).unwrap() = ComputedNode {
+            size: Vec2::new(200.0, 100.0),
+            content_size: Vec2::new(200.0, 500.0),
+            ..default()
+        };
+        app.update();
+        app.world_mut()
+            .trigger(wheel(viewport, MouseScrollUnit::Line, 2.0));
+        assert!((app.world().get::<ScrollPosition>(viewport).unwrap().y - 320.0).abs() < 0.01);
     }
 
     #[test]

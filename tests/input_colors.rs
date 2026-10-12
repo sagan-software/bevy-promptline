@@ -46,6 +46,7 @@ fn input_palette_is_initialized_and_preserves_editor_state() {
 
 use bevy::ecs::system::RunSystemOnce;
 use bevy::math::Affine2;
+use bevy::render::sync_world::MainEntity;
 use bevy::render::{Extract, MainWorld, RenderApp};
 use bevy::text::{
     FontAtlasSet, FontCx, LayoutCx, ScaleCx, TextLayoutInfo, load_font_assets_into_font_collection,
@@ -85,7 +86,7 @@ fn shaped(text: &str) -> (EditableText, TextLayoutInfo) {
     world.init_resource::<LayoutCx>();
     world.init_resource::<ScaleCx>();
     world.init_resource::<FontAtlasSet>();
-    world.init_resource::<bevy::text::RemSize>();
+    world.init_resource::<RemSize>();
     world.init_resource::<Time<Real>>();
     let entity = world
         .spawn((
@@ -123,39 +124,104 @@ fn shaped(text: &str) -> (EditableText, TextLayoutInfo) {
         .unwrap()
 }
 
+/// Mirrors Bevy's retained extraction: changed inputs discard old nodes and rebuild.
+fn invalidate_fixture(
+    inputs: Extract<'_, '_, Query<'_, '_, Entity, With<EditableText>>>,
+    mut extracted: ResMut<'_, ExtractedUiNodes>,
+) {
+    extracted.changed.clear();
+    for entity in &inputs {
+        extracted.uinodes.remove(&MainEntity::from(entity));
+        extracted.changed.insert(entity.into());
+    }
+}
+
+/// Requests one black shadow glyph node per input before ordinary text extraction.
+#[derive(Resource)]
+struct ShadowFixture;
+
+/// Adds a shadow node that ordinary token tints must leave untouched.
+fn shadow_fixture(
+    mut commands: Commands<'_, '_>,
+    inputs: Extract<'_, '_, Query<'_, '_, Entity, With<EditableText>>>,
+    shadow: Option<Res<'_, ShadowFixture>>,
+    mut extracted: ResMut<'_, ExtractedUiNodes>,
+) {
+    if shadow.is_none() {
+        return;
+    }
+    for entity in &inputs {
+        let glyphs = vec![ExtractedGlyph {
+            color: LinearRgba::BLACK,
+            translation: Vec2::ZERO,
+            rect: Rect::default(),
+        }];
+        let node = commands.spawn_empty().id();
+        extracted
+            .uinodes
+            .entry(entity.into())
+            .or_insert_with(|| (Entity::PLACEHOLDER, default()))
+            .1
+            .insert(node, glyph_node(glyphs));
+    }
+}
+
 /// A glyph extraction fixture splits one input into multiple ordinary text nodes.
 fn extract_fixture(
+    mut commands: Commands<'_, '_>,
     inputs: Extract<'_, '_, Query<'_, '_, (Entity, &TextLayoutInfo), With<EditableText>>>,
     mut extracted: ResMut<'_, ExtractedUiNodes>,
 ) {
     for (entity, layout) in &inputs {
         for chunk in layout.glyphs.chunks(7) {
-            let start = extracted.glyphs.len();
-            extracted
-                .glyphs
-                .extend(chunk.iter().map(|glyph| ExtractedGlyph {
+            let glyphs = chunk
+                .iter()
+                .map(|glyph| ExtractedGlyph {
                     color: LinearRgba::BLACK,
                     translation: glyph.position,
                     rect: glyph.atlas_info.rect,
-                }));
-            let end = extracted.glyphs.len();
-            extracted.uinodes.push(glyph_node(entity, start..end));
+                })
+                .collect();
+            let node = commands.spawn_empty().id();
+            extracted
+                .uinodes
+                .entry(entity.into())
+                .or_insert_with(|| (Entity::PLACEHOLDER, default()))
+                .1
+                .insert(node, glyph_node(glyphs));
         }
     }
 }
 
+/// The renderer-owned clip that the extraction seam must preserve.
+fn fixture_clip() -> CalculatedClip {
+    CalculatedClip::default().with_rect(
+        Rect::new(0.0, 0.0, 40.0, 40.0),
+        &UiGlobalTransform::default(),
+    )
+}
+
 /// The extraction seam must preserve these renderer-owned transforms and clips.
-fn glyph_node(entity: Entity, range: std::ops::Range<usize>) -> ExtractedUiNode {
+fn glyph_node(glyphs: Vec<ExtractedGlyph>) -> ExtractedUiNode {
     ExtractedUiNode {
         z_order: 0.0,
         image: AssetId::default(),
-        clip: Some(Rect::new(0.0, 0.0, 40.0, 40.0)),
-        extracted_camera_entity: Entity::PLACEHOLDER,
-        item: ExtractedUiItem::Glyphs { range },
-        main_entity: entity.into(),
-        render_entity: Entity::PLACEHOLDER,
+        clip: Some(fixture_clip()),
+        item: ExtractedUiItem::Glyphs { glyphs },
         transform: Affine2::IDENTITY,
     }
+}
+
+/// Flattens one input's extracted glyphs in renderer order.
+fn input_glyphs(extracted: &ExtractedUiNodes, input: Entity) -> Vec<&ExtractedGlyph> {
+    let (_, nodes) = extracted.uinodes.get(&MainEntity::from(input)).unwrap();
+    nodes
+        .values()
+        .flat_map(|node| match &node.item {
+            ExtractedUiItem::Glyphs { glyphs } => glyphs.as_slice(),
+            ExtractedUiItem::Node { .. } => &[],
+        })
+        .collect()
 }
 
 /// Builds a shaped input with a CPU extraction seam and three explicit token colors.
@@ -167,6 +233,7 @@ fn paint_fixture() -> (App, Entity, Vec<(Vec2, Rect)>) {
         .configure_sets(
             ExtractSchedule,
             (
+                RenderUiSystems::ExtractChanges,
                 RenderUiSystems::ExtractTextShadows,
                 RenderUiSystems::ExtractText,
                 RenderUiSystems::ExtractCursor,
@@ -175,7 +242,11 @@ fn paint_fixture() -> (App, Entity, Vec<(Vec2, Rect)>) {
         )
         .add_systems(
             ExtractSchedule,
-            extract_fixture.in_set(RenderUiSystems::ExtractText),
+            (
+                invalidate_fixture.in_set(RenderUiSystems::ExtractChanges),
+                shadow_fixture.in_set(RenderUiSystems::ExtractTextShadows),
+                extract_fixture.in_set(RenderUiSystems::ExtractText),
+            ),
         );
     app.insert_sub_app(RenderApp, render);
     app.add_plugins(PromptlineUiPlugin);
@@ -217,26 +288,18 @@ fn paint_fixture() -> (App, Entity, Vec<(Vec2, Rect)>) {
 #[test]
 fn extracted_input_colors_preserve_geometry_and_shadow_colors() {
     let (mut app, input, geometry) = paint_fixture();
-    {
-        let mut extracted = app
-            .sub_app_mut(RenderApp)
-            .world_mut()
-            .resource_mut::<ExtractedUiNodes>();
-        extracted.glyphs.push(ExtractedGlyph {
-            color: LinearRgba::BLACK,
-            translation: Vec2::ZERO,
-            rect: Rect::default(),
-        });
-        extracted.uinodes.push(glyph_node(input, 0..1));
-    }
+    app.sub_app_mut(RenderApp)
+        .world_mut()
+        .insert_resource(ShadowFixture);
     let mut main = MainWorld::default();
     std::mem::swap(&mut *main, app.world_mut());
     let render = app.sub_app_mut(RenderApp);
     render.world_mut().insert_resource(main);
     render.world_mut().run_schedule(ExtractSchedule);
     let extracted = render.world().resource::<ExtractedUiNodes>();
-    assert_eq!(extracted.glyphs.first().unwrap().color, LinearRgba::BLACK);
-    let glyphs = extracted.glyphs.get(1..).unwrap();
+    let all = input_glyphs(extracted, input);
+    assert_eq!(all.first().unwrap().color, LinearRgba::BLACK);
+    let glyphs = all.get(1..).unwrap();
     assert_eq!(
         glyphs
             .iter()
@@ -268,12 +331,12 @@ fn extracted_input_colors_preserve_geometry_and_shadow_colors() {
             .iter()
             .all(|color| *color == Color::srgb(0.0, 1.0, 0.0).to_linear())
     );
+    let (_, nodes) = extracted.uinodes.get(&MainEntity::from(input)).unwrap();
+    assert!(nodes.len() > 2);
     assert!(
-        extracted
-            .uinodes
-            .iter()
-            .all(|node| node.clip == Some(Rect::new(0.0, 0.0, 40.0, 40.0))
-                && node.transform == Affine2::IDENTITY)
+        nodes
+            .values()
+            .all(|node| node.clip == Some(fixture_clip()) && node.transform == Affine2::IDENTITY)
     );
 }
 
@@ -403,9 +466,9 @@ fn editor_exceptions_preserve_existing_glyph_colors() {
         render.world_mut().insert_resource(main);
         render.world_mut().run_schedule(ExtractSchedule);
         let extracted = render.world().resource::<ExtractedUiNodes>();
+        let glyphs = input_glyphs(extracted, input);
         assert_eq!(
-            extracted
-                .glyphs
+            glyphs
                 .iter()
                 .map(|glyph| (glyph.translation, glyph.rect))
                 .collect::<Vec<_>>(),
@@ -413,19 +476,36 @@ fn editor_exceptions_preserve_existing_glyph_colors() {
         );
         match case {
             PreserveCase::Emoji | PreserveCase::Selection => {
-                assert_eq!(extracted.glyphs.first().unwrap().color, LinearRgba::BLACK);
+                assert_eq!(glyphs.first().unwrap().color, LinearRgba::BLACK);
             }
             PreserveCase::Mismatch
             | PreserveCase::Invalid
             | PreserveCase::Role
             | PreserveCase::Stale
             | PreserveCase::Composition
-            | PreserveCase::PendingLayout => assert!(
-                extracted
-                    .glyphs
-                    .iter()
-                    .all(|glyph| glyph.color == LinearRgba::BLACK)
-            ),
+            | PreserveCase::PendingLayout => {
+                assert!(glyphs.iter().all(|glyph| glyph.color == LinearRgba::BLACK));
+            }
         }
     }
+}
+
+/// Retained UI extraction rebuilds an input only after its tint buffer changes.
+#[test]
+fn refreshed_tints_mark_the_input_color_for_rebuilding() {
+    let (mut app, input, _) = paint_fixture();
+    let changed = |app: &App| {
+        app.world()
+            .entity(input)
+            .get_ref::<TextColor>()
+            .unwrap()
+            .last_changed()
+    };
+    app.update();
+    let idle = changed(&app);
+    app.update();
+    assert_eq!(changed(&app), idle);
+    app.world_mut().resource_mut::<HighlightColors>().command = Some(Color::WHITE);
+    app.update();
+    assert_ne!(changed(&app), idle);
 }

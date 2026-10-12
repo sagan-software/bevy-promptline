@@ -95,7 +95,10 @@ fn rendered_output(app: &mut App, entity: Entity) -> String {
         .run_system_once(move |mut reader: TextUiReader<'_, '_>| {
             reader
                 .iter(entity)
-                .map(|(_, _, text, ..)| text)
+                .filter_map(|(_, _, item)| match item {
+                    bevy::text::TextElement::Text { text, .. } => Some(text),
+                    bevy::text::TextElement::Box(_) => None,
+                })
                 .collect::<String>()
         })
         .unwrap()

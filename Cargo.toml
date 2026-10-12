@@ -1,8 +1,8 @@
 [package]
 name = "bevy_promptline"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
-rust-version = "1.96.1"
+rust-version = "1.97.1"
 description = "A Bevy UI command console with typed systems and optional Clap integration"
 license = "MIT"
 repository = "https://github.com/Sagan-Software/bevy-promptline"
@@ -37,7 +37,7 @@ workspace = true
 resolver = "3"
 
 [workspace.dependencies]
-bevy = { version = "=0.19.1", default-features = false, features = ["std", "bevy_ui", "bevy_ui_render", "bevy_text", "bevy_input_focus", "bevy_ui_widgets", "bevy_picking", "ui_picking"] }
+bevy = { version = "=0.20.0", default-features = false, features = ["std", "bevy_ui", "bevy_ui_render", "bevy_text", "bevy_input_focus", "bevy_ui_widgets", "bevy_picking", "ui_picking"] }
 clap = { version = "4.6.7", features = ["derive"] }
 thiserror = "2.0.21"
 tracing = "0.1.44"

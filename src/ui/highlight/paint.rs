@@ -26,11 +26,12 @@ pub(super) fn prepare(
             Ref<'_, EditableText>,
             Ref<'_, TextLayoutInfo>,
             Ref<'_, TextCursorStyle>,
+            &mut TextColor,
             Option<&mut GlyphColors>,
         ),
     >,
 ) {
-    for (entity, role, editor, layout, cursor, existing) in &mut editors {
+    for (entity, role, editor, layout, cursor, mut text_color, existing) in &mut editors {
         if *role != ConsoleRole::Input {
             continue;
         }
@@ -53,6 +54,8 @@ pub(super) fn prepare(
             &palette,
             &theme,
         );
+        // Bevy retains extracted UI nodes; a touched color makes it rebuild the input's glyphs.
+        text_color.set_changed();
         // Existing components already own their reusable buffer; new input owns the fresh one.
         if is_new {
             commands.entity(entity).insert(fresh);

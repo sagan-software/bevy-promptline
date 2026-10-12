@@ -46,7 +46,7 @@
         bevyLintToolchain = pkgs.rust-bin.fromRustupToolchainFile "${bevy_cli}/rust-toolchain.toml";
         bevyCli = bevy_cli.packages.${system}.default.overrideAttrs (oldAttrs: {
           buildInputs =
-            (oldAttrs.buildInputs or [ ]) ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [ pkgs.zlib ];
+            (oldAttrs.buildInputs or [ ]) ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ pkgs.zlib ];
           postInstall = (oldAttrs.postInstall or "") + ''
             wrapProgram "$out/bin/bevy_lint" \
               --prefix PATH : "${pkgs.lib.makeBinPath [ bevyLintToolchain ]}"
@@ -77,7 +77,7 @@
           pkgs.pkg-config
         ];
 
-        bevyBuildInputs = pkgs.lib.optionals pkgs.stdenv.isLinux [
+        bevyBuildInputs = pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           pkgs.alsa-lib
           pkgs.libxkbcommon
           pkgs.udev
@@ -95,21 +95,21 @@
         bevyBrpMcp =
           let
             pname = "bevy_brp_mcp";
-            version = "0.20.1";
+            version = "0.23.0";
           in
           pkgs.rustPlatform.buildRustPackage {
             inherit pname version;
 
             src = pkgs.fetchCrate {
               inherit pname version;
-              hash = "sha256-pFE8vKDwuc9e8viKlidPRnvdC5JlF90/vgApzvJXLyQ=";
+              hash = "sha256-Qubf235pr9A0vPQDsNKhbzkAJSH7ZcHe/V0+4ajctSY=";
             };
 
-            cargoHash = "sha256-rDjhWN1Sc+D0Oi5rZuL80Ifa1BU8dvJlAFYjfINYPDo=";
+            cargoHash = "sha256-6kTUTquSOzpdfbdsx4Uu+GoyopWecWfDaZif7Wpr7+o=";
             doCheck = false;
 
             nativeBuildInputs = [ pkgs.pkg-config ];
-            buildInputs = pkgs.lib.optionals pkgs.stdenv.isLinux [ pkgs.openssl ];
+            buildInputs = pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.openssl ];
 
             meta.mainProgram = "bevy_brp_mcp";
           };
@@ -132,7 +132,7 @@
           // {
             inherit cargoArtifacts;
             pname = packageName;
-            version = "0.2.0";
+            version = "0.3.0";
             doCheck = false;
 
           }
@@ -260,7 +260,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-doctest";
-            version = "0.2.0";
+            version = "0.3.0";
             buildPhaseCargoCommand = "cargo test --workspace --doc --locked";
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -272,7 +272,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-private-docs";
-            version = "0.2.0";
+            version = "0.3.0";
             RUSTDOCFLAGS = "-D warnings";
             buildPhaseCargoCommand = "cargo doc --workspace --no-deps --document-private-items --locked";
             doInstallCargoArtifacts = false;
@@ -285,7 +285,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-bench-check";
-            version = "0.2.0";
+            version = "0.3.0";
             buildPhaseCargoCommand = "cargo bench --workspace --locked --no-run";
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -297,7 +297,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-feature-matrix-check";
-            version = "0.2.0";
+            version = "0.3.0";
             buildPhaseCargoCommand = supportedFeatureCheckCommands;
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -309,7 +309,7 @@
           // {
             inherit cargoArtifacts;
             pname = "${packageName}-coverage";
-            version = "0.2.0";
+            version = "0.3.0";
             nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ pkgs.cargo-llvm-cov ];
             buildPhaseCargoCommand = ''
               mkdir -p "$out"
@@ -344,10 +344,12 @@
           // {
             cargoArtifacts = null;
             pname = "${packageName}-bevy-lint";
-            version = "0.2.0";
+            version = "0.3.0";
             nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ bevyCli ];
+            # bevy_cli pins a nightly compiler that reports itself as 1.97.0, below Bevy 0.20's
+            # declared 1.97.1 minimum; the lint still checks Bevy 0.20 code with it.
             buildPhaseCargoCommand = ''
-              CARGO_TARGET_DIR=target/bevy-lint bevy_lint --workspace --all-targets --locked
+              CARGO_TARGET_DIR=target/bevy-lint bevy_lint --workspace --all-targets --locked --ignore-rust-version
             '';
             doInstallCargoArtifacts = false;
             installPhaseCommand = "mkdir -p $out";
@@ -412,7 +414,7 @@
             treefmt --fail-on-change
             cargo clippy --workspace --all-targets --locked -- --deny warnings
             ${supportedFeatureCheckCommands}
-            CARGO_TARGET_DIR=target/bevy-lint bevy_lint --workspace --all-targets --locked
+            CARGO_TARGET_DIR=target/bevy-lint bevy_lint --workspace --all-targets --locked --ignore-rust-version
             cargo nextest run --locked --workspace --no-tests=pass
             cargo test --workspace --doc --locked
             RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --document-private-items --locked

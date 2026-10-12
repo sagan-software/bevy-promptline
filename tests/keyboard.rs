@@ -6,7 +6,7 @@ use bevy::input::{
 use bevy::input_focus::{InputDispatchPlugin, InputFocus, InputFocusPlugin};
 use bevy::prelude::*;
 use bevy::text::{EditableText, TextEdit};
-use bevy::ui_widgets::EditableTextInputPlugin;
+use bevy::ui_widgets::{TextInput, TextInputPlugin};
 use bevy::window::PrimaryWindow;
 use bevy_promptline::input::{ConsoleState, PromptlineUiPlugin};
 
@@ -17,12 +17,15 @@ fn keyboard_app() -> (App, Entity, Entity) {
         InputPlugin,
         InputFocusPlugin,
         InputDispatchPlugin,
-        EditableTextInputPlugin,
+        TextInputPlugin,
         PromptlineUiPlugin,
     ))
     .init_resource::<UiScale>()
+    // Bevy 0.20 text input autoscroll reads real time and pointer state.
+    .init_resource::<Time<Real>>()
+    .init_resource::<PointerState>()
     .add_message::<Ime>()
-    .add_message::<Pointer<Release>>();
+    .add_message::<PointerRelease>();
     let window = app
         .world_mut()
         .spawn((Window::default(), PrimaryWindow))
@@ -213,7 +216,11 @@ fn another_widget_keeps_bevys_existing_batch_keyboard_semantics() {
     let (mut app, _, window) = keyboard_app();
     app.world_mut().resource_mut::<ConsoleState>().close();
     app.update();
-    let other = app.world_mut().spawn(EditableText::new("other")).id();
+    // Bevy 0.20 routes widget input only to editors that carry `TextInput`.
+    let other = app
+        .world_mut()
+        .spawn((EditableText::new("other"), TextInput))
+        .id();
     app.world_mut()
         .resource_mut::<InputFocus>()
         .set(other, FocusCause::Navigated);
@@ -352,5 +359,46 @@ fn window_focus_loss_releases_shortcut_modifiers_before_new_text() {
         !app.world()
             .resource::<ButtonInput<Key>>()
             .pressed(Key::Control)
+    );
+}
+
+/// Bevy 0.20 text input blurs on Escape; the close binding must still close the console.
+#[test]
+fn escape_closes_the_console_after_bevy_releases_editor_focus() {
+    use bevy_promptline::input::ConsoleMode;
+    let (mut app, input, window) = keyboard_app();
+    assert_eq!(app.world().resource::<InputFocus>().get(), Some(input));
+    app.world_mut().write_message(key(
+        window,
+        KeyCode::Escape,
+        Key::Escape,
+        ButtonState::Pressed,
+        None,
+    ));
+    app.update();
+    assert_eq!(
+        app.world().resource::<ConsoleState>().mode(),
+        ConsoleMode::Closed
+    );
+    assert_eq!(app.world().resource::<InputFocus>().get(), None);
+}
+
+/// A rebound close key leaves Bevy's Escape blur as a release of editing ownership.
+#[test]
+fn escape_releases_editing_when_another_key_closes_the_console() {
+    use bevy_promptline::input::{ConsoleBindings, ConsoleMode};
+    let (mut app, _, window) = keyboard_app();
+    app.world_mut().resource_mut::<ConsoleBindings>().close = KeyCode::F1;
+    app.world_mut().write_message(key(
+        window,
+        KeyCode::Escape,
+        Key::Escape,
+        ButtonState::Pressed,
+        None,
+    ));
+    app.update();
+    assert_eq!(
+        app.world().resource::<ConsoleState>().mode(),
+        ConsoleMode::OpenReleased
     );
 }

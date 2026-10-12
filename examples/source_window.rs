@@ -64,7 +64,7 @@ fn decorate(
                 parent
                     .spawn((
                         ConsoleRole::CloseControl,
-                        Button,
+                        bevy::ui_widgets::Button,
                         Node {
                             padding: px(6).all(),
                             ..default()
@@ -74,7 +74,7 @@ fn decorate(
                         button.spawn((Text::new("Close"), TextColor(Color::WHITE)));
                     })
                     .observe(
-                        |_: On<'_, '_, Pointer<Click>>, mut state: ResMut<'_, ConsoleState>| {
+                        |_: On<'_, '_, PointerClick>, mut state: ResMut<'_, ConsoleState>| {
                             state.close();
                         },
                     );
@@ -84,7 +84,7 @@ fn decorate(
         let grip = commands
             .spawn((
                 ConsoleRole::ResizeControl,
-                Button,
+                bevy::ui_widgets::Button,
                 Node {
                     position_type: PositionType::Absolute,
                     right: px(2),
@@ -107,11 +107,11 @@ fn decorate(
     }
 }
 /// Picking retains the initial drag target after the pointer leaves the title region.
-fn drag_window(event: On<'_, '_, Pointer<Drag>>, mut bounds: ResMut<'_, Bounds>) {
+fn drag_window(event: On<'_, '_, PointerDrag>, mut bounds: ResMut<'_, Bounds>) {
     bounds.position += event.delta;
 }
 /// Resize deltas use the same logical-pixel coordinate system as the window bounds.
-fn resize_window(event: On<'_, '_, Pointer<Drag>>, mut bounds: ResMut<'_, Bounds>) {
+fn resize_window(event: On<'_, '_, PointerDrag>, mut bounds: ResMut<'_, Bounds>) {
     bounds.size += event.delta;
 }
 /// Viewport changes clamp saved bounds before applying them to the public root.

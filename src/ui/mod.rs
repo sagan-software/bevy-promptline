@@ -15,6 +15,7 @@ pub use self::theme::ConsoleTheme;
 use bevy::input_focus::{FocusCause, InputFocus};
 use bevy::prelude::*;
 use bevy::text::{EditableText, EditableTextSystems, FontCx, LayoutCx, TextCursorStyle, TextEdit};
+use bevy::ui_widgets::TextInput;
 
 /// Installs a default console tree and its input integration in an existing
 /// app. Applications provide their own rendering, input, camera, and window
@@ -34,7 +35,8 @@ pub enum ConsoleRole {
     /// The authoritative single-line editable input receives keyboard and
     /// pointer
     /// operations. Applications provide an `EditableText` component when
-    /// replacing this role's default entity.
+    /// replacing this role's default entity; the UI plugin adds Bevy's
+    /// `TextInput` widget marker to every console role with an editor.
     Input,
     /// The output region presents retained typed game writes and runtime
     /// diagnostics. Its role remains distinct from editable input so output
@@ -195,11 +197,36 @@ impl Plugin for PromptlineUiPlugin {
         configure_presentation(app);
         scrollback::install(app);
         highlight::install(app);
+        // Bevy 0.20 routes editing input only to editors that also carry `TextInput`.
+        app.add_observer(attach_input_to_editor)
+            .add_observer(attach_input_to_role);
     }
 
     fn finish(&self, app: &mut App) {
         keyboard::install(app);
         highlight::install_render(app);
+    }
+}
+
+/// Console editors keep Bevy's keyboard, pointer, and IME widget behavior.
+fn attach_input_to_editor(
+    event: On<'_, '_, Add<EditableText>>,
+    roles: Query<'_, '_, (), With<ConsoleRole>>,
+    mut commands: Commands<'_, '_>,
+) {
+    if roles.contains(event.entity) {
+        commands.entity(event.entity).insert_if_new(TextInput);
+    }
+}
+
+/// A role assigned after its editor receives the same widget behavior.
+fn attach_input_to_role(
+    event: On<'_, '_, Insert<ConsoleRole>>,
+    editors: Query<'_, '_, (), (With<EditableText>, Without<TextInput>)>,
+    mut commands: Commands<'_, '_>,
+) {
+    if editors.contains(event.entity) {
+        commands.entity(event.entity).insert(TextInput);
     }
 }
 
@@ -270,6 +297,8 @@ fn configure_presentation(app: &mut App) {
 fn sync_editor_focus(
     mut state: ResMut<'_, ConsoleState>,
     focus: Res<'_, InputFocus>,
+    bindings: Res<'_, ConsoleBindings>,
+    keys: Res<'_, ButtonInput<KeyCode>>,
     roles: Query<'_, '_, (Entity, &ConsoleRole)>,
 ) {
     // Closed consoles leave other widgets' focus unchanged.
@@ -280,6 +309,15 @@ fn sync_editor_focus(
         .iter()
         .find_map(|(entity, role)| (*role == ConsoleRole::Input).then_some(entity));
     let is_editor_focused = input.is_some() && focus.get() == input;
+    // Bevy 0.20 text input clears focus on Escape before this system runs.
+    // When that key is also the close binding, editing remains owned so the
+    // close action restores the saved focus instead of only releasing it.
+    let is_editing_before = state.mode == ConsoleMode::OpenEditing;
+    let is_unfocused = focus.get().is_none();
+    let is_close_pressed = keys.just_pressed(bindings.close);
+    if is_editing_before && is_unfocused && is_close_pressed {
+        return;
+    }
     // Open visibility persists when another widget takes editing ownership.
     state.mode = if is_editor_focused {
         ConsoleMode::OpenEditing
@@ -425,7 +463,7 @@ fn spawn_open_button(mut commands: Commands<'_, '_>) {
     commands
         .spawn((
             ConsoleRole::OpenControl,
-            Button,
+            bevy::ui_widgets::Button,
             Node {
                 position_type: PositionType::Absolute,
                 left: px(16),
@@ -473,7 +511,7 @@ fn spawn_text_role(mut commands: Commands<'_, '_>, role: ConsoleRole, height: f3
 }
 
 /// Opens the console through a visible pointer and touch control.
-fn open_control(_: On<'_, '_, Pointer<Click>>, mut state: ResMut<'_, ConsoleState>) {
+fn open_control(_: On<'_, '_, PointerClick>, mut state: ResMut<'_, ConsoleState>) {
     state.open();
 }
 
@@ -1060,7 +1098,7 @@ fn position_ghost(
             &ComputedNode,
             &UiGlobalTransform,
             Option<&bevy::text::TextLayoutInfo>,
-            Option<&bevy::ui::widget::TextScroll>,
+            Option<&EditableText>,
         ),
     >,
     mut ghosts: Query<'_, '_, (&ConsoleRole, &mut Node)>,
@@ -1085,7 +1123,7 @@ fn position_ghost(
     // Translate physical caret geometry into the root coordinate system before scaling.
     let offset = input_transform.translation - root_transform.translation
         + (root_node.size - input_node.size) * 0.5;
-    let scroll = scroll.map_or(Vec2::ZERO, |scroll| scroll.0);
+    let scroll = scroll.map_or(Vec2::ZERO, |editor| editor.viewport.offset);
     // Scroll and inverse UI scale convert physical pixel coordinates into logical placement.
     let position =
         (offset + Vec2::new(cursor.max.x, cursor.min.y) - scroll) * root_node.inverse_scale_factor;

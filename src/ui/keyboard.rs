@@ -53,9 +53,9 @@ enum DispatchTarget {
 }
 
 /// Replaces only Bevy's standard keyboard dispatcher when the host installed it.
-/// Bevy 0.19.1 controls this compatibility hook:
-/// <https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_input_focus/src/lib.rs>
-/// and <https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ecs/src/schedule/schedule.rs>.
+/// Bevy 0.20.0 controls this compatibility hook:
+/// <https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_input_focus/src/lib.rs>
+/// and <https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ecs/src/schedule/schedule.rs>.
 pub(super) fn install(app: &mut App) {
     // A host without the standard dispatcher keeps its own input integration.
     if !app.is_plugin_added::<InputDispatchPlugin>() {
@@ -206,7 +206,7 @@ fn dispatch_console(
 }
 
 /// Releases logical keys after focus loss, matching Bevy's physical-key reset.
-/// <https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_input/src/keyboard.rs>.
+/// <https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_input/src/keyboard.rs>.
 fn release_lost_focus(world: &mut World, timeline: &mut ChronologicalKeyboard) {
     let messages = world
         .get_resource::<Messages<KeyboardFocusLost>>()
@@ -248,8 +248,8 @@ fn dispatch_bridge(world: &mut World, timeline: &mut ChronologicalKeyboard) {
     result.expect("the registered Bevy keyboard dispatcher remains available");
 }
 
-/// Returns the Shift+Space edit omitted by Bevy 0.19.1's text-input observer.
-/// <https://github.com/bevyengine/bevy/blob/v0.19.1/crates/bevy_ui_widgets/src/text_input.rs>.
+/// Returns the Shift+Space edit omitted by Bevy 0.20.0's text-input observer.
+/// <https://github.com/bevyengine/bevy/blob/v0.20.0/crates/bevy_ui_widgets/src/text_input.rs>.
 fn omitted_space(
     world: &World,
     target: Entity,
@@ -279,7 +279,7 @@ fn omitted_space(
         .map(|text| TextEdit::Insert(text.clone()))
 }
 
-/// Bevy 0.19.1 `text_input.rs` handles unmodified Space but omits Shift+Space.
+/// Bevy 0.20.0 `text_input.rs` handles unmodified Space but omits Shift+Space.
 /// Forward only that omitted case after the focused input observers have queued
 /// their edits.
 pub(super) fn forward_shift_space(
